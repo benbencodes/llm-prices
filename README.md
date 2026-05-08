@@ -18,8 +18,22 @@ release.
 
 ## Install
 
+**Homebrew (macOS/Linux):**
+```bash
+brew tap benbencodes/tap
+brew install llm-prices
+```
+
+**pip (coming soon — PyPI publish in progress):**
 ```bash
 pip install llm-prices
+```
+
+**From source:**
+```bash
+git clone https://github.com/benbencodes/llm-prices
+cd llm-prices
+pip install -e .
 ```
 
 Requires Python 3.8+. No other dependencies.

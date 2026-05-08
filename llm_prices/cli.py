@@ -203,7 +203,8 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=DONATION_NOTE,
     )
-    parser.add_argument("--version", action="version", version="llm-prices 0.1.0")
+    from . import __version__
+    parser.add_argument("--version", action="version", version=f"llm-prices {__version__}")
     sub = parser.add_subparsers(dest="command", metavar="COMMAND")
     sub.required = True
 
