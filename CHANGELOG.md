@@ -2,6 +2,19 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.1] - 2026-05-08
+
+### Added
+- OpenAI: gpt-4.1, gpt-4.1-mini, gpt-4.1-nano (up to 1M context window)
+- Google: gemini-2.5-flash
+- Anthropic: claude-3-7-sonnet; versioned model IDs (claude-opus-4-7,
+  claude-sonnet-4-6, claude-haiku-4-5)
+- Groq: llama-4-scout, llama-4-maverick
+- Total: 36 → 43 models
+
+### Fixed
+- Corrected project URLs in pyproject.toml to point to actual GitHub repo
+
 ## [0.1.0] - 2026-05-08
 
 ### Added

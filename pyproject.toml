@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "llm-prices"
-version = "0.1.0"
+version = "0.1.1"
 description = "Look up and compare LLM API pricing across providers (OpenAI, Anthropic, Google, Mistral, and more)"
 readme = "README.md"
 license = { text = "MIT" }
@@ -30,9 +30,9 @@ classifiers = [
 llm-prices = "llm_prices.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/llm-prices/llm-prices"
-Repository = "https://github.com/llm-prices/llm-prices"
-"Bug Tracker" = "https://github.com/llm-prices/llm-prices/issues"
+Homepage = "https://github.com/benbencodes/llm-prices"
+Repository = "https://github.com/benbencodes/llm-prices"
+"Bug Tracker" = "https://github.com/benbencodes/llm-prices/issues"
 
 [tool.setuptools.packages.find]
 where = ["."]
