@@ -358,6 +358,57 @@ MODELS = {
         "context_window": 131_072,
         "notes": "DeepSeek-V3.1; API: deepseek-ai/DeepSeek-V3.1",
     },
+    "deepseek-v4-pro-together": {
+        "provider": "Together",
+        "input_per_mtok": 2.10,
+        "output_per_mtok": 4.40,
+        "context_window": 512_000,
+        "notes": "DeepSeek-V4-Pro; API: deepseek-ai/DeepSeek-V4-Pro",
+    },
+    # ── Fireworks AI ──────────────────────────────────────────────────────
+    # Per-model pricing; unnamed models billed by size tier
+    "deepseek-v4-pro-fw": {
+        "provider": "Fireworks",
+        "input_per_mtok": 1.74,
+        "output_per_mtok": 3.48,
+        "context_window": 512_000,
+        "notes": "DeepSeek V4 Pro; API: accounts/fireworks/models/deepseek-v4-pro",
+    },
+    "deepseek-v3-fw": {
+        "provider": "Fireworks",
+        "input_per_mtok": 0.56,
+        "output_per_mtok": 1.68,
+        "context_window": 131_072,
+        "notes": "DeepSeek V3 family; API: accounts/fireworks/models/deepseek-v3",
+    },
+    "kimi-k2-fw": {
+        "provider": "Fireworks",
+        "input_per_mtok": 0.60,
+        "output_per_mtok": 3.00,
+        "context_window": 262_144,
+        "notes": "Kimi K2.5; API: accounts/fireworks/models/kimi-k2",
+    },
+    "llama-3.1-70b-fw": {
+        "provider": "Fireworks",
+        "input_per_mtok": 0.90,
+        "output_per_mtok": 0.90,
+        "context_window": 131_072,
+        "notes": "Llama 3.1 70B (>16B tier, same in/out); API: accounts/fireworks/models/llama-v3p1-70b-instruct",
+    },
+    "llama-3.1-8b-fw": {
+        "provider": "Fireworks",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.20,
+        "context_window": 131_072,
+        "notes": "Llama 3.1 8B (4B-16B tier, same in/out); API: accounts/fireworks/models/llama-v3p1-8b-instruct",
+    },
+    "mixtral-8x7b-fw": {
+        "provider": "Fireworks",
+        "input_per_mtok": 0.50,
+        "output_per_mtok": 0.50,
+        "context_window": 32_768,
+        "notes": "Mixtral 8x7B MoE; API: accounts/fireworks/models/mixtral-8x7b-instruct",
+    },
 }
 
 PROVIDERS = sorted({m["provider"] for m in MODELS.values()})

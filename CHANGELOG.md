@@ -2,6 +2,14 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.3] - 2026-05-08
+
+### Added
+- Fireworks AI provider: 6 models (deepseek-v4-pro-fw, deepseek-v3-fw, kimi-k2-fw,
+  llama-3.1-70b-fw, llama-3.1-8b-fw, mixtral-8x7b-fw)
+- DeepSeek V4 Pro on Together AI (deepseek-v4-pro-together)
+- Total: 49 → 56 models across 10 providers
+
 ## [0.1.2] - 2026-05-08
 
 ### Added
