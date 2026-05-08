@@ -1,6 +1,8 @@
 """llm-prices CLI — look up and compare LLM API costs."""
 
 import argparse
+import csv
+import io
 import json
 import signal
 import sys
@@ -18,6 +20,22 @@ Built by an AI agent. If this tool saves you time, consider a tip:
   BTC : bc1qv0ny3c97lk80qv5v79f52w3hyaqq2ss0zdqp52
   https://github.com/benbencodes/llm-prices
 """
+
+
+def _to_markdown_table(headers, rows):
+    widths = [max(len(str(r[i])) for r in ([headers] + rows)) for i in range(len(headers))]
+    sep = "|" + "|".join("-" * (w + 2) for w in widths) + "|"
+    def fmt_row(r):
+        return "|" + "|".join(f" {str(r[i]):<{widths[i]}} " for i in range(len(headers))) + "|"
+    return "\n".join([fmt_row(headers), sep] + [fmt_row(r) for r in rows])
+
+
+def _to_csv(headers, rows):
+    buf = io.StringIO()
+    w = csv.writer(buf)
+    w.writerow(headers)
+    w.writerows(rows)
+    return buf.getvalue().rstrip()
 
 
 def cmd_list(args):
@@ -51,8 +69,37 @@ def cmd_list(args):
         print("No models found matching your filters.")
         return
 
-    # Column widths
-    col_model = max(len(n) for n, _ in results) + 2
+    headers = ["Model", "Provider", "Input/Mtok", "Output/Mtok", "Context", "Notes"]
+    rows = [
+        [
+            name,
+            info["provider"],
+            f"${info['input_per_mtok']:.4f}",
+            f"${info['output_per_mtok']:.4f}",
+            f"{info['context_window'] // 1000}k",
+            info.get("notes", ""),
+        ]
+        for name, info in results
+    ]
+
+    if args.markdown:
+        print(f"<!-- Prices as of {DATA_DATE}. Verify at provider's pricing page. -->")
+        print(_to_markdown_table(headers, rows))
+        return
+
+    if args.csv:
+        print(_to_csv(
+            ["model", "provider", "input_per_mtok_usd", "output_per_mtok_usd", "context_window", "notes"],
+            [
+                [name, info["provider"], info["input_per_mtok"], info["output_per_mtok"],
+                 info["context_window"], info.get("notes", "")]
+                for name, info in results
+            ],
+        ))
+        return
+
+    # Plain table
+    col_model = max(len(r[0]) for r in rows) + 2
     col_model = max(col_model, 26)
     header = (
         f"{'Model':<{col_model}} {'Provider':<12} "
@@ -109,8 +156,36 @@ def cmd_compare(args):
         except ValueError as e:
             print(f"Warning: {e}", file=sys.stderr)
 
+    if not rows:
+        return
+
+    rows.sort(key=lambda r: r["total_cost_usd"])
+    cheapest = rows[0]["total_cost_usd"] if rows else 1
+
     if args.json:
         print(json.dumps(rows, indent=2))
+        return
+
+    headers = ["Model", "Provider", "Input", "Output", "Total"]
+    table_rows = []
+    for r in rows:
+        ratio = ""
+        if r["total_cost_usd"] > cheapest and cheapest > 0:
+            ratio = f" ({r['total_cost_usd'] / cheapest:.1f}x)"
+        table_rows.append([
+            r["model"], r["provider"],
+            format_usd(r["input_cost_usd"]),
+            format_usd(r["output_cost_usd"]),
+            format_usd(r["total_cost_usd"]) + ratio,
+        ])
+
+    if args.markdown:
+        caption = (
+            f"<!-- {args.input_tokens:,} input / {args.output_tokens:,} output tokens. "
+            f"Cheapest: {rows[0]['model']} -->"
+        )
+        print(caption)
+        print(_to_markdown_table(headers, table_rows))
         return
 
     col = max(len(r["model"]) for r in rows) + 2
@@ -121,23 +196,16 @@ def cmd_compare(args):
     print(hdr)
     print("-" * len(hdr))
 
-    rows.sort(key=lambda r: r["total_cost_usd"])
-    cheapest = rows[0]["total_cost_usd"] if rows else 1
-    for r in rows:
-        ratio = ""
-        if r["total_cost_usd"] > cheapest and cheapest > 0:
-            ratio = f"  ({r['total_cost_usd'] / cheapest:.1f}x)"
+    for r, tr in zip(rows, table_rows):
         print(
             f"{r['model']:<{col}} {r['provider']:<12} "
             f"{format_usd(r['input_cost_usd']):>12} "
             f"{format_usd(r['output_cost_usd']):>12} "
-            f"{format_usd(r['total_cost_usd']):>12}{ratio}"
+            f"{tr[4]:>12}"
         )
 
     print()
-    if rows:
-        cheapest_model = rows[0]["model"]
-        print(f"Cheapest: {cheapest_model} at {format_usd(rows[0]['total_cost_usd'])}")
+    print(f"Cheapest: {rows[0]['model']} at {format_usd(rows[0]['total_cost_usd'])}")
 
 
 def cmd_budget(args):
@@ -219,6 +287,8 @@ def main():
         help="Sort order (default: provider)",
     )
     p_list.add_argument("--json", action="store_true", help="Output as JSON")
+    p_list.add_argument("--markdown", action="store_true", help="Output as Markdown table")
+    p_list.add_argument("--csv", action="store_true", help="Output as CSV")
 
     # calc
     p_calc = sub.add_parser("calc", help="Calculate cost for a specific model and token count")
@@ -237,6 +307,7 @@ def main():
     p_cmp.add_argument("--out", dest="output_tokens", type=int, default=500,
                        help="Output tokens (default: 500)")
     p_cmp.add_argument("--json", action="store_true", help="Output as JSON")
+    p_cmp.add_argument("--markdown", action="store_true", help="Output as Markdown table")
 
     # providers
     p_prov = sub.add_parser("providers", help="List available providers")

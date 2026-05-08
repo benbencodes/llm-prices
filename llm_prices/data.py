@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
 # Sources: official provider pricing pages
-# Last updated: 2026-05-08
+# Last updated: 2026-05-08 → 2026-05-08 (Together AI added)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -313,6 +313,50 @@ MODELS = {
         "output_per_mtok": 0.50,
         "context_window": 131_072,
         "notes": "Fast reasoning",
+    },
+    # ── Together AI ───────────────────────────────────────────────────────
+    # Popular open-weight models via Together AI's serverless API
+    "qwen3-235b": {
+        "provider": "Together",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.60,
+        "context_window": 262_144,
+        "notes": "Qwen3 235B-A22B; API: Qwen/Qwen3-235B-A22B-Instruct-2507",
+    },
+    "kimi-k2": {
+        "provider": "Together",
+        "input_per_mtok": 0.50,
+        "output_per_mtok": 2.80,
+        "context_window": 262_144,
+        "notes": "Moonshot Kimi K2.5; API: moonshotai/Kimi-K2.5",
+    },
+    "llama-3.3-70b-turbo": {
+        "provider": "Together",
+        "input_per_mtok": 0.88,
+        "output_per_mtok": 0.88,
+        "context_window": 131_072,
+        "notes": "Same in/out price; API: meta-llama/Llama-3.3-70B-Instruct-Turbo",
+    },
+    "qwen3.5-9b": {
+        "provider": "Together",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.15,
+        "context_window": 262_144,
+        "notes": "Qwen3.5 9B; API: Qwen/Qwen3.5-9B",
+    },
+    "deepseek-r1-together": {
+        "provider": "Together",
+        "input_per_mtok": 3.00,
+        "output_per_mtok": 7.00,
+        "context_window": 163_840,
+        "notes": "DeepSeek-R1-0528; API: deepseek-ai/DeepSeek-R1",
+    },
+    "deepseek-v3-together": {
+        "provider": "Together",
+        "input_per_mtok": 0.60,
+        "output_per_mtok": 1.70,
+        "context_window": 131_072,
+        "notes": "DeepSeek-V3.1; API: deepseek-ai/DeepSeek-V3.1",
     },
 }
 

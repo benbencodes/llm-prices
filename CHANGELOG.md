@@ -2,6 +2,16 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.2] - 2026-05-08
+
+### Added
+- Together AI provider: 6 models (qwen3-235b, kimi-k2, llama-3.3-70b-turbo,
+  qwen3.5-9b, deepseek-r1-together, deepseek-v3-together)
+- `list --markdown`: output as GitHub-flavored Markdown table (paste into READMEs/docs)
+- `list --csv`: output as CSV (import into spreadsheets, databases)
+- `compare --markdown`: output comparison as Markdown table
+- Total: 43 → 49 models across 9 providers
+
 ## [0.1.1] - 2026-05-08
 
 ### Added
