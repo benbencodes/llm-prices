@@ -254,6 +254,70 @@ def cmd_budget(args):
         print(f"{name:<{col}} {provider:<12} {format_usd(cost):>12} {calls_str:>12}")
 
 
+def cmd_top(args):
+    """Show the N cheapest models for a given token workload."""
+    n = args.n
+    input_tokens = args.input_tokens
+    output_tokens = args.output_tokens
+
+    results = search_models(query=args.search or "", provider=args.provider or "")
+    rows = []
+    for name, info in results:
+        try:
+            r = calculate_cost(name, input_tokens, output_tokens)
+            if r["total_cost_usd"] >= 0:
+                rows.append(r)
+        except ValueError:
+            pass
+
+    rows.sort(key=lambda r: r["total_cost_usd"])
+    rows = rows[:n]
+
+    if not rows:
+        print("No models found.")
+        return
+
+    if args.json:
+        print(json.dumps(rows, indent=2))
+        return
+
+    headers = ["Rank", "Model", "Provider", "Input", "Output", "Total"]
+    table_rows = [
+        [
+            f"#{i+1}",
+            r["model"],
+            r["provider"],
+            format_usd(r["input_cost_usd"]),
+            format_usd(r["output_cost_usd"]),
+            format_usd(r["total_cost_usd"]),
+        ]
+        for i, r in enumerate(rows)
+    ]
+
+    if args.markdown:
+        caption = (
+            f"<!-- Top {n} cheapest: {input_tokens:,} input / {output_tokens:,} output tokens -->"
+        )
+        print(caption)
+        print(_to_markdown_table(headers, table_rows))
+        return
+
+    col = max(len(r["model"]) for r in rows) + 2
+    col = max(col, 22)
+    print(f"Top {n} cheapest: {input_tokens:,} input / {output_tokens:,} output tokens")
+    print()
+    hdr = f"{'#':<4} {'Model':<{col}} {'Provider':<12} {'Input':>12} {'Output':>12} {'Total':>12}"
+    print(hdr)
+    print("-" * len(hdr))
+    for i, r in enumerate(rows):
+        print(
+            f"{i+1:<4} {r['model']:<{col}} {r['provider']:<12} "
+            f"{format_usd(r['input_cost_usd']):>12} "
+            f"{format_usd(r['output_cost_usd']):>12} "
+            f"{format_usd(r['total_cost_usd']):>12}"
+        )
+
+
 def cmd_providers(args):
     if args.json:
         print(json.dumps(PROVIDERS))
@@ -324,6 +388,19 @@ def main():
     p_bud.add_argument("--search", "-s", help="Filter by model name")
     p_bud.add_argument("--json", action="store_true", help="Output as JSON")
 
+    # top
+    p_top = sub.add_parser("top", help="Show the N cheapest models for a given workload")
+    p_top.add_argument("n", type=int, nargs="?", default=10,
+                       help="Number of models to show (default: 10)")
+    p_top.add_argument("--in", dest="input_tokens", type=int, default=1000,
+                       help="Input tokens per call (default: 1000)")
+    p_top.add_argument("--out", dest="output_tokens", type=int, default=500,
+                       help="Output tokens per call (default: 500)")
+    p_top.add_argument("--provider", "-p", help="Filter by provider")
+    p_top.add_argument("--search", "-s", help="Filter by model name")
+    p_top.add_argument("--json", action="store_true", help="Output as JSON")
+    p_top.add_argument("--markdown", action="store_true", help="Output as Markdown table")
+
     args = parser.parse_args()
 
     dispatch = {
@@ -332,6 +409,7 @@ def main():
         "compare": cmd_compare,
         "providers": cmd_providers,
         "budget": cmd_budget,
+        "top": cmd_top,
     }
     dispatch[args.command](args)
 

@@ -254,7 +254,7 @@
 </header>
 
 <section class="hero">
-  <div class="badge">v0.1.4 · 60 models · 11 providers</div>
+  <div class="badge">v0.1.6 · 60 models · 11 providers</div>
   <h1>Know what you're paying for<br><span>LLM API calls</span></h1>
   <p>A zero-dependency Python CLI and library for comparing LLM API pricing across all major providers. No API key required.</p>
   <div class="cta-group">
@@ -336,6 +336,11 @@
       <div class="icon">💵</div>
       <h3>budget</h3>
       <p>Given a dollar budget and typical token counts, see how many API calls each model allows. Great for cost planning.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🏆</div>
+      <h3>top</h3>
+      <p>Show the N cheapest models for your exact token workload. <code>llm-prices top 5 --in 5000 --out 1000</code>. Supports <code>--markdown</code> output.</p>
     </div>
     <div class="feature-card">
       <div class="icon">📋</div>

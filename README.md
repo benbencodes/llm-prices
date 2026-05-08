@@ -7,6 +7,7 @@ costs across all major providers.
 $ llm-prices list --provider OpenAI --sort input
 $ llm-prices calc gpt-4o --in 10000 --out 2000
 $ llm-prices compare gpt-4o claude-sonnet-4-6 gemini-2.5-pro --in 5000 --out 1000
+$ llm-prices top 5 --in 5000 --out 1000          # 5 cheapest for your workload
 $ llm-prices budget 1.00 --in 1000 --out 500
 $ llm-prices list --markdown   # GitHub-flavored table — paste into your README
 $ llm-prices list --csv        # CSV export for spreadsheets
@@ -113,6 +114,32 @@ llm-prices compare gpt-4o claude-sonnet-4-6 gemini-2.5-pro qwen3-235b \
 | gemini-2.5-pro    | Google    | $0.006250 | $0.0100   | $0.0163 (10.2x)  |
 | gpt-4o            | OpenAI    | $0.0125   | $0.0100   | $0.0225 (14.1x)  |
 | claude-sonnet-4-6 | Anthropic | $0.0150   | $0.0150   | $0.0300 (18.8x)  |
+```
+
+### Find the cheapest models for your workload
+
+```bash
+# Top 5 cheapest for 5k input / 1k output tokens
+llm-prices top 5 --in 5000 --out 1000
+```
+
+```
+Top 5 cheapest: 5,000 input / 1,000 output tokens
+
+#    Model                Provider      Input       Output       Total
+----------------------------------------------------------------------
+1    llama-3.1-8b         Groq       $0.000250   $0.000080   $0.000330
+2    gemini-1.5-flash-8b  Google     $0.000188   $0.000150   $0.000338
+3    command-r7b          Cohere     $0.000188   $0.000150   $0.000338
+4    qwen3.5-9b           Together   $0.000500   $0.000150   $0.000650
+5    gemini-1.5-flash     Google     $0.000375   $0.000300   $0.000675
+```
+
+Filter to a single provider, or get a Markdown table:
+
+```bash
+llm-prices top 3 --provider Anthropic --in 2000 --out 800
+llm-prices top 10 --in 5000 --out 1000 --markdown
 ```
 
 ### How many calls fit in a budget?

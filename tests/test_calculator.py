@@ -280,6 +280,50 @@ class TestCLI(unittest.TestCase):
         totals = [m["input_per_mtok_usd"] + m["output_per_mtok_usd"] for m in data]
         self.assertEqual(totals, sorted(totals))
 
+    def test_top_default(self):
+        r = self.run_cli("top")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("Top 10", r.stdout)
+        # Rank numbers appear at the start of data lines
+        self.assertIn("1 ", r.stdout)
+
+    def test_top_n(self):
+        r = self.run_cli("top", "5", "--in", "5000", "--out", "1000", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        self.assertEqual(len(data), 5)
+
+    def test_top_json(self):
+        r = self.run_cli("top", "5", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        self.assertEqual(len(data), 5)
+        # Must be sorted cheapest first
+        totals = [d["total_cost_usd"] for d in data]
+        self.assertEqual(totals, sorted(totals))
+
+    def test_top_markdown(self):
+        r = self.run_cli("top", "3", "--in", "1000", "--out", "500", "--markdown")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("|", r.stdout)
+        self.assertIn("Rank", r.stdout)
+        self.assertIn("#1", r.stdout)
+
+    def test_top_provider_filter(self):
+        r = self.run_cli("top", "3", "--provider", "Anthropic")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("Anthropic", r.stdout)
+        self.assertNotIn("OpenAI", r.stdout)
+
+    def test_top_cheapest_is_actually_cheapest(self):
+        """The #1 model in top should match the cheapest in budget list."""
+        r_top = self.run_cli("top", "1", "--in", "1000", "--out", "500", "--json")
+        r_budget = self.run_cli("budget", "1.00", "--in", "1000", "--out", "500", "--json")
+        top_data = json.loads(r_top.stdout)
+        budget_data = json.loads(r_budget.stdout)
+        # Budget is sorted most-calls-first = cheapest first
+        self.assertEqual(top_data[0]["model"], budget_data[0]["model"])
+
 
 if __name__ == "__main__":
     unittest.main()

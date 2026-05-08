@@ -2,6 +2,13 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.6] - 2026-05-08
+
+### Added
+- `top` command: show N cheapest models for a given token workload
+  (`llm-prices top 5 --in 5000 --out 1000 --markdown`)
+- Tests expanded from 39 → 45 (6 new tests for `top` command)
+
 ## [0.1.5] - 2026-05-08
 
 ### Changed
