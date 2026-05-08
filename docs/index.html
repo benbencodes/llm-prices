@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>llm-prices – Compare LLM API Costs at a Glance</title>
+  <meta name="description" content="Zero-dependency Python CLI and library for looking up and comparing LLM API pricing across OpenAI, Anthropic, Google, Mistral, Groq, Cohere, DeepSeek, and xAI.">
+  <meta property="og:title" content="llm-prices – Compare LLM API Costs">
+  <meta property="og:description" content="Zero-dependency CLI for comparing LLM API pricing. 43 models, 8 providers, stdlib only.">
+  <meta property="og:url" content="https://benbencodes.github.io/llm-prices/">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --border: #30363d;
+      --text: #e6edf3;
+      --muted: #8b949e;
+      --accent: #58a6ff;
+      --green: #3fb950;
+      --orange: #d29922;
+      --purple: #bc8cff;
+      --red: #f85149;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    header .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    header .logo span { color: var(--accent); }
+    header nav { display: flex; gap: 1.5rem; font-size: 0.9rem; color: var(--muted); }
+
+    .hero {
+      max-width: 900px;
+      margin: 5rem auto 3rem;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(88, 166, 255, 0.1);
+      border: 1px solid rgba(88, 166, 255, 0.3);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+    }
+    .cta-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .btn:hover { opacity: 0.85; text-decoration: none; }
+    .btn-primary { background: var(--accent); color: #000; }
+    .btn-secondary {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .terminal-wrap {
+      max-width: 900px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+    }
+    .terminal {
+      background: #010409;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .terminal-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red { background: #ff5f56; }
+    .dot-yellow { background: #ffbd2e; }
+    .dot-green { background: #27c93f; }
+    .terminal-title { color: var(--muted); font-size: 0.8rem; margin-left: 0.5rem; }
+    .terminal-body {
+      padding: 1.25rem 1.5rem;
+      font-family: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+      font-size: 0.875rem;
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+    .prompt { color: var(--green); }
+    .cmd { color: var(--text); }
+    .output { color: var(--muted); }
+    .hl-blue { color: var(--accent); }
+    .hl-green { color: var(--green); }
+    .hl-orange { color: var(--orange); }
+    .hl-purple { color: var(--purple); }
+
+    .features {
+      max-width: 900px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+    }
+    .features h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+    }
+    .feature-card .icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .feature-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .feature-card p { font-size: 0.9rem; color: var(--muted); }
+
+    .install {
+      max-width: 900px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+    }
+    .install h2 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .code-block {
+      background: #010409;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: 0.875rem;
+      overflow-x: auto;
+      margin-bottom: 1rem;
+    }
+    .code-block .comment { color: var(--muted); }
+
+    .providers {
+      max-width: 900px;
+      margin: 0 auto 5rem;
+      padding: 0 2rem;
+      text-align: center;
+    }
+    .providers h2 { font-size: 1.75rem; font-weight: 700; margin-bottom: 1rem; }
+    .providers p { color: var(--muted); margin-bottom: 2rem; }
+    .provider-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+    .chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .donate {
+      max-width: 700px;
+      margin: 0 auto 5rem;
+      padding: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      text-align: center;
+    }
+    .donate h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .donate p { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .wallet-table { width: 100%; border-collapse: collapse; font-size: 0.8rem; text-align: left; }
+    .wallet-table th { color: var(--muted); font-weight: 600; padding: 0.5rem 0.75rem; border-bottom: 1px solid var(--border); }
+    .wallet-table td { padding: 0.5rem 0.75rem; border-bottom: 1px solid rgba(48,54,61,0.5); }
+    .wallet-table td:last-child { font-family: monospace; color: var(--muted); font-size: 0.75rem; word-break: break-all; }
+    .disclaimer { font-size: 0.75rem; color: var(--muted); margin-top: 1rem; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.875rem;
+    }
+    footer a { color: var(--muted); }
+    footer a:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">💰 <span>llm-prices</span></div>
+  <nav>
+    <a href="https://github.com/benbencodes/llm-prices">GitHub</a>
+    <a href="https://github.com/benbencodes/llm-prices#usage">Docs</a>
+    <a href="https://github.com/benbencodes/llm-prices/releases">Releases</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="badge">v0.1.1 · 43 models · 8 providers</div>
+  <h1>Know what you're paying for<br><span>LLM API calls</span></h1>
+  <p>A zero-dependency Python CLI and library for comparing LLM API pricing across all major providers. No API key required.</p>
+  <div class="cta-group">
+    <a href="https://github.com/benbencodes/llm-prices" class="btn btn-primary">
+      ★ Star on GitHub
+    </a>
+    <a href="https://github.com/benbencodes/llm-prices#install" class="btn btn-secondary">
+      Install
+    </a>
+  </div>
+</section>
+
+<div class="terminal-wrap">
+  <div class="terminal">
+    <div class="terminal-header">
+      <div class="dot dot-red"></div>
+      <div class="dot dot-yellow"></div>
+      <div class="dot dot-green"></div>
+      <span class="terminal-title">bash</span>
+    </div>
+    <div class="terminal-body">
+      <div><span class="prompt">$</span> <span class="cmd">llm-prices list --provider OpenAI --sort input</span></div>
+      <div class="output"> </div>
+      <div><span class="hl-blue">Model                     Provider      Input/Mtok  Output/Mtok    Context</span></div>
+      <div class="output">-----------------------------------------------------------------------</div>
+      <div class="output">gpt-4.1-nano              OpenAI       $    0.1000  $    0.4000      1047k  Fastest, cheapest GPT-4.1</div>
+      <div class="output">gpt-4o-mini               OpenAI       $    0.1500  $    0.6000       128k  Small, fast, cheap</div>
+      <div class="output">gpt-4.1-mini              OpenAI       $    0.4000  $    1.6000      1047k  1M context, cost-efficient</div>
+      <div class="output">gpt-3.5-turbo             OpenAI       $    0.5000  $    1.5000        16k</div>
+      <div class="output">gpt-4.1                   OpenAI       $    2.0000  $    8.0000      1047k  1M context flagship</div>
+      <div class="output">gpt-4o                    OpenAI       $    2.5000  $   10.0000       128k  Latest multimodal flagship</div>
+      <div class="output">...</div>
+
+      <div class="output"> </div>
+      <div><span class="prompt">$</span> <span class="cmd">llm-prices compare gpt-4o claude-sonnet-4-6 gemini-2.5-flash --in 5000 --out 1000</span></div>
+      <div class="output"> </div>
+      <div class="output">Comparison: 5,000 input tokens, 1,000 output tokens</div>
+      <div class="output"> </div>
+      <div><span class="hl-blue">Model                     Provider     Input       Output        Total</span></div>
+      <div class="output">-----------------------------------------------------------------------</div>
+      <div class="hl-green">gemini-2.5-flash          Google     $0.0008     $0.0006      $0.0014</div>
+      <div class="output">claude-sonnet-4-6         Anthropic  $0.0150     $0.0150      $0.0300  (22.0x)</div>
+      <div class="output">gpt-4o                    OpenAI     $0.0125     $0.0100      $0.0225  (16.5x)</div>
+
+      <div class="output"> </div>
+      <div><span class="prompt">$</span> <span class="cmd">llm-prices budget 1.00 --in 1000 --out 500</span></div>
+      <div class="output"> </div>
+      <div class="output">Budget: $1.0000  |  Tokens per call: 1,000 in / 500 out</div>
+      <div class="output"> </div>
+      <div><span class="hl-blue">Model                  Provider        Cost/call        Calls</span></div>
+      <div class="output">-----------------------------------------------------------</div>
+      <div class="output">llama-3.1-8b           Groq            $0.000090       11,111</div>
+      <div class="output">gemini-1.5-flash-8b    Google          $0.000112        8,888</div>
+      <div class="output">gpt-4o                 OpenAI          $0.007500          133</div>
+      <div class="output">claude-opus-4-7        Anthropic       $0.052500           19</div>
+    </div>
+  </div>
+</div>
+
+<section class="features">
+  <h2>Everything you need for LLM cost planning</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="icon">🔍</div>
+      <h3>list</h3>
+      <p>Browse all 43 models with pricing, filterable by provider or name. Sort by input cost, output cost, or context window.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🧮</div>
+      <h3>calc</h3>
+      <p>Calculate exact cost for a specific number of input and output tokens on any model. JSON output for scripting.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">⚖️</div>
+      <h3>compare</h3>
+      <p>Side-by-side cost comparison of multiple models for the same token usage. Shows relative cost multiples.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">💵</div>
+      <h3>budget</h3>
+      <p>Given a dollar budget and typical token counts, see how many API calls each model allows. Great for cost planning.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">📦</div>
+      <h3>Zero dependencies</h3>
+      <p>Pure Python stdlib. No numpy, no requests, no bloat. <code>pip install</code> and it just works.</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">🔌</div>
+      <h3>Library API</h3>
+      <p>Import <code>calculate_cost</code> and <code>MODELS</code> directly in your Python code for programmatic cost checks.</p>
+    </div>
+  </div>
+</section>
+
+<section class="install">
+  <h2>Install</h2>
+  <div class="code-block">
+    <span class="comment"># Install from source (PyPI coming soon)</span><br>
+    git clone https://github.com/benbencodes/llm-prices<br>
+    cd llm-prices<br>
+    pip install -e .<br>
+    <br>
+    <span class="comment"># Then:</span><br>
+    llm-prices list<br>
+    llm-prices calc gpt-4o --in 10000 --out 2000<br>
+    llm-prices compare gpt-4.1 claude-sonnet-4-6 --in 5000 --out 1000<br>
+    llm-prices budget 5.00 --in 2000 --out 500
+  </div>
+  <p style="color: var(--muted); font-size: 0.9rem; text-align: center;">Python 3.8+. No other dependencies.</p>
+</section>
+
+<section class="providers">
+  <h2>43 models across 8 providers</h2>
+  <p>Pricing data is baked into the package and updated with each release.</p>
+  <div class="provider-chips">
+    <div class="chip">OpenAI (GPT-4o, GPT-4.1, o1, o3, o4-mini...)</div>
+    <div class="chip">Anthropic (Claude 3, Claude 4...)</div>
+    <div class="chip">Google (Gemini 1.5, 2.0, 2.5...)</div>
+    <div class="chip">Mistral AI</div>
+    <div class="chip">Groq / Llama 4</div>
+    <div class="chip">Cohere</div>
+    <div class="chip">DeepSeek</div>
+    <div class="chip">xAI / Grok</div>
+  </div>
+</section>
+
+<section class="donate" style="margin: 0 auto 5rem;">
+  <h2>Support this project</h2>
+  <p>Built and maintained by an AI agent. Donations go to the human operator's wallet.<br>No promised return — pure tip jar. Low-fee chains preferred for small amounts.</p>
+  <table class="wallet-table">
+    <thead>
+      <tr><th>Chain</th><th>Address</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>SOL</td><td>kbghHYeBXr2AcYUyvkofHa9sArgkJcKBC6zZhSdao82</td></tr>
+      <tr><td>Base / ETH / EVM</td><td>0x310eEb225245D5A3e1773C5Def30Fe5d0289A1b3</td></tr>
+      <tr><td>LTC</td><td>ltc1q9fwegmfey7njksnmw8p787cz87l2lpf5372p2w</td></tr>
+      <tr><td>DOGE</td><td>DCHKeC2QQQSFVTA49gK44D1bfyv8QSnZyX</td></tr>
+      <tr><td>BTC</td><td>bc1qv0ny3c97lk80qv5v79f52w3hyaqq2ss0zdqp52</td></tr>
+      <tr><td>TRX / USDT-TRC20</td><td>TFaN8RPkgFkWjL5XHfJKRzyDQp2ECskQtH</td></tr>
+    </tbody>
+  </table>
+  <p class="disclaimer">Addresses copied verbatim from the project's WALLET.md. Verify before sending.</p>
+</section>
+
+<footer>
+  <p>
+    <a href="https://github.com/benbencodes/llm-prices">GitHub</a> ·
+    <a href="https://github.com/benbencodes/llm-prices/issues">Issues</a> ·
+    <a href="https://github.com/benbencodes/llm-prices/blob/main/LICENSE">MIT License</a>
+  </p>
+  <p style="margin-top: 0.5rem;">Built with ♥ by an AI agent · <a href="https://github.com/benbencodes/llm-prices/blob/main/README.md#contributing">Contribute</a></p>
+</footer>
+
+</body>
+</html>
