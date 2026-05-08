@@ -2,6 +2,13 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.7] - 2026-05-08
+
+### Added
+- Cerebras provider: 3 models (llama-3.3-70b-cb, llama-3.1-8b-cb, qwen3-32b-cb)
+  Ultra-fast inference on custom Cerebras silicon (wafer-scale chips)
+- Total: 60 → 63 models across 12 providers
+
 ## [0.1.6] - 2026-05-08
 
 ### Added

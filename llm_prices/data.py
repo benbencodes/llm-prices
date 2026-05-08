@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
-# Sources: official provider pricing pages
-# Last updated: 2026-05-08 → 2026-05-08 (Together AI added)
+# Sources: official provider pricing pages + LiteLLM model_prices_and_context_window.json
+# Last updated: 2026-05-08 → 2026-05-08 (Cerebras added)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -438,6 +438,30 @@ MODELS = {
         "output_per_mtok": 8.00,
         "context_window": 128_000,
         "notes": "Multi-step research; +$5/1K search queries",
+    },
+    # ── Cerebras ──────────────────────────────────────────────────────────
+    # Ultra-fast inference on custom Cerebras silicon (wafer-scale chips)
+    # Pricing: https://cerebras.ai/pricing  Source: LiteLLM model_prices_and_context_window.json
+    "llama-3.3-70b-cb": {
+        "provider": "Cerebras",
+        "input_per_mtok": 0.85,
+        "output_per_mtok": 1.20,
+        "context_window": 128_000,
+        "notes": "Llama 3.3 70B; ultra-fast Cerebras inference",
+    },
+    "llama-3.1-8b-cb": {
+        "provider": "Cerebras",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.10,
+        "context_window": 128_000,
+        "notes": "Llama 3.1 8B; ultra-cheap, ultra-fast on Cerebras",
+    },
+    "qwen3-32b-cb": {
+        "provider": "Cerebras",
+        "input_per_mtok": 0.40,
+        "output_per_mtok": 0.80,
+        "context_window": 128_000,
+        "notes": "Qwen3 32B on Cerebras silicon",
     },
 }
 

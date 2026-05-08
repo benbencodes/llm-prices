@@ -245,11 +245,17 @@ class TestCLI(unittest.TestCase):
         self.assertIn("cost_per_call_usd", data[0])
 
     def test_new_providers_present(self):
-        """Together, Fireworks, Perplexity should all be queryable."""
-        for provider in ["Together", "Fireworks", "Perplexity"]:
+        """Together, Fireworks, Perplexity, Cerebras should all be queryable."""
+        for provider in ["Together", "Fireworks", "Perplexity", "Cerebras"]:
             r = self.run_cli("list", "--provider", provider)
             self.assertEqual(r.returncode, 0, f"Provider {provider} failed")
             self.assertIn(provider, r.stdout)
+
+    def test_cerebras_models_present(self):
+        r = self.run_cli("list", "--provider", "Cerebras")
+        self.assertEqual(r.returncode, 0)
+        for model in ["llama-3.3-70b-cb", "llama-3.1-8b-cb", "qwen3-32b-cb"]:
+            self.assertIn(model, r.stdout)
 
     def test_perplexity_models_present(self):
         r = self.run_cli("list", "--provider", "Perplexity")
