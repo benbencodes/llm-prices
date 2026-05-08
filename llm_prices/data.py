@@ -1,0 +1,270 @@
+# Pricing data: USD per 1 million tokens
+# Sources: official provider pricing pages
+# Last updated: 2026-05-08
+# Prices may lag behind provider changes — PRs welcome.
+
+MODELS = {
+    # ── OpenAI ────────────────────────────────────────────────────────────
+    "gpt-4o": {
+        "provider": "OpenAI",
+        "input_per_mtok": 2.50,
+        "output_per_mtok": 10.00,
+        "context_window": 128_000,
+        "notes": "Latest multimodal flagship",
+    },
+    "gpt-4o-mini": {
+        "provider": "OpenAI",
+        "input_per_mtok": 0.15,
+        "output_per_mtok": 0.60,
+        "context_window": 128_000,
+        "notes": "Small, fast, cheap",
+    },
+    "gpt-4-turbo": {
+        "provider": "OpenAI",
+        "input_per_mtok": 10.00,
+        "output_per_mtok": 30.00,
+        "context_window": 128_000,
+        "notes": "",
+    },
+    "gpt-4": {
+        "provider": "OpenAI",
+        "input_per_mtok": 30.00,
+        "output_per_mtok": 60.00,
+        "context_window": 8_192,
+        "notes": "Original GPT-4 (8k)",
+    },
+    "gpt-3.5-turbo": {
+        "provider": "OpenAI",
+        "input_per_mtok": 0.50,
+        "output_per_mtok": 1.50,
+        "context_window": 16_385,
+        "notes": "",
+    },
+    "o1": {
+        "provider": "OpenAI",
+        "input_per_mtok": 15.00,
+        "output_per_mtok": 60.00,
+        "context_window": 200_000,
+        "notes": "Reasoning model",
+    },
+    "o1-mini": {
+        "provider": "OpenAI",
+        "input_per_mtok": 1.10,
+        "output_per_mtok": 4.40,
+        "context_window": 128_000,
+        "notes": "Fast reasoning model",
+    },
+    "o3": {
+        "provider": "OpenAI",
+        "input_per_mtok": 10.00,
+        "output_per_mtok": 40.00,
+        "context_window": 200_000,
+        "notes": "Advanced reasoning",
+    },
+    "o3-mini": {
+        "provider": "OpenAI",
+        "input_per_mtok": 1.10,
+        "output_per_mtok": 4.40,
+        "context_window": 200_000,
+        "notes": "Fast advanced reasoning",
+    },
+    "o4-mini": {
+        "provider": "OpenAI",
+        "input_per_mtok": 1.10,
+        "output_per_mtok": 4.40,
+        "context_window": 200_000,
+        "notes": "Latest fast reasoning",
+    },
+    # ── Anthropic ─────────────────────────────────────────────────────────
+    "claude-opus-4": {
+        "provider": "Anthropic",
+        "input_per_mtok": 15.00,
+        "output_per_mtok": 75.00,
+        "context_window": 200_000,
+        "notes": "Most capable Claude",
+    },
+    "claude-sonnet-4": {
+        "provider": "Anthropic",
+        "input_per_mtok": 3.00,
+        "output_per_mtok": 15.00,
+        "context_window": 200_000,
+        "notes": "Balanced performance/cost",
+    },
+    "claude-haiku-4": {
+        "provider": "Anthropic",
+        "input_per_mtok": 0.80,
+        "output_per_mtok": 4.00,
+        "context_window": 200_000,
+        "notes": "Fast and affordable",
+    },
+    "claude-3-5-sonnet": {
+        "provider": "Anthropic",
+        "input_per_mtok": 3.00,
+        "output_per_mtok": 15.00,
+        "context_window": 200_000,
+        "notes": "",
+    },
+    "claude-3-5-haiku": {
+        "provider": "Anthropic",
+        "input_per_mtok": 0.80,
+        "output_per_mtok": 4.00,
+        "context_window": 200_000,
+        "notes": "",
+    },
+    "claude-3-opus": {
+        "provider": "Anthropic",
+        "input_per_mtok": 15.00,
+        "output_per_mtok": 75.00,
+        "context_window": 200_000,
+        "notes": "",
+    },
+    "claude-3-haiku": {
+        "provider": "Anthropic",
+        "input_per_mtok": 0.25,
+        "output_per_mtok": 1.25,
+        "context_window": 200_000,
+        "notes": "Most affordable Claude 3",
+    },
+    # ── Google ────────────────────────────────────────────────────────────
+    "gemini-2.0-flash": {
+        "provider": "Google",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.40,
+        "context_window": 1_048_576,
+        "notes": "Fast, 1M context",
+    },
+    "gemini-2.5-pro": {
+        "provider": "Google",
+        "input_per_mtok": 1.25,
+        "output_per_mtok": 10.00,
+        "context_window": 1_048_576,
+        "notes": "Latest flagship (<=200k tokens)",
+    },
+    "gemini-1.5-pro": {
+        "provider": "Google",
+        "input_per_mtok": 3.50,
+        "output_per_mtok": 10.50,
+        "context_window": 2_097_152,
+        "notes": "Up to 128k prompt",
+    },
+    "gemini-1.5-flash": {
+        "provider": "Google",
+        "input_per_mtok": 0.075,
+        "output_per_mtok": 0.30,
+        "context_window": 1_048_576,
+        "notes": "",
+    },
+    "gemini-1.5-flash-8b": {
+        "provider": "Google",
+        "input_per_mtok": 0.0375,
+        "output_per_mtok": 0.15,
+        "context_window": 1_048_576,
+        "notes": "Smallest Gemini",
+    },
+    # ── Mistral AI ────────────────────────────────────────────────────────
+    "mistral-large-2": {
+        "provider": "Mistral",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 6.00,
+        "context_window": 128_000,
+        "notes": "Top Mistral model",
+    },
+    "mistral-small-3": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.30,
+        "context_window": 32_000,
+        "notes": "",
+    },
+    "codestral": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.30,
+        "output_per_mtok": 0.90,
+        "context_window": 256_000,
+        "notes": "Code-specialized",
+    },
+    "open-mistral-7b": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.25,
+        "output_per_mtok": 0.25,
+        "context_window": 32_000,
+        "notes": "Open-weights, via API",
+    },
+    # ── Meta / Llama (via Groq) ───────────────────────────────────────────
+    "llama-3.3-70b": {
+        "provider": "Groq",
+        "input_per_mtok": 0.59,
+        "output_per_mtok": 0.79,
+        "context_window": 128_000,
+        "notes": "Via Groq API",
+    },
+    "llama-3.1-8b": {
+        "provider": "Groq",
+        "input_per_mtok": 0.05,
+        "output_per_mtok": 0.08,
+        "context_window": 128_000,
+        "notes": "Via Groq API",
+    },
+    "llama-3.1-70b": {
+        "provider": "Groq",
+        "input_per_mtok": 0.59,
+        "output_per_mtok": 0.79,
+        "context_window": 128_000,
+        "notes": "Via Groq API",
+    },
+    # ── Cohere ────────────────────────────────────────────────────────────
+    "command-r-plus": {
+        "provider": "Cohere",
+        "input_per_mtok": 2.50,
+        "output_per_mtok": 10.00,
+        "context_window": 128_000,
+        "notes": "RAG-optimized",
+    },
+    "command-r": {
+        "provider": "Cohere",
+        "input_per_mtok": 0.15,
+        "output_per_mtok": 0.60,
+        "context_window": 128_000,
+        "notes": "",
+    },
+    "command-r7b": {
+        "provider": "Cohere",
+        "input_per_mtok": 0.0375,
+        "output_per_mtok": 0.15,
+        "context_window": 128_000,
+        "notes": "Smallest Command R",
+    },
+    # ── DeepSeek ──────────────────────────────────────────────────────────
+    "deepseek-chat": {
+        "provider": "DeepSeek",
+        "input_per_mtok": 0.27,
+        "output_per_mtok": 1.10,
+        "context_window": 64_000,
+        "notes": "DeepSeek-V3",
+    },
+    "deepseek-reasoner": {
+        "provider": "DeepSeek",
+        "input_per_mtok": 0.55,
+        "output_per_mtok": 2.19,
+        "context_window": 64_000,
+        "notes": "DeepSeek-R1 reasoning",
+    },
+    # ── xAI ───────────────────────────────────────────────────────────────
+    "grok-3": {
+        "provider": "xAI",
+        "input_per_mtok": 3.00,
+        "output_per_mtok": 15.00,
+        "context_window": 131_072,
+        "notes": "",
+    },
+    "grok-3-mini": {
+        "provider": "xAI",
+        "input_per_mtok": 0.30,
+        "output_per_mtok": 0.50,
+        "context_window": 131_072,
+        "notes": "Fast reasoning",
+    },
+}
+
+PROVIDERS = sorted({m["provider"] for m in MODELS.values()})
+DATA_DATE = "2026-05-08"
