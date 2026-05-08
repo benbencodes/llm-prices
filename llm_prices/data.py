@@ -2,6 +2,7 @@
 # Sources: official provider pricing pages
 # Last updated: 2026-05-08
 # Prices may lag behind provider changes — PRs welcome.
+# Model IDs match official API identifiers where possible.
 
 MODELS = {
     # ── OpenAI ────────────────────────────────────────────────────────────
@@ -75,48 +76,76 @@ MODELS = {
         "context_window": 200_000,
         "notes": "Latest fast reasoning",
     },
+    "gpt-4.1": {
+        "provider": "OpenAI",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 8.00,
+        "context_window": 1_047_576,
+        "notes": "1M context flagship",
+    },
+    "gpt-4.1-mini": {
+        "provider": "OpenAI",
+        "input_per_mtok": 0.40,
+        "output_per_mtok": 1.60,
+        "context_window": 1_047_576,
+        "notes": "1M context, cost-efficient",
+    },
+    "gpt-4.1-nano": {
+        "provider": "OpenAI",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.40,
+        "context_window": 1_047_576,
+        "notes": "Fastest, cheapest GPT-4.1",
+    },
     # ── Anthropic ─────────────────────────────────────────────────────────
-    "claude-opus-4": {
+    "claude-opus-4-7": {
         "provider": "Anthropic",
         "input_per_mtok": 15.00,
         "output_per_mtok": 75.00,
         "context_window": 200_000,
-        "notes": "Most capable Claude",
+        "notes": "Most capable Claude (claude-opus-4)",
     },
-    "claude-sonnet-4": {
+    "claude-sonnet-4-6": {
         "provider": "Anthropic",
         "input_per_mtok": 3.00,
         "output_per_mtok": 15.00,
         "context_window": 200_000,
-        "notes": "Balanced performance/cost",
+        "notes": "Balanced performance/cost (claude-sonnet-4)",
     },
-    "claude-haiku-4": {
+    "claude-haiku-4-5": {
         "provider": "Anthropic",
         "input_per_mtok": 0.80,
         "output_per_mtok": 4.00,
         "context_window": 200_000,
-        "notes": "Fast and affordable",
+        "notes": "Fast and affordable (claude-haiku-4)",
+    },
+    "claude-3-7-sonnet": {
+        "provider": "Anthropic",
+        "input_per_mtok": 3.00,
+        "output_per_mtok": 15.00,
+        "context_window": 200_000,
+        "notes": "claude-3-7-sonnet-20250219",
     },
     "claude-3-5-sonnet": {
         "provider": "Anthropic",
         "input_per_mtok": 3.00,
         "output_per_mtok": 15.00,
         "context_window": 200_000,
-        "notes": "",
+        "notes": "claude-3-5-sonnet-20241022",
     },
     "claude-3-5-haiku": {
         "provider": "Anthropic",
         "input_per_mtok": 0.80,
         "output_per_mtok": 4.00,
         "context_window": 200_000,
-        "notes": "",
+        "notes": "claude-3-5-haiku-20241022",
     },
     "claude-3-opus": {
         "provider": "Anthropic",
         "input_per_mtok": 15.00,
         "output_per_mtok": 75.00,
         "context_window": 200_000,
-        "notes": "",
+        "notes": "claude-3-opus-20240229",
     },
     "claude-3-haiku": {
         "provider": "Anthropic",
@@ -126,6 +155,13 @@ MODELS = {
         "notes": "Most affordable Claude 3",
     },
     # ── Google ────────────────────────────────────────────────────────────
+    "gemini-2.5-flash": {
+        "provider": "Google",
+        "input_per_mtok": 0.15,
+        "output_per_mtok": 0.60,
+        "context_window": 1_048_576,
+        "notes": "Fast, 1M context",
+    },
     "gemini-2.0-flash": {
         "provider": "Google",
         "input_per_mtok": 0.10,
@@ -191,6 +227,20 @@ MODELS = {
         "notes": "Open-weights, via API",
     },
     # ── Meta / Llama (via Groq) ───────────────────────────────────────────
+    "llama-4-scout": {
+        "provider": "Groq",
+        "input_per_mtok": 0.11,
+        "output_per_mtok": 0.34,
+        "context_window": 131_072,
+        "notes": "Llama 4 Scout, via Groq API",
+    },
+    "llama-4-maverick": {
+        "provider": "Groq",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.60,
+        "context_window": 131_072,
+        "notes": "Llama 4 Maverick, via Groq API",
+    },
     "llama-3.3-70b": {
         "provider": "Groq",
         "input_per_mtok": 0.59,
