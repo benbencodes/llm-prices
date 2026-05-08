@@ -409,6 +409,36 @@ MODELS = {
         "context_window": 32_768,
         "notes": "Mixtral 8x7B MoE; API: accounts/fireworks/models/mixtral-8x7b-instruct",
     },
+    # ── Perplexity AI ─────────────────────────────────────────────────────
+    # Sonar models include web search; extra $0.005/request fee for search queries
+    "sonar": {
+        "provider": "Perplexity",
+        "input_per_mtok": 1.00,
+        "output_per_mtok": 1.00,
+        "context_window": 127_072,
+        "notes": "Web-search grounded; +$0.005/request fee",
+    },
+    "sonar-pro": {
+        "provider": "Perplexity",
+        "input_per_mtok": 3.00,
+        "output_per_mtok": 15.00,
+        "context_window": 200_000,
+        "notes": "Pro web-search grounded; +$0.005/request fee",
+    },
+    "sonar-reasoning-pro": {
+        "provider": "Perplexity",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 8.00,
+        "context_window": 128_000,
+        "notes": "Reasoning + search; +$0.005/request fee",
+    },
+    "sonar-deep-research": {
+        "provider": "Perplexity",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 8.00,
+        "context_window": 128_000,
+        "notes": "Multi-step research; +$5/1K search queries",
+    },
 }
 
 PROVIDERS = sorted({m["provider"] for m in MODELS.values()})

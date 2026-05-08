@@ -12,7 +12,7 @@ $ llm-prices list --markdown   # GitHub-flavored table — paste into your READM
 $ llm-prices list --csv        # CSV export for spreadsheets
 ```
 
-Covers **56 models** across **10 providers**: OpenAI, Anthropic, Google, Mistral,
+Covers **60 models across 11 providers**: OpenAI, Anthropic, Google, Mistral,
 Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI.
 No API key required — pricing data is baked in and updated with each release.
 
@@ -152,6 +152,7 @@ for name, info in MODELS.items():
 | Groq        | 5      | Llama 4, Llama 3.x               |
 | Mistral     | 4      | Large, Small, Codestral          |
 | Cohere      | 3      | Command R+, R, R7B               |
+| Perplexity  | 4      | Sonar, Sonar Pro, Reasoning, Deep Research |
 | DeepSeek    | 2      | chat (V3), reasoner (R1)         |
 | xAI         | 2      | Grok-3, Grok-3-mini              |
 
@@ -175,6 +176,7 @@ provider changes. Check the [sources](#sources) for the latest. PRs updating
 - xAI: https://x.ai/api
 - Together AI: https://docs.together.ai/docs/serverless-models
 - Fireworks AI: https://docs.fireworks.ai/serverless/pricing
+- Perplexity AI: https://docs.perplexity.ai/guides/pricing
 
 ---
 

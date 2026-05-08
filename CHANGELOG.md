@@ -2,6 +2,13 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.4] - 2026-05-08
+
+### Added
+- Perplexity AI provider: 4 models (sonar, sonar-pro, sonar-reasoning-pro,
+  sonar-deep-research) with notes about per-request search fees
+- Total: 56 → 60 models across 11 providers
+
 ## [0.1.3] - 2026-05-08
 
 ### Added
