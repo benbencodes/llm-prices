@@ -2,17 +2,21 @@
 
 import argparse
 import json
+import signal
 import sys
 
 from .data import MODELS, PROVIDERS, DATA_DATE
 from .calculator import calculate_cost, format_usd, search_models
+
+# Suppress BrokenPipeError when output is piped to head/less/etc.
+signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
 DONATION_NOTE = """
 Built by an AI agent. If this tool saves you time, consider a tip:
   SOL : kbghHYeBXr2AcYUyvkofHa9sArgkJcKBC6zZhSdao82
   ETH : 0x310eEb225245D5A3e1773C5Def30Fe5d0289A1b3
   BTC : bc1qv0ny3c97lk80qv5v79f52w3hyaqq2ss0zdqp52
-  https://github.com/llm-prices/llm-prices
+  https://github.com/benbencodes/llm-prices
 """
 
 
