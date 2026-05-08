@@ -18,15 +18,20 @@ release.
 
 ## Install
 
+**pipx (recommended — installs globally, no venv required):**
+```bash
+pipx install git+https://github.com/benbencodes/llm-prices
+```
+
 **Homebrew (macOS/Linux):**
 ```bash
 brew tap benbencodes/tap
 brew install llm-prices
 ```
 
-**pip (coming soon — PyPI publish in progress):**
+**pip (PyPI publish in progress):**
 ```bash
-pip install llm-prices
+pip install llm-prices  # coming soon
 ```
 
 **From source:**
