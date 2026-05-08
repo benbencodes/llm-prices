@@ -162,6 +162,124 @@ class TestCLI(unittest.TestCase):
         self.assertIn("Google", r.stdout)
         self.assertNotIn("OpenAI", r.stdout)
 
+    def test_list_markdown(self):
+        r = self.run_cli("list", "--provider", "OpenAI", "--markdown")
+        self.assertEqual(r.returncode, 0)
+        # Must contain GFM table pipe characters
+        self.assertIn("|", r.stdout)
+        # Header row present
+        self.assertIn("Model", r.stdout)
+        self.assertIn("Provider", r.stdout)
+        self.assertIn("Input/Mtok", r.stdout)
+        # Separator row present
+        self.assertIn("---", r.stdout)
+        # Data row with dollar sign
+        self.assertIn("$", r.stdout)
+        # No stray plain-table lines
+        self.assertNotIn("model(s) shown", r.stdout)
+
+    def test_list_markdown_all_providers(self):
+        r = self.run_cli("list", "--markdown")
+        self.assertEqual(r.returncode, 0)
+        lines = [l for l in r.stdout.splitlines() if l.startswith("|")]
+        # header + separator + data rows
+        self.assertGreater(len(lines), 10)
+
+    def test_list_csv(self):
+        r = self.run_cli("list", "--csv")
+        self.assertEqual(r.returncode, 0)
+        lines = r.stdout.strip().splitlines()
+        # First line is header
+        self.assertEqual(lines[0], "model,provider,input_per_mtok_usd,output_per_mtok_usd,context_window,notes")
+        # At least one data row
+        self.assertGreater(len(lines), 1)
+        # Columns are comma-separated
+        self.assertEqual(len(lines[1].split(",")), 6)
+
+    def test_list_csv_provider_filter(self):
+        r = self.run_cli("list", "--provider", "Perplexity", "--csv")
+        self.assertEqual(r.returncode, 0)
+        lines = r.stdout.strip().splitlines()
+        # header + 4 Perplexity models
+        self.assertEqual(len(lines), 5)
+        for line in lines[1:]:
+            self.assertIn("Perplexity", line)
+
+    def test_compare_markdown(self):
+        r = self.run_cli("compare", "gpt-4o", "gemini-2.5-flash",
+                         "--in", "1000", "--out", "500", "--markdown")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("|", r.stdout)
+        self.assertIn("Model", r.stdout)
+        self.assertIn("Total", r.stdout)
+        # Should contain a comment line naming the cheapest
+        self.assertIn("Cheapest", r.stdout)
+
+    def test_compare_sorted_cheapest_first(self):
+        r = self.run_cli("compare", "claude-opus-4-7", "gpt-4.1-nano",
+                         "--in", "1000", "--out", "500")
+        self.assertEqual(r.returncode, 0)
+        # JSON mode gives deterministic order to test sorting
+        r2 = self.run_cli("compare", "claude-opus-4-7", "gpt-4.1-nano",
+                          "--in", "1000", "--out", "500", "--json")
+        data = json.loads(r2.stdout)
+        self.assertEqual(len(data), 2)
+        # nano ($0.10/Mtok in) is cheaper than opus ($15/Mtok in)
+        self.assertEqual(data[0]["model"], "gpt-4.1-nano")
+        self.assertEqual(data[1]["model"], "claude-opus-4-7")
+        self.assertLess(data[0]["total_cost_usd"], data[1]["total_cost_usd"])
+
+    def test_budget_basic(self):
+        r = self.run_cli("budget", "1.00", "--in", "1000", "--out", "500")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("Budget", r.stdout)
+        self.assertIn("Calls", r.stdout)
+
+    def test_budget_json(self):
+        r = self.run_cli("budget", "1.00", "--in", "1000", "--out", "500", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        self.assertIsInstance(data, list)
+        self.assertGreater(len(data), 0)
+        self.assertIn("calls_within_budget", data[0])
+        self.assertIn("cost_per_call_usd", data[0])
+
+    def test_new_providers_present(self):
+        """Together, Fireworks, Perplexity should all be queryable."""
+        for provider in ["Together", "Fireworks", "Perplexity"]:
+            r = self.run_cli("list", "--provider", provider)
+            self.assertEqual(r.returncode, 0, f"Provider {provider} failed")
+            self.assertIn(provider, r.stdout)
+
+    def test_perplexity_models_present(self):
+        r = self.run_cli("list", "--provider", "Perplexity")
+        self.assertEqual(r.returncode, 0)
+        for model in ["sonar", "sonar-pro", "sonar-reasoning-pro", "sonar-deep-research"]:
+            self.assertIn(model, r.stdout)
+
+    def test_total_model_count(self):
+        """Sanity check: at least 60 models across at least 11 providers."""
+        r = self.run_cli("list", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        self.assertGreaterEqual(len(data), 60)
+        providers = {m["provider"] for m in data}
+        self.assertGreaterEqual(len(providers), 11)
+
+    def test_list_sort_input(self):
+        r = self.run_cli("list", "--sort", "input", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        prices = [m["input_per_mtok_usd"] for m in data]
+        self.assertEqual(prices, sorted(prices))
+
+    def test_list_sort_total(self):
+        r = self.run_cli("list", "--sort", "total", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        totals = [m["input_per_mtok_usd"] + m["output_per_mtok_usd"] for m in data]
+        self.assertEqual(totals, sorted(totals))
+
 
 if __name__ == "__main__":
     unittest.main()

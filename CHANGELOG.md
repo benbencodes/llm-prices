@@ -2,6 +2,14 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.5] - 2026-05-08
+
+### Changed
+- Test suite expanded from 26 → 39 tests
+- Added coverage for: --markdown output, --csv output, compare --markdown,
+  budget command, new providers (Together/Fireworks/Perplexity), model count
+  assertions, sort order verification
+
 ## [0.1.4] - 2026-05-08
 
 ### Added
