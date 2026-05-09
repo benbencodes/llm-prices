@@ -2,6 +2,20 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.14] - 2026-05-09
+
+### Added
+- gpt-5-nano: $0.05/$0.40 per Mtok, 272k ctx — ultra-cheap GPT-5
+- gpt-5-mini: $0.25/$2.00 per Mtok, 272k ctx — base GPT-5 mini tier
+- o3-pro: $20.00/$80.00 per Mtok, 200k ctx — professional-grade reasoning
+- o1-pro: $150.00/$600.00 per Mtok, 200k ctx — most expensive model in dataset
+- Total: 89 → 93 models (same 15 providers)
+
+### Changed
+- Blog post rewritten: new headline/story focused on GPT-5, Grok 4.3, o3 repricing.
+  Updated all model counts (80 → 93), terminal examples, provider highlights, and
+  real-world cost calculations to reflect the current model landscape.
+
 ## [0.1.13] - 2026-05-09
 
 ### Added

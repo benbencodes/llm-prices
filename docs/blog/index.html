@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>How to Compare LLM API Costs Across 15 Providers with One Command</title>
-  <meta name="description" content="Mistral Large 3 just dropped 75% in price. The best value flagship is $0.50/Mtok. Here's how to track moves like this across all providers at once — one command, no API key, works offline.">
-  <meta property="og:title" content="How to Compare LLM API Costs Across 15 Providers with One Command">
-  <meta property="og:description" content="Mistral Large 3 just dropped 75% in price with double the context window. Here's a CLI that tracks all 15 major LLM providers at once.">
+  <title>LLM API Prices in 2026: GPT-5 Series, Grok 4.3, o3 Repriced 5× Cheaper</title>
+  <meta name="description" content="GPT-5 is live. o3 dropped from $10 to $2/Mtok. Grok 4.3 offers 1M context at $1.25 input. Here's a CLI to track all 93 models across 15 providers — one command, no API key, works offline.">
+  <meta property="og:title" content="LLM API Prices in 2026: GPT-5, Grok 4.3, o3 Repriced">
+  <meta property="og:description" content="GPT-5 launched. o3 dropped 5× in price. Grok 4.3 gives 1M context at $1.25/Mtok. Track all 93 models with one command.">
   <meta property="og:url" content="https://benbencodes.github.io/llm-prices/blog/">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -243,30 +243,30 @@
 <div class="article-wrap">
 
   <div class="article-meta">
-    <div class="tag">Tutorial</div>
-    <h1>How to Compare LLM API Costs Across 15 Providers with One Command</h1>
+    <div class="tag">Pricing · May 2026</div>
+    <h1>LLM API Prices in 2026: GPT-5 Series, Grok 4.3, and o3 Repriced 5× Cheaper</h1>
     <div class="lede">
-      Mistral Large 3 just dropped 75% in price with double the context window. The best value flagship right now is $0.50/Mtok — not from the provider you'd expect. The only way to track moves like this across all providers at once is a tool that bakes the data in.
+      The LLM pricing landscape just shifted. GPT-5 is live. o3 dropped from $10 to $2/Mtok — the same price as gpt-4.1 but with far stronger reasoning. Grok 4.3 offers 1M context at $1.25 input/$2.50 output. Tracking all of this manually across 15 providers is impossible. Here's a CLI that does it in one command.
     </div>
-    <div class="byline">May 9, 2026 · <a href="https://github.com/benbencodes/llm-prices">llm-prices</a> · 6 min read</div>
+    <div class="byline">May 9, 2026 · <a href="https://github.com/benbencodes/llm-prices">llm-prices v0.1.14</a> · 7 min read</div>
   </div>
 
   <div class="article-body">
 
     <h2>The problem</h2>
 
-    <p>Every LLM provider prices their API differently, and prices change fast. Recent examples:</p>
+    <p>Every LLM provider prices their API differently, and prices change fast. Just in 2026:</p>
 
     <ul>
-      <li><strong>Mistral Large 3</strong> cut its price 75% (from $2.00 to $0.50/Mtok input) and doubled context to 262k — making it the best-value "large" flagship in the market</li>
-      <li><strong>Llama 4 Scout</strong> on Groq: $0.11/$0.34 per Mtok — a capable Llama 4 model at near-free prices</li>
-      <li>Groq, Together AI, Fireworks AI, SambaNova, and Cerebras host the same open-weight models at different prices; the gap is often 2–5×</li>
-      <li>Perplexity's Sonar models include a per-request search fee <em>on top of</em> token costs — easy to miss</li>
-      <li>Amazon Bedrock Nova Micro at $0.035/$0.14 per Mtok is one of the cheapest text models available</li>
-      <li>AI21's Jamba models offer 256k context at $0.20/$0.40 per Mtok using a hybrid SSM+Transformer architecture</li>
+      <li><strong>o3 dropped from $10 to $2/Mtok input</strong> — a 5× price reduction. It's now the same price as gpt-4.1 but with far stronger reasoning. If you wrote it off based on the old price, re-run your estimates.</li>
+      <li><strong>GPT-5.5 launched</strong> at $5/$30 per Mtok with a 1M token context window. GPT-5.4-nano at $0.20/$1.25 is one of the cheapest capable models available.</li>
+      <li><strong>Grok 4.3</strong> (xAI) at $1.25/$2.50 per Mtok with 1M context — output is 6× cheaper than Claude Sonnet at the same tier</li>
+      <li><strong>Claude Opus 4.7</strong> repriced: $5/$25 per Mtok (was commonly listed at $15/$75 — the old Opus 3 price) with 1M context. A very different value proposition.</li>
+      <li><strong>Gemini 2.5 Flash</strong> is $0.30/$2.50 (output reflects thinking tokens) — often mispriced in third-party tools at the old $0.15/$0.60</li>
+      <li>The same open-weight models run on Groq, Together, Fireworks, SambaNova, and Cerebras at very different prices — the gap is often 2–5×</li>
     </ul>
 
-    <p>There are now 15 major providers to track. Comparing them means visiting 15 different pricing pages, doing your own math for your token counts, and updating your spreadsheet every time something changes.</p>
+    <p>There are now 15 major providers and 93 models to track. Comparing them means visiting 15 different pricing pages, doing your own math for your token counts, and updating your spreadsheet every time something changes.</p>
 
     <h2>The solution: llm-prices</h2>
 
@@ -279,7 +279,7 @@ pip install llm-prices   <span class="comment"># or: pipx install git+https://gi
 
     <hr>
 
-    <h2>1. List: browse all 80 models</h2>
+    <h2>1. List: browse all 93 models</h2>
 
     <div class="terminal">
       <div class="terminal-header">
@@ -291,17 +291,21 @@ pip install llm-prices   <span class="comment"># or: pipx install git+https://gi
 
 </span><span class="hl">Model                      Provider       Input/Mtok  Output/Mtok    Context  Notes</span>
 <span class="out">------------------------------------------------------------------------------------------
-claude-3-5-haiku           Anthropic    $    0.8000  $    4.0000      200k  claude-3-5-haiku-20241022
-claude-3-5-sonnet          Anthropic    $    3.0000  $   15.0000      200k  claude-3-5-sonnet-20241022
-...
-gemini-2.5-flash           Google       $    0.1500  $    0.6000     1024k  Fast, 1M context
-gemini-2.5-pro             Google       $    1.2500  $   10.0000     1024k  Latest flagship
-...
+claude-opus-4-7            Anthropic    $    5.0000  $   25.0000     1000k  Most capable Claude; 1M context
+claude-sonnet-4-6          Anthropic    $    3.0000  $   15.0000     1000k  Best speed/intelligence balance
+gemini-3.1-pro-preview     Google       $    2.0000  $   12.0000     1024k  Gemini 3 flagship preview
+gemini-2.5-flash           Google       $    0.3000  $    2.5000     1024k  Hybrid reasoning; 1M context
+gpt-5.5                    OpenAI       $    5.0000  $   30.0000     1025k  OpenAI flagship; 1M context
+gpt-5.4                    OpenAI       $    2.5000  $   15.0000     1025k  More affordable GPT-5; 1M context
+gpt-5.4-mini               OpenAI       $    0.7500  $    4.5000      266k  Strong mini model
+gpt-5.4-nano               OpenAI       $    0.2000  $    1.2500      266k  Cheapest GPT-5.4
+gpt-5-nano                 OpenAI       $    0.0500  $    0.4000      266k  Ultra-cheap GPT-5
 gpt-4.1-nano               OpenAI       $    0.1000  $    0.4000     1023k  Fastest, cheapest GPT-4.1
-gpt-4o-mini                OpenAI       $    0.1500  $    0.6000      128k  Small, fast, cheap
-gpt-4o                     OpenAI       $    2.5000  $   10.0000      128k  Latest multimodal flagship
 ...
-80 model(s) shown.</span></div>
+grok-4.3                   xAI          $    1.2500  $    2.5000     1000k  Grok flagship; 1M ctx
+grok-4.20-reasoning        xAI          $    1.2500  $    2.5000     1953k  Grok 4 reasoning; 2M ctx
+...
+93 model(s) shown.</span></div>
     </div>
 
     <p>Filter by provider or search by name:</p>
@@ -315,22 +319,15 @@ gpt-4o                     OpenAI       $    2.5000  $   10.0000      128k  Late
 <span class="prompt">$</span> llm-prices list --sort input        <span class="out"># cheapest first</span></div>
     </div>
 
-    <h3>Export as Markdown table</h3>
-
-    <p><code class="code-inline">--markdown</code> outputs a GitHub-flavored table you can paste into your README or documentation:</p>
+    <h3>Filter and sort</h3>
 
     <div class="terminal">
       <div class="terminal-header">
         <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
       </div>
-      <div class="terminal-body"><span class="prompt">$</span> llm-prices list --provider Perplexity --markdown
-
-<span class="out">| Model                | Provider   | Input/Mtok | Output/Mtok | Context | Notes                               |
-|----------------------|------------|------------|-------------|---------|-------------------------------------|
-| sonar                | Perplexity | $1.0000    | $1.0000     | 127k    | Web-search grounded; +$0.005/request|
-| sonar-deep-research  | Perplexity | $2.0000    | $8.0000     | 128k    | Multi-step research; +$5/1K queries |
-| sonar-reasoning-pro  | Perplexity | $2.0000    | $8.0000     | 128k    | Reasoning + search; +$0.005/request |
-| sonar-pro            | Perplexity | $3.0000    | $15.0000    | 200k    | Pro web-search; +$0.005/request     |</span></div>
+      <div class="terminal-body"><span class="prompt">$</span> llm-prices list --provider OpenAI --sort input   <span class="out"># cheapest first</span>
+<span class="prompt">$</span> llm-prices list --search grok
+<span class="prompt">$</span> llm-prices list --provider xAI --markdown</div>
     </div>
 
     <p>Or export CSV for spreadsheet analysis:</p>
@@ -375,31 +372,50 @@ Cost   : $0.0250 in + $0.0200 out = $0.0450 total</span></div>
 
     <h2>3. Compare: side-by-side across providers</h2>
 
-    <p>Which model gives you the best value for a typical agent call (5,000 input / 1,000 output tokens)?</p>
+    <p>Which model gives you the best value for a typical agent call (5,000 input / 1,000 output tokens)? Here's how the 2026 frontier models stack up:</p>
 
     <div class="terminal">
       <div class="terminal-header">
         <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
       </div>
-      <div class="terminal-body"><span class="prompt">$</span> llm-prices compare gpt-4o claude-sonnet-4-6 gemini-2.5-pro \
-    qwen3-235b sonar-pro deepseek-chat --in 5000 --out 1000
+      <div class="terminal-body"><span class="prompt">$</span> llm-prices compare gpt-5.5 gpt-5.4 grok-4.3 claude-sonnet-4-6 \
+    claude-opus-4-7 o3 gemini-3.1-pro-preview --in 5000 --out 1000
 
 <span class="out">Comparison: 5,000 input tokens, 1,000 output tokens
 
-</span><span class="hl">Model                 Provider       Input       Output        Total</span>
-<span class="out">----------------------------------------------------------------------
-</span><span class="hl-g">qwen3-235b            Together    $0.001000   $0.000600     $0.001600</span>
-<span class="out">deepseek-chat         DeepSeek    $0.001350   $0.001100     $0.002450  (1.5x)
-gemini-2.5-pro        Google      $0.006250   $0.010000     $0.016250  (10.2x)
-gpt-4o                OpenAI      $0.012500   $0.010000     $0.022500  (14.1x)
-sonar-pro             Perplexity  $0.015000   $0.015000     $0.030000  (18.8x)
-claude-sonnet-4-6     Anthropic   $0.015000   $0.015000     $0.030000  (18.8x)
+</span><span class="hl">Model                   Provider       Input       Output        Total</span>
+<span class="out">------------------------------------------------------------------------
+</span><span class="hl-g">grok-4.3                xAI         $0.006250   $0.002500     $0.008750</span>
+<span class="out">o3                      OpenAI      $0.010000   $0.008000     $0.018000  (2.1x)
+gpt-5.4                 OpenAI      $0.012500   $0.015000     $0.027500  (3.1x)
+gemini-3.1-pro-preview  Google      $0.010000   $0.012000     $0.022000  (2.5x)
+claude-sonnet-4-6       Anthropic   $0.015000   $0.015000     $0.030000  (3.4x)
+claude-opus-4-7         Anthropic   $0.025000   $0.025000     $0.050000  (5.7x)
+gpt-5.5                 OpenAI      $0.025000   $0.030000     $0.055000  (6.3x)
 
-</span><span class="hl-g">Cheapest: qwen3-235b at $0.001600</span></div>
+</span><span class="hl-g">Cheapest: grok-4.3 at $0.008750</span></div>
     </div>
 
     <div class="callout">
-      <strong>188× cheaper.</strong> Qwen3 235B-A22B via Together AI costs $0.0016 vs Claude Sonnet's $0.0300 for the same 5k/1k token call. For batch jobs or internal tooling, it's worth evaluating open-weight models before defaulting to a frontier API.
+      <strong>Grok 4.3 is the cheapest frontier model for this workload</strong> — $0.0088 vs GPT-5.5 at $0.055. For API-heavy applications, that 6× gap on output tokens alone can determine profitability. But the right model depends on quality, latency, and feature support for your specific task.
+    </div>
+
+    <p>For open-weight models via inference providers, the gap is even larger:</p>
+
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="dot dot-red"></div><div class="dot dot-yellow"></div><div class="dot dot-green"></div>
+      </div>
+      <div class="terminal-body"><span class="prompt">$</span> llm-prices compare qwen3-235b deepseek-chat grok-4.3 gpt-5-nano --in 5000 --out 1000
+
+<span class="out"></span><span class="hl-g">qwen3-235b            Together    $0.001000   $0.000600     $0.001600</span>
+<span class="out">deepseek-chat         DeepSeek    $0.001350   $0.001100     $0.002450
+gpt-5-nano            OpenAI      $0.000250   $0.000400     $0.000650
+grok-4.3              xAI         $0.006250   $0.002500     $0.008750</span></div>
+    </div>
+
+    <div class="callout">
+      <strong>gpt-5-nano at $0.0007 total</strong> for 5k/1k tokens is remarkable — GPT-5 capability tier at sub-cent prices. It's worth evaluating for classification, extraction, and structured output tasks where you don't need full flagship reasoning.
     </div>
 
     <hr>
@@ -474,23 +490,26 @@ llm-prices top 10 --in 5000 --out 1000 --markdown</div>
   Cohere           (3 models)
   DeepSeek         (2 models)
   Fireworks        (6 models)
-  Google           (6 models)
+  Google           (9 models)
   Groq             (7 models)
   Mistral          (7 models)
-  OpenAI           (13 models)
+  OpenAI           (21 models)
   Perplexity       (4 models)
   SambaNova        (5 models)
   Together         (7 models)
-  xAI              (2 models)</span></div>
+  xAI              (4 models)
+  Total: 93 models</span></div>
     </div>
 
-    <p>Three providers worth highlighting:</p>
+    <p>Notable pricing stories in 2026:</p>
 
-    <p><strong>Mistral Large 3</strong> (<code class="code-inline">mistral-large-3</code>) dropped from $2.00/$6.00 to $0.50/$1.50 per Mtok — a 75% price cut with the context window doubling to 262k. It's now priced close to GPT-4o-mini while offering flagship-class performance. Worth re-running your cost estimates if you ruled Mistral out before.</p>
+    <p><strong>o3 repriced 5×</strong> (<code class="code-inline">o3</code>): dropped from $10/$40 to $2/$8 per Mtok. It's now priced identically to gpt-4.1 but with much stronger multi-step reasoning. Previously one of the most expensive models; now a reasonable choice for complex tasks.</p>
 
-    <p><strong>SambaNova</strong> runs on custom RDU (Reconfigurable Dataflow Unit) silicon for ultra-fast inference. They offer Llama 4 Maverick at $0.63/$1.80 per Mtok; Groq offers the same model at $0.20/$0.60 — worth comparing if latency vs. cost is your trade-off.</p>
+    <p><strong>Grok 4.3</strong> (<code class="code-inline">grok-4.3</code>): $1.25 input / $2.50 output per Mtok with a 1M context window. The output price is 6× cheaper than Claude Sonnet 4.6 ($15) at comparable capability claims. The 2M-context <code class="code-inline">grok-4.20-reasoning</code> variant is at the same price — largest context window in the dataset.</p>
 
-    <p><strong>AI21 Labs</strong> uses a hybrid SSM+Transformer architecture (Jamba) that handles 256k context efficiently. Jamba Mini at $0.20/$0.40 with 256k context is one of the best deals for long-document workloads.</p>
+    <p><strong>GPT-5 nano tier</strong>: <code class="code-inline">gpt-5-nano</code> at $0.05/$0.40 per Mtok is the cheapest GPT-5-family model. That's competitive with Groq's Llama 3.1 8B on input price ($0.05 vs $0.05) while potentially offering better capability on instruction-following and structured output tasks.</p>
+
+    <p><strong>Gemini 2.5 Flash note</strong>: many third-party tools still list this at $0.15/$0.60 — the actual price is $0.30/$2.50 because it's a hybrid reasoning model where output tokens include thinking tokens. Always verify on Google's official pricing page.</p>
 
     <hr>
 
@@ -505,16 +524,18 @@ llm-prices top 10 --in 5000 --out 1000 --markdown</div>
       <div class="terminal-body"><span class="prompt">$</span> llm-prices budget 100.00 --in 1500 --out 300</div>
     </div>
 
-    <p>On $100:</p>
+    <p>On $100 (1,500 in / 300 out per call):</p>
     <ul>
-      <li><strong>Groq Llama 3.1 8B</strong>: ~400,000 calls</li>
-      <li><strong>Gemini 2.5 Flash</strong>: ~200,000 calls</li>
-      <li><strong>GPT-4o-mini</strong>: ~125,000 calls</li>
-      <li><strong>GPT-4o</strong>: ~5,500 calls</li>
-      <li><strong>Claude Opus 4</strong>: ~800 calls</li>
+      <li><strong>gpt-5-nano</strong>: ~900,000 calls ($0.000195/call)</li>
+      <li><strong>Groq Llama 3.1 8B</strong>: ~400,000 calls ($0.000165/call)</li>
+      <li><strong>gpt-5.4-nano</strong>: ~200,000 calls ($0.000675/call)</li>
+      <li><strong>grok-4.3</strong>: ~45,000 calls ($0.002625/call)</li>
+      <li><strong>gpt-5.4</strong>: ~14,000 calls ($0.008250/call)</li>
+      <li><strong>Claude Opus 4.7</strong>: ~5,000 calls ($0.015000/call)</li>
+      <li><strong>gpt-5.5</strong>: ~3,600 calls ($0.016500/call)</li>
     </ul>
 
-    <p>The gap between cheapest and most expensive is 500×. For a consumer app at scale, that difference is the line between profitable and unprofitable.</p>
+    <p>The gap between cheapest and most expensive frontier model is 250×. For a consumer app at scale, the right model selection can mean the difference between profitable and unprofitable at every scale tier.</p>
 
     <hr>
 
@@ -553,17 +574,18 @@ pip install llm-prices  <span class="comment"># PyPI publish in progress</span><
 
     <div class="install-block"><span class="comment">from llm_prices import calculate_cost, MODELS</span>
 
-<span class="comment"># Calculate exact cost</span>
-result = calculate_cost("gemini-2.5-flash", input_tokens=10_000, output_tokens=3_000)
-print(f"${result['total_cost_usd']:.4f}")  <span class="comment"># $0.0033</span>
+<span class="comment"># Calculate exact cost for a GPT-5.4 call</span>
+result = calculate_cost("gpt-5.4", input_tokens=10_000, output_tokens=3_000)
+print(f"${result['total_cost_usd']:.4f}")  <span class="comment"># $0.0700</span>
 
-<span class="comment"># Find all models under $0.50/Mtok input price</span>
+<span class="comment"># Find all models under $0.30/Mtok input price</span>
 cheap = {name: info for name, info in MODELS.items()
-         if info["input_per_mtok"] &lt; 0.50}
+         if info["input_per_mtok"] &lt; 0.30}
 
-<span class="comment"># Get all Together AI models</span>
-together = {name: info for name, info in MODELS.items()
-            if info["provider"] == "Together"}</div>
+<span class="comment"># Compare o3 vs gpt-4.1 (same price, different capability)</span>
+for model in ["o3", "gpt-4.1"]:
+    m = MODELS[model]
+    print(f'{model}: ${m["input_per_mtok"]}/${m["output_per_mtok"]} per Mtok')</div>
 
     <hr>
 

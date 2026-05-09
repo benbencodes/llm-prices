@@ -123,7 +123,35 @@ MODELS = {
         "input_per_mtok": 0.20,
         "output_per_mtok": 1.25,
         "context_window": 272_000,
-        "notes": "Cheapest GPT-5; 272k context",
+        "notes": "Cheapest GPT-5.4; 272k context",
+    },
+    "gpt-5-mini": {
+        "provider": "OpenAI",
+        "input_per_mtok": 0.25,
+        "output_per_mtok": 2.00,
+        "context_window": 272_000,
+        "notes": "Base GPT-5 mini tier",
+    },
+    "gpt-5-nano": {
+        "provider": "OpenAI",
+        "input_per_mtok": 0.05,
+        "output_per_mtok": 0.40,
+        "context_window": 272_000,
+        "notes": "Ultra-cheap GPT-5; one of the lowest prices in the dataset",
+    },
+    "o3-pro": {
+        "provider": "OpenAI",
+        "input_per_mtok": 20.00,
+        "output_per_mtok": 80.00,
+        "context_window": 200_000,
+        "notes": "Professional-grade reasoning; highest o-series capability",
+    },
+    "o1-pro": {
+        "provider": "OpenAI",
+        "input_per_mtok": 150.00,
+        "output_per_mtok": 600.00,
+        "context_window": 200_000,
+        "notes": "Ultra-premium reasoning; most expensive model in dataset",
     },
     # ── Anthropic ─────────────────────────────────────────────────────────
     "claude-opus-4-7": {
