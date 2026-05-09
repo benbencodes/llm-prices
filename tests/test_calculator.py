@@ -245,8 +245,8 @@ class TestCLI(unittest.TestCase):
         self.assertIn("cost_per_call_usd", data[0])
 
     def test_new_providers_present(self):
-        """Together, Fireworks, Perplexity, Cerebras, SambaNova should all be queryable."""
-        for provider in ["Together", "Fireworks", "Perplexity", "Cerebras", "SambaNova"]:
+        """Together, Fireworks, Perplexity, Cerebras, SambaNova, Bedrock queryable."""
+        for provider in ["Together", "Fireworks", "Perplexity", "Cerebras", "SambaNova", "Bedrock"]:
             r = self.run_cli("list", "--provider", provider)
             self.assertEqual(r.returncode, 0, f"Provider {provider} failed")
             self.assertIn(provider, r.stdout)
@@ -264,13 +264,19 @@ class TestCLI(unittest.TestCase):
             self.assertIn(model, r.stdout)
 
     def test_total_model_count(self):
-        """Sanity check: at least 68 models across at least 13 providers."""
+        """Sanity check: at least 73 models across at least 14 providers."""
         r = self.run_cli("list", "--json")
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
-        self.assertGreaterEqual(len(data), 68)
+        self.assertGreaterEqual(len(data), 73)
         providers = {m["provider"] for m in data}
-        self.assertGreaterEqual(len(providers), 13)
+        self.assertGreaterEqual(len(providers), 14)
+
+    def test_bedrock_models_present(self):
+        r = self.run_cli("list", "--provider", "Bedrock")
+        self.assertEqual(r.returncode, 0)
+        for model in ["nova-micro-br", "nova-lite-br", "nova-pro-br", "nova-premier-br"]:
+            self.assertIn(model, r.stdout)
 
     def test_sambanova_models_present(self):
         r = self.run_cli("list", "--provider", "SambaNova")

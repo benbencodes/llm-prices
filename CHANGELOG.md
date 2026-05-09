@@ -2,6 +2,17 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.9] - 2026-05-09
+
+### Added
+- Amazon Bedrock provider: 5 models (nova-micro-br, nova-lite-br, nova-pro-br,
+  nova-premier-br, nova-2-lite-br)
+  Amazon's own Nova foundation models via Bedrock on-demand pricing (US East).
+  Nova Micro has a 128k context at just $0.035/Mtok input — one of the cheapest options.
+  Nova Premier offers a 1M token context window.
+- Total: 68 → 73 models across 14 providers
+- Test suite: 47 → 48 tests (test_bedrock_models_present)
+
 ## [0.1.8] - 2026-05-09
 
 ### Added

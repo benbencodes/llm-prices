@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
 # Sources: official provider pricing pages + LiteLLM model_prices_and_context_window.json
-# Last updated: 2026-05-08 → 2026-05-09 (SambaNova added)
+# Last updated: 2026-05-08 → 2026-05-09 (SambaNova, Bedrock added)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -500,6 +500,44 @@ MODELS = {
         "output_per_mtok": 0.35,
         "context_window": 131_072,
         "notes": "Google Gemma 3 12B on SambaNova RDU",
+    },
+    # ── Amazon Bedrock ────────────────────────────────────────────────────
+    # Amazon's own Nova foundation models, on-demand pricing (US East, N. Virginia)
+    # Source: LiteLLM + https://aws.amazon.com/bedrock/pricing/
+    "nova-micro-br": {
+        "provider": "Bedrock",
+        "input_per_mtok": 0.035,
+        "output_per_mtok": 0.14,
+        "context_window": 128_000,
+        "notes": "Amazon Nova Micro; text-only, lowest latency, cheapest Nova",
+    },
+    "nova-lite-br": {
+        "provider": "Bedrock",
+        "input_per_mtok": 0.06,
+        "output_per_mtok": 0.24,
+        "context_window": 300_000,
+        "notes": "Amazon Nova Lite; multimodal (text/image/video), 300k ctx",
+    },
+    "nova-pro-br": {
+        "provider": "Bedrock",
+        "input_per_mtok": 0.80,
+        "output_per_mtok": 3.20,
+        "context_window": 300_000,
+        "notes": "Amazon Nova Pro; strongest Nova for complex tasks, 300k ctx",
+    },
+    "nova-premier-br": {
+        "provider": "Bedrock",
+        "input_per_mtok": 2.50,
+        "output_per_mtok": 12.50,
+        "context_window": 1_000_000,
+        "notes": "Amazon Nova Premier; top-tier, 1M token context",
+    },
+    "nova-2-lite-br": {
+        "provider": "Bedrock",
+        "input_per_mtok": 0.30,
+        "output_per_mtok": 2.50,
+        "context_window": 1_000_000,
+        "notes": "Amazon Nova 2 Lite; 1M context, more capable than Nova Lite",
     },
 }
 
