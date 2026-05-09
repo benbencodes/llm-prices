@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
 # Sources: official provider pricing pages + LiteLLM model_prices_and_context_window.json
-# Last updated: 2026-05-08 → 2026-05-09 (SambaNova, Bedrock, Groq/Mistral, AI21)
+# Last updated: 2026-05-08 → 2026-05-09 (SambaNova, Bedrock, Groq/Mistral, AI21, Claude 4/Gemini 3)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -100,24 +100,24 @@ MODELS = {
     # ── Anthropic ─────────────────────────────────────────────────────────
     "claude-opus-4-7": {
         "provider": "Anthropic",
-        "input_per_mtok": 15.00,
-        "output_per_mtok": 75.00,
-        "context_window": 200_000,
-        "notes": "Most capable Claude (claude-opus-4)",
+        "input_per_mtok": 5.00,
+        "output_per_mtok": 25.00,
+        "context_window": 1_000_000,
+        "notes": "Most capable Claude; 1M context, adaptive thinking",
     },
     "claude-sonnet-4-6": {
         "provider": "Anthropic",
         "input_per_mtok": 3.00,
         "output_per_mtok": 15.00,
-        "context_window": 200_000,
-        "notes": "Balanced performance/cost (claude-sonnet-4)",
+        "context_window": 1_000_000,
+        "notes": "Best speed/intelligence balance; 1M context",
     },
     "claude-haiku-4-5": {
         "provider": "Anthropic",
-        "input_per_mtok": 0.80,
-        "output_per_mtok": 4.00,
+        "input_per_mtok": 1.00,
+        "output_per_mtok": 5.00,
         "context_window": 200_000,
-        "notes": "Fast and affordable (claude-haiku-4)",
+        "notes": "Fastest Claude 4; near-frontier intelligence",
     },
     "claude-3-7-sonnet": {
         "provider": "Anthropic",
@@ -155,26 +155,47 @@ MODELS = {
         "notes": "Most affordable Claude 3",
     },
     # ── Google ────────────────────────────────────────────────────────────
-    "gemini-2.5-flash": {
+    "gemini-3.1-pro-preview": {
         "provider": "Google",
-        "input_per_mtok": 0.15,
-        "output_per_mtok": 0.60,
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 12.00,
         "context_window": 1_048_576,
-        "notes": "Fast, 1M context",
+        "notes": "Gemini 3 flagship preview (<=200k pricing); multimodal+agentic",
     },
-    "gemini-2.0-flash": {
+    "gemini-3.1-flash-lite": {
         "provider": "Google",
-        "input_per_mtok": 0.10,
-        "output_per_mtok": 0.40,
+        "input_per_mtok": 0.25,
+        "output_per_mtok": 1.50,
         "context_window": 1_048_576,
-        "notes": "Fast, 1M context",
+        "notes": "Gemini 3 cost-efficient; high-volume agentic tasks",
     },
     "gemini-2.5-pro": {
         "provider": "Google",
         "input_per_mtok": 1.25,
         "output_per_mtok": 10.00,
         "context_window": 1_048_576,
-        "notes": "Latest flagship (<=200k tokens)",
+        "notes": "State-of-art reasoning/coding; $2.50/$15 for >200k tokens",
+    },
+    "gemini-2.5-flash": {
+        "provider": "Google",
+        "input_per_mtok": 0.30,
+        "output_per_mtok": 2.50,
+        "context_window": 1_048_576,
+        "notes": "Hybrid reasoning; 1M context with thinking budgets",
+    },
+    "gemini-2.5-flash-lite": {
+        "provider": "Google",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.40,
+        "context_window": 1_048_576,
+        "notes": "Smallest/cheapest Gemini 2.5; high-volume at scale",
+    },
+    "gemini-2.0-flash": {
+        "provider": "Google",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.40,
+        "context_window": 1_048_576,
+        "notes": "Fast, 1M context (deprecated June 2026)",
     },
     "gemini-1.5-pro": {
         "provider": "Google",

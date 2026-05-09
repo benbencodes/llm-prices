@@ -13,7 +13,7 @@ $ llm-prices list --markdown   # GitHub-flavored table — paste into your READM
 $ llm-prices list --csv        # CSV export for spreadsheets
 ```
 
-Covers **80 models across 15 providers**: OpenAI, Anthropic, Google, Mistral,
+Covers **83 models across 15 providers**: OpenAI, Anthropic, Google, Mistral,
 Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI, Perplexity, Cerebras,
 SambaNova, Amazon Bedrock, AI21 Labs.
 No API key required — pricing data is baked in and updated with each release.

@@ -266,13 +266,45 @@ class TestCLI(unittest.TestCase):
             self.assertIn(model, r.stdout)
 
     def test_total_model_count(self):
-        """Sanity check: at least 80 models across at least 15 providers."""
+        """Sanity check: at least 83 models across at least 15 providers."""
         r = self.run_cli("list", "--json")
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
-        self.assertGreaterEqual(len(data), 80)
+        self.assertGreaterEqual(len(data), 83)
         providers = {m["provider"] for m in data}
         self.assertGreaterEqual(len(providers), 15)
+
+    def test_claude4_pricing_correct(self):
+        """Claude 4 family: Opus 4.7 at $5/$25 (not $15/$75), 1M context."""
+        r = self.run_cli("list", "--provider", "Anthropic", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        by_id = {m["model"]: m for m in data}
+        opus = by_id["claude-opus-4-7"]
+        self.assertAlmostEqual(opus["input_per_mtok_usd"], 5.00)
+        self.assertAlmostEqual(opus["output_per_mtok_usd"], 25.00)
+        self.assertEqual(opus["context_window"], 1_000_000)
+        # Sonnet and Haiku should have correct prices too
+        sonnet = by_id["claude-sonnet-4-6"]
+        self.assertEqual(sonnet["context_window"], 1_000_000)
+        haiku = by_id["claude-haiku-4-5"]
+        self.assertAlmostEqual(haiku["input_per_mtok_usd"], 1.00)
+
+    def test_gemini3_models_present(self):
+        """Gemini 3.1 Flash-Lite and Pro Preview should be in the dataset."""
+        r = self.run_cli("list", "--provider", "Google")
+        self.assertEqual(r.returncode, 0)
+        for model in ["gemini-3.1-flash-lite", "gemini-3.1-pro-preview", "gemini-2.5-flash-lite"]:
+            self.assertIn(model, r.stdout)
+
+    def test_gemini_flash_pricing_updated(self):
+        """Gemini 2.5 Flash output at $2.50 (hybrid reasoning model)."""
+        r = self.run_cli("list", "--provider", "Google", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        by_id = {m["model"]: m for m in data}
+        flash = by_id["gemini-2.5-flash"]
+        self.assertAlmostEqual(flash["output_per_mtok_usd"], 2.50)
 
     def test_ai21_models_present(self):
         r = self.run_cli("list", "--provider", "AI21")

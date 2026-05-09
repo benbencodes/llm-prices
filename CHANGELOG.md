@@ -2,6 +2,24 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.12] - 2026-05-09
+
+### Added
+- Google Gemini 3.1 Pro Preview ($2.00/$12.00, 1M ctx) — multimodal+agentic flagship preview
+- Google Gemini 3.1 Flash-Lite ($0.25/$1.50, 1M ctx) — cost-efficient Gemini 3 model
+- Google Gemini 2.5 Flash-Lite ($0.10/$0.40, 1M ctx) — smallest/cheapest Gemini 2.5
+- Total: 80 → 83 models (same 15 providers)
+- Tests: 51 → 54 (claude4_pricing_correct, gemini3_models_present, gemini_flash_pricing_updated)
+
+### Fixed
+- Claude Opus 4.7: corrected from $15/$75 to **$5/$25** per Mtok; context 200k → **1M tokens**
+  (Anthropic official docs: claude-opus-4-7 is the affordable flagship, not legacy Opus 3 pricing)
+- Claude Sonnet 4.6: context window 200k → **1M tokens**
+- Claude Haiku 4.5: corrected from $0.80/$4.00 to **$1.00/$5.00** per Mtok
+- Gemini 2.5 Flash: corrected from $0.15/$0.60 to **$0.30/$2.50** per Mtok
+  (hybrid reasoning model with thinking budgets — output price reflects that)
+- Gemini 2.5 Pro: updated notes (tiered pricing: $1.25/$10 ≤200k, $2.50/$15 >200k)
+
 ## [0.1.11] - 2026-05-09
 
 ### Added
