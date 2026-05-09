@@ -2,6 +2,23 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.13] - 2026-05-09
+
+### Added
+- OpenAI GPT-5 series (4 models):
+  - gpt-5.5: $5.00/$30.00 per Mtok, 1M context — current OpenAI flagship
+  - gpt-5.4: $2.50/$15.00 per Mtok, 1M context
+  - gpt-5.4-mini: $0.75/$4.50 per Mtok, 272k context
+  - gpt-5.4-nano: $0.20/$1.25 per Mtok, 272k context
+- xAI Grok 4 series (2 models):
+  - grok-4.3: $1.25/$2.50 per Mtok, 1M context — current Grok flagship
+  - grok-4.20-reasoning: $1.25/$2.50 per Mtok, **2M context**
+- Total: 83 → 89 models (same 15 providers)
+- Tests: 54 → 57 (test_gpt5_models_present, test_o3_repriced, test_grok4_present)
+
+### Fixed
+- o3: corrected from $10/$40 to **$2/$8** per Mtok (OpenAI repriced ~5× cheaper)
+
 ## [0.1.12] - 2026-05-09
 
 ### Added

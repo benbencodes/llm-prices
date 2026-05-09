@@ -1,6 +1,6 @@
 """llm-prices: look up and compare LLM API pricing."""
 
-__version__ = "0.1.12"
+__version__ = "0.1.13"
 
 from .calculator import calculate_cost
 from .data import MODELS, PROVIDERS

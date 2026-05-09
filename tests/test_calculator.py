@@ -266,13 +266,40 @@ class TestCLI(unittest.TestCase):
             self.assertIn(model, r.stdout)
 
     def test_total_model_count(self):
-        """Sanity check: at least 83 models across at least 15 providers."""
+        """Sanity check: at least 89 models across at least 15 providers."""
         r = self.run_cli("list", "--json")
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
-        self.assertGreaterEqual(len(data), 83)
+        self.assertGreaterEqual(len(data), 89)
         providers = {m["provider"] for m in data}
         self.assertGreaterEqual(len(providers), 15)
+
+    def test_gpt5_models_present(self):
+        """GPT-5 series: gpt-5.5 and gpt-5.4 should be in the dataset."""
+        r = self.run_cli("list", "--provider", "OpenAI")
+        self.assertEqual(r.returncode, 0)
+        for model in ["gpt-5.5", "gpt-5.4", "gpt-5.4-mini", "gpt-5.4-nano"]:
+            self.assertIn(model, r.stdout)
+
+    def test_o3_repriced(self):
+        """o3 was repriced from $10/$40 to $2/$8 in Apr 2025."""
+        r = self.run_cli("list", "--provider", "OpenAI", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        by_id = {m["model"]: m for m in data}
+        self.assertIn("o3", by_id)
+        self.assertAlmostEqual(by_id["o3"]["input_per_mtok_usd"], 2.00)
+        self.assertAlmostEqual(by_id["o3"]["output_per_mtok_usd"], 8.00)
+
+    def test_grok4_present(self):
+        """Grok 4.3 is the current xAI flagship at $1.25/$2.50."""
+        r = self.run_cli("list", "--provider", "xAI", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        by_id = {m["model"]: m for m in data}
+        self.assertIn("grok-4.3", by_id)
+        self.assertAlmostEqual(by_id["grok-4.3"]["input_per_mtok_usd"], 1.25)
+        self.assertEqual(by_id["grok-4.3"]["context_window"], 1_000_000)
 
     def test_claude4_pricing_correct(self):
         """Claude 4 family: Opus 4.7 at $5/$25 (not $15/$75), 1M context."""

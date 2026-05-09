@@ -57,10 +57,10 @@ MODELS = {
     },
     "o3": {
         "provider": "OpenAI",
-        "input_per_mtok": 10.00,
-        "output_per_mtok": 40.00,
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 8.00,
         "context_window": 200_000,
-        "notes": "Advanced reasoning",
+        "notes": "Advanced reasoning (repriced 5× cheaper Apr 2025)",
     },
     "o3-mini": {
         "provider": "OpenAI",
@@ -96,6 +96,34 @@ MODELS = {
         "output_per_mtok": 0.40,
         "context_window": 1_047_576,
         "notes": "Fastest, cheapest GPT-4.1",
+    },
+    "gpt-5.5": {
+        "provider": "OpenAI",
+        "input_per_mtok": 5.00,
+        "output_per_mtok": 30.00,
+        "context_window": 1_050_000,
+        "notes": "OpenAI flagship; 1M context, top coding & reasoning",
+    },
+    "gpt-5.4": {
+        "provider": "OpenAI",
+        "input_per_mtok": 2.50,
+        "output_per_mtok": 15.00,
+        "context_window": 1_050_000,
+        "notes": "More affordable GPT-5; 1M context",
+    },
+    "gpt-5.4-mini": {
+        "provider": "OpenAI",
+        "input_per_mtok": 0.75,
+        "output_per_mtok": 4.50,
+        "context_window": 272_000,
+        "notes": "Strong mini model; coding, computer use, subagents",
+    },
+    "gpt-5.4-nano": {
+        "provider": "OpenAI",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 1.25,
+        "context_window": 272_000,
+        "notes": "Cheapest GPT-5; 272k context",
     },
     # ── Anthropic ─────────────────────────────────────────────────────────
     "claude-opus-4-7": {
@@ -356,12 +384,26 @@ MODELS = {
         "notes": "DeepSeek-R1 reasoning",
     },
     # ── xAI ───────────────────────────────────────────────────────────────
+    "grok-4.3": {
+        "provider": "xAI",
+        "input_per_mtok": 1.25,
+        "output_per_mtok": 2.50,
+        "context_window": 1_000_000,
+        "notes": "Grok flagship; 1M ctx, low hallucination, agentic tool calling",
+    },
+    "grok-4.20-reasoning": {
+        "provider": "xAI",
+        "input_per_mtok": 1.25,
+        "output_per_mtok": 2.50,
+        "context_window": 2_000_000,
+        "notes": "Grok 4 reasoning variant; 2M context window",
+    },
     "grok-3": {
         "provider": "xAI",
         "input_per_mtok": 3.00,
         "output_per_mtok": 15.00,
         "context_window": 131_072,
-        "notes": "",
+        "notes": "Previous generation flagship",
     },
     "grok-3-mini": {
         "provider": "xAI",
