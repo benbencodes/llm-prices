@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
 # Sources: official provider pricing pages + LiteLLM model_prices_and_context_window.json
-# Last updated: 2026-05-08 → 2026-05-09 (SambaNova, Bedrock, Groq/Mistral updates)
+# Last updated: 2026-05-08 → 2026-05-09 (SambaNova, Bedrock, Groq/Mistral, AI21)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -573,6 +573,23 @@ MODELS = {
         "output_per_mtok": 2.50,
         "context_window": 1_000_000,
         "notes": "Amazon Nova 2 Lite; 1M context, more capable than Nova Lite",
+    },
+    # ── AI21 Labs ─────────────────────────────────────────────────────────
+    # Jamba = hybrid SSM (Mamba) + Transformer; 256k context at low cost
+    # Pricing: https://www.ai21.com/pricing  (AI21 claims ~30% more text/token vs peers)
+    "jamba-mini-a21": {
+        "provider": "AI21",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.40,
+        "context_window": 256_000,
+        "notes": "Jamba Mini 1.7; 256k ctx, hybrid SSM+Transformer architecture",
+    },
+    "jamba-large-a21": {
+        "provider": "AI21",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 8.00,
+        "context_window": 256_000,
+        "notes": "Jamba Large 1.7; 256k ctx, flagship Jamba model",
     },
 }
 

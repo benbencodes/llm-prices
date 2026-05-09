@@ -13,9 +13,9 @@ $ llm-prices list --markdown   # GitHub-flavored table — paste into your READM
 $ llm-prices list --csv        # CSV export for spreadsheets
 ```
 
-Covers **78 models across 14 providers**: OpenAI, Anthropic, Google, Mistral,
+Covers **80 models across 15 providers**: OpenAI, Anthropic, Google, Mistral,
 Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI, Perplexity, Cerebras,
-SambaNova, Amazon Bedrock.
+SambaNova, Amazon Bedrock, AI21 Labs.
 No API key required — pricing data is baked in and updated with each release.
 
 ---
@@ -186,6 +186,7 @@ for name, info in MODELS.items():
 | Cerebras    | 3      | Llama 3.3 70B, Llama 3.1 8B, Qwen3 32B — ultra-fast silicon |
 | SambaNova   | 5      | Llama 4 Maverick, Llama 3.3 70B, DeepSeek-V3, MiniMax M2.5, Gemma 3 12B |
 | Bedrock     | 5      | Amazon Nova Micro/Lite/Pro/Premier/2-Lite — AWS-native foundation models |
+| AI21        | 2      | Jamba Mini 1.7, Jamba Large 1.7 — 256k ctx, hybrid SSM+Transformer |
 
 ---
 
@@ -211,6 +212,7 @@ provider changes. Check the [sources](#sources) for the latest. PRs updating
 - Cerebras: https://cerebras.ai/pricing
 - SambaNova: https://api.sambanova.ai/v1/models (live API)
 - Amazon Bedrock: https://aws.amazon.com/bedrock/pricing/
+- AI21 Labs: https://www.ai21.com/pricing
 
 ---
 

@@ -2,6 +2,18 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.11] - 2026-05-09
+
+### Added
+- AI21 Labs (15th provider): Jamba Mini 1.7 ($0.20/$0.40, 256k ctx) and
+  Jamba Large 1.7 ($2.00/$8.00, 256k ctx). Hybrid SSM+Transformer architecture.
+- Total: 78 → 80 models, 14 → 15 providers
+- Tests: 50 → 51 (test_ai21_models_present)
+
+### Fixed
+- test_list_csv: use csv.reader instead of naive split(",") to handle
+  quoted fields that contain commas in the notes column
+
 ## [0.1.10] - 2026-05-09
 
 ### Added

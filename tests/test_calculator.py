@@ -186,6 +186,7 @@ class TestCLI(unittest.TestCase):
         self.assertGreater(len(lines), 10)
 
     def test_list_csv(self):
+        import csv as csv_mod
         r = self.run_cli("list", "--csv")
         self.assertEqual(r.returncode, 0)
         lines = r.stdout.strip().splitlines()
@@ -193,8 +194,9 @@ class TestCLI(unittest.TestCase):
         self.assertEqual(lines[0], "model,provider,input_per_mtok_usd,output_per_mtok_usd,context_window,notes")
         # At least one data row
         self.assertGreater(len(lines), 1)
-        # Columns are comma-separated
-        self.assertEqual(len(lines[1].split(",")), 6)
+        # Parse via csv reader to handle quoted fields
+        rows = list(csv_mod.reader(lines))
+        self.assertEqual(len(rows[1]), 6)
 
     def test_list_csv_provider_filter(self):
         r = self.run_cli("list", "--provider", "Perplexity", "--csv")
@@ -245,8 +247,8 @@ class TestCLI(unittest.TestCase):
         self.assertIn("cost_per_call_usd", data[0])
 
     def test_new_providers_present(self):
-        """Together, Fireworks, Perplexity, Cerebras, SambaNova, Bedrock queryable."""
-        for provider in ["Together", "Fireworks", "Perplexity", "Cerebras", "SambaNova", "Bedrock"]:
+        """Newer providers should all be queryable."""
+        for provider in ["Together", "Fireworks", "Perplexity", "Cerebras", "SambaNova", "Bedrock", "AI21"]:
             r = self.run_cli("list", "--provider", provider)
             self.assertEqual(r.returncode, 0, f"Provider {provider} failed")
             self.assertIn(provider, r.stdout)
@@ -264,13 +266,19 @@ class TestCLI(unittest.TestCase):
             self.assertIn(model, r.stdout)
 
     def test_total_model_count(self):
-        """Sanity check: at least 78 models across at least 14 providers."""
+        """Sanity check: at least 80 models across at least 15 providers."""
         r = self.run_cli("list", "--json")
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
-        self.assertGreaterEqual(len(data), 78)
+        self.assertGreaterEqual(len(data), 80)
         providers = {m["provider"] for m in data}
-        self.assertGreaterEqual(len(providers), 14)
+        self.assertGreaterEqual(len(providers), 15)
+
+    def test_ai21_models_present(self):
+        r = self.run_cli("list", "--provider", "AI21")
+        self.assertEqual(r.returncode, 0)
+        for model in ["jamba-mini-a21", "jamba-large-a21"]:
+            self.assertIn(model, r.stdout)
 
     def test_mistral_large3_present(self):
         """Mistral Large 3 must be cheaper than Large 2 and have larger context."""
