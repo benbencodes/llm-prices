@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
 # Sources: official provider pricing pages + LiteLLM model_prices_and_context_window.json
-# Last updated: 2026-05-08 → 2026-05-09 (SambaNova, Bedrock added)
+# Last updated: 2026-05-08 → 2026-05-09 (SambaNova, Bedrock, Groq/Mistral updates)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -198,26 +198,47 @@ MODELS = {
         "notes": "Smallest Gemini",
     },
     # ── Mistral AI ────────────────────────────────────────────────────────
+    "mistral-large-3": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.50,
+        "output_per_mtok": 1.50,
+        "context_window": 262_144,
+        "notes": "Mistral Large 3 (2512); 4× cheaper than Large 2, 2× context",
+    },
     "mistral-large-2": {
         "provider": "Mistral",
         "input_per_mtok": 2.00,
         "output_per_mtok": 6.00,
         "context_window": 128_000,
-        "notes": "Top Mistral model",
+        "notes": "Mistral Large 2 (2411); superseded by Large 3",
+    },
+    "mistral-medium-3": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.40,
+        "output_per_mtok": 2.00,
+        "context_window": 131_072,
+        "notes": "Mistral Medium 3 (2505)",
+    },
+    "mistral-small-3-2": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.06,
+        "output_per_mtok": 0.18,
+        "context_window": 131_072,
+        "notes": "Mistral Small 3.2 (2506); 131k context",
     },
     "mistral-small-3": {
         "provider": "Mistral",
         "input_per_mtok": 0.10,
         "output_per_mtok": 0.30,
         "context_window": 32_000,
-        "notes": "",
+        "notes": "Mistral Small 3 (older, 32k ctx); prefer small-3-2",
     },
     "codestral": {
         "provider": "Mistral",
         "input_per_mtok": 0.30,
         "output_per_mtok": 0.90,
         "context_window": 256_000,
-        "notes": "Code-specialized",
+        "notes": "Code-specialized; codestral-2508",
     },
     "open-mistral-7b": {
         "provider": "Mistral",
@@ -261,6 +282,20 @@ MODELS = {
         "output_per_mtok": 0.79,
         "context_window": 128_000,
         "notes": "Via Groq API",
+    },
+    "kimi-k2-gq": {
+        "provider": "Groq",
+        "input_per_mtok": 1.00,
+        "output_per_mtok": 3.00,
+        "context_window": 262_144,
+        "notes": "Moonshot Kimi K2 on Groq; 262k context; also on Together/Fireworks",
+    },
+    "qwen3-32b-gq": {
+        "provider": "Groq",
+        "input_per_mtok": 0.29,
+        "output_per_mtok": 0.59,
+        "context_window": 131_000,
+        "notes": "Qwen3 32B on Groq; also on Cerebras, Together",
     },
     # ── Cohere ────────────────────────────────────────────────────────────
     "command-r-plus": {

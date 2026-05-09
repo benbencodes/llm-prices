@@ -264,13 +264,32 @@ class TestCLI(unittest.TestCase):
             self.assertIn(model, r.stdout)
 
     def test_total_model_count(self):
-        """Sanity check: at least 73 models across at least 14 providers."""
+        """Sanity check: at least 78 models across at least 14 providers."""
         r = self.run_cli("list", "--json")
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
-        self.assertGreaterEqual(len(data), 73)
+        self.assertGreaterEqual(len(data), 78)
         providers = {m["provider"] for m in data}
         self.assertGreaterEqual(len(providers), 14)
+
+    def test_mistral_large3_present(self):
+        """Mistral Large 3 must be cheaper than Large 2 and have larger context."""
+        r = self.run_cli("list", "--provider", "Mistral", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        by_id = {m["model"]: m for m in data}
+        self.assertIn("mistral-large-3", by_id)
+        self.assertIn("mistral-large-2", by_id)
+        self.assertLess(
+            by_id["mistral-large-3"]["input_per_mtok_usd"],
+            by_id["mistral-large-2"]["input_per_mtok_usd"],
+        )
+
+    def test_groq_new_models(self):
+        r = self.run_cli("list", "--provider", "Groq")
+        self.assertEqual(r.returncode, 0)
+        for model in ["kimi-k2-gq", "qwen3-32b-gq"]:
+            self.assertIn(model, r.stdout)
 
     def test_bedrock_models_present(self):
         r = self.run_cli("list", "--provider", "Bedrock")

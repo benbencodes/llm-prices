@@ -2,6 +2,18 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.10] - 2026-05-09
+
+### Added
+- Groq: Kimi K2 (kimi-k2-gq, $1.00/$3.00, 262k ctx) and Qwen3 32B (qwen3-32b-gq, $0.29/$0.59)
+- Mistral Large 3 (mistral-large-3): $0.50/$1.50 per Mtok, 262k context — 4× cheaper
+  than Large 2 with 2× the context window. Major price cut for the flagship model.
+- Mistral Medium 3 (mistral-medium-3): $0.40/$2.00 per Mtok, 131k context (new family)
+- Mistral Small 3.2 (mistral-small-3-2): $0.06/$0.18 per Mtok, 131k context
+  (cheaper and larger context than the older Small 3)
+- Total: 73 → 78 models, same 14 providers
+- Tests: 48 → 50 (test_mistral_large3_present, test_groq_new_models)
+
 ## [0.1.9] - 2026-05-09
 
 ### Added
