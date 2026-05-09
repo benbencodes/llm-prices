@@ -245,8 +245,8 @@ class TestCLI(unittest.TestCase):
         self.assertIn("cost_per_call_usd", data[0])
 
     def test_new_providers_present(self):
-        """Together, Fireworks, Perplexity, Cerebras should all be queryable."""
-        for provider in ["Together", "Fireworks", "Perplexity", "Cerebras"]:
+        """Together, Fireworks, Perplexity, Cerebras, SambaNova should all be queryable."""
+        for provider in ["Together", "Fireworks", "Perplexity", "Cerebras", "SambaNova"]:
             r = self.run_cli("list", "--provider", provider)
             self.assertEqual(r.returncode, 0, f"Provider {provider} failed")
             self.assertIn(provider, r.stdout)
@@ -264,13 +264,19 @@ class TestCLI(unittest.TestCase):
             self.assertIn(model, r.stdout)
 
     def test_total_model_count(self):
-        """Sanity check: at least 60 models across at least 11 providers."""
+        """Sanity check: at least 68 models across at least 13 providers."""
         r = self.run_cli("list", "--json")
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
-        self.assertGreaterEqual(len(data), 60)
+        self.assertGreaterEqual(len(data), 68)
         providers = {m["provider"] for m in data}
-        self.assertGreaterEqual(len(providers), 11)
+        self.assertGreaterEqual(len(providers), 13)
+
+    def test_sambanova_models_present(self):
+        r = self.run_cli("list", "--provider", "SambaNova")
+        self.assertEqual(r.returncode, 0)
+        for model in ["llama-4-maverick-sb", "llama-3.3-70b-sb", "deepseek-v3-sb"]:
+            self.assertIn(model, r.stdout)
 
     def test_list_sort_input(self):
         r = self.run_cli("list", "--sort", "input", "--json")

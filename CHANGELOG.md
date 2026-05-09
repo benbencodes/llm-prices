@@ -2,6 +2,17 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.8] - 2026-05-09
+
+### Added
+- SambaNova provider: 5 models (llama-4-maverick-sb, llama-3.3-70b-sb, deepseek-v3-sb,
+  minimax-m2-5-sb, gemma-3-12b-sb)
+  Ultra-fast inference on SambaNova RDU (Reconfigurable Dataflow Unit) silicon.
+  Includes Llama 4 Maverick — the latest Meta flagship (17B MoE).
+  Prices sourced from the live SambaNova API (api.sambanova.ai/v1/models).
+- Total: 63 → 68 models across 13 providers
+- Test suite: 46 → 47 tests (test_sambanova_models_present)
+
 ## [0.1.7] - 2026-05-08
 
 ### Added

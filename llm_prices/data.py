@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
 # Sources: official provider pricing pages + LiteLLM model_prices_and_context_window.json
-# Last updated: 2026-05-08 → 2026-05-08 (Cerebras added)
+# Last updated: 2026-05-08 → 2026-05-09 (SambaNova added)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -463,7 +463,45 @@ MODELS = {
         "context_window": 128_000,
         "notes": "Qwen3 32B on Cerebras silicon",
     },
+    # ── SambaNova ─────────────────────────────────────────────────────────
+    # Ultra-fast inference on SambaNova RDU (Reconfigurable Dataflow Unit) silicon
+    # Pricing: https://api.sambanova.ai/v1/models (live API, no auth required)
+    "llama-4-maverick-sb": {
+        "provider": "SambaNova",
+        "input_per_mtok": 0.63,
+        "output_per_mtok": 1.80,
+        "context_window": 131_072,
+        "notes": "Meta Llama 4 Maverick 17B-128E; SambaNova RDU fast inference",
+    },
+    "llama-3.3-70b-sb": {
+        "provider": "SambaNova",
+        "input_per_mtok": 0.60,
+        "output_per_mtok": 1.20,
+        "context_window": 131_072,
+        "notes": "Llama 3.3 70B on SambaNova RDU",
+    },
+    "deepseek-v3-sb": {
+        "provider": "SambaNova",
+        "input_per_mtok": 3.00,
+        "output_per_mtok": 4.50,
+        "context_window": 131_072,
+        "notes": "DeepSeek-V3.1 on SambaNova; 131k context",
+    },
+    "minimax-m2-5-sb": {
+        "provider": "SambaNova",
+        "input_per_mtok": 0.30,
+        "output_per_mtok": 1.20,
+        "context_window": 163_840,
+        "notes": "MiniMax M2.5; 160k context window",
+    },
+    "gemma-3-12b-sb": {
+        "provider": "SambaNova",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.35,
+        "context_window": 131_072,
+        "notes": "Google Gemma 3 12B on SambaNova RDU",
+    },
 }
 
 PROVIDERS = sorted({m["provider"] for m in MODELS.values()})
-DATA_DATE = "2026-05-08"
+DATA_DATE = "2026-05-09"

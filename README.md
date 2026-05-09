@@ -13,8 +13,8 @@ $ llm-prices list --markdown   # GitHub-flavored table — paste into your READM
 $ llm-prices list --csv        # CSV export for spreadsheets
 ```
 
-Covers **63 models across 12 providers**: OpenAI, Anthropic, Google, Mistral,
-Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI, Perplexity, Cerebras.
+Covers **68 models across 13 providers**: OpenAI, Anthropic, Google, Mistral,
+Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI, Perplexity, Cerebras, SambaNova.
 No API key required — pricing data is baked in and updated with each release.
 
 ---
@@ -183,6 +183,7 @@ for name, info in MODELS.items():
 | DeepSeek    | 2      | chat (V3), reasoner (R1)         |
 | xAI         | 2      | Grok-3, Grok-3-mini              |
 | Cerebras    | 3      | Llama 3.3 70B, Llama 3.1 8B, Qwen3 32B — ultra-fast silicon |
+| SambaNova   | 5      | Llama 4 Maverick, Llama 3.3 70B, DeepSeek-V3, MiniMax M2.5, Gemma 3 12B |
 
 ---
 
@@ -206,6 +207,7 @@ provider changes. Check the [sources](#sources) for the latest. PRs updating
 - Fireworks AI: https://docs.fireworks.ai/serverless/pricing
 - Perplexity AI: https://docs.perplexity.ai/guides/pricing
 - Cerebras: https://cerebras.ai/pricing
+- SambaNova: https://api.sambanova.ai/v1/models (live API)
 
 ---
 
