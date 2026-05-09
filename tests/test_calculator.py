@@ -266,11 +266,11 @@ class TestCLI(unittest.TestCase):
             self.assertIn(model, r.stdout)
 
     def test_total_model_count(self):
-        """Sanity check: at least 89 models across at least 15 providers."""
+        """Sanity check: at least 93 models across at least 15 providers."""
         r = self.run_cli("list", "--json")
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
-        self.assertGreaterEqual(len(data), 89)
+        self.assertGreaterEqual(len(data), 93)
         providers = {m["provider"] for m in data}
         self.assertGreaterEqual(len(providers), 15)
 
