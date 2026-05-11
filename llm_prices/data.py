@@ -913,6 +913,46 @@ MODELS = {
         "context_window": 131_072,
         "notes": "Kimi K2 on Hyperbolic; flat in=out rate",
     },
+
+    # ── Crusoe ────────────────────────────────────────────────────────────
+    # Source: LiteLLM model_prices_and_context_window.json (crusoe provider)
+    # Crusoe: US GPU cloud; notable for gpt-oss-120b (OpenAI open-source 120B)
+    # and flat input=output pricing on most models
+    "gpt-oss-120b-cr": {
+        "provider": "Crusoe",
+        "input_per_mtok": 0.80,
+        "output_per_mtok": 0.80,
+        "context_window": 131_072,
+        "notes": "OpenAI open-source 120B on Crusoe; flat rate; 131k context",
+    },
+    "llama-3.3-70b-cr": {
+        "provider": "Crusoe",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.20,
+        "context_window": 131_072,
+        "notes": "Llama 3.3 70B on Crusoe; flat rate",
+    },
+    "deepseek-v3-0324-cr": {
+        "provider": "Crusoe",
+        "input_per_mtok": 1.50,
+        "output_per_mtok": 1.50,
+        "context_window": 163_840,
+        "notes": "DeepSeek-V3-0324 on Crusoe; flat rate; 163k context",
+    },
+    "kimi-k2-thinking-cr": {
+        "provider": "Crusoe",
+        "input_per_mtok": 2.50,
+        "output_per_mtok": 2.50,
+        "context_window": 262_144,
+        "notes": "Kimi K2 Thinking on Crusoe; flat rate; 262k context",
+    },
+    "deepseek-r1-0528-cr": {
+        "provider": "Crusoe",
+        "input_per_mtok": 3.00,
+        "output_per_mtok": 7.00,
+        "context_window": 163_840,
+        "notes": "DeepSeek-R1-0528 on Crusoe; 163k context",
+    },
 }
 
 PROVIDERS = sorted({m["provider"] for m in MODELS.values()})
