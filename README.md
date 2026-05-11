@@ -13,10 +13,13 @@ $ llm-prices list --markdown   # GitHub-flavored table — paste into your READM
 $ llm-prices list --csv        # CSV export for spreadsheets
 ```
 
-Covers **113 models across 19 providers**: OpenAI, Anthropic, Google, Mistral,
+Covers **128 models across 22 providers**: OpenAI, Anthropic, Google, Mistral,
 Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI, Perplexity, Cerebras,
-SambaNova, Amazon Bedrock, AI21 Labs, DeepInfra, Lambda AI, Novita AI, Nebius AI.
+SambaNova, Amazon Bedrock, AI21 Labs, DeepInfra, Lambda AI, Novita AI, Nebius AI,
+Moonshot AI (Kimi K2), Hyperbolic, Crusoe.
 No API key required — pricing data is baked in and updated with each release.
+
+**Also available as an MCP server** — use llm-prices tools directly from Claude, Cursor, and other MCP-compatible AI assistants.
 
 ---
 
@@ -225,6 +228,55 @@ provider changes. Check the [sources](#sources) for the latest. PRs updating
 1. Fork the repo
 2. Update `llm_prices/data.py` with new/corrected prices (cite your source)
 3. Open a PR
+
+---
+
+## MCP Server (for Claude, Cursor, and other AI assistants)
+
+`llm-prices` ships with a built-in MCP server. Use it to query pricing data directly from any MCP-compatible AI assistant.
+
+### Install with MCP support
+
+```bash
+pip install "git+https://github.com/benbencodes/llm-prices[mcp]"
+```
+
+### Configure Claude Desktop
+
+Add to `~/Library/Application Support/Claude/claude_desktop_config.json` (macOS):
+
+```json
+{
+  "mcpServers": {
+    "llm-prices": {
+      "command": "llm-prices-mcp"
+    }
+  }
+}
+```
+
+Or for `uvx` users:
+```json
+{
+  "mcpServers": {
+    "llm-prices": {
+      "command": "uvx",
+      "args": ["--from", "git+https://github.com/benbencodes/llm-prices[mcp]", "llm-prices-mcp"]
+    }
+  }
+}
+```
+
+### Available MCP tools
+
+| Tool | Description |
+|------|-------------|
+| `get_model_pricing` | Get pricing for a specific model |
+| `calculate_api_cost` | Calculate exact cost for input+output tokens |
+| `compare_models` | Compare cost of a workload across multiple models |
+| `find_cheapest_models` | Find the N cheapest models for your workload |
+| `list_providers` | List all 22 providers with min pricing |
+| `search_llm_models` | Search models by name or filter by provider |
 
 ---
 
