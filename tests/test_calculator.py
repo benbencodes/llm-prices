@@ -111,7 +111,6 @@ class TestCLI(unittest.TestCase):
         result = subprocess.run(
             [sys.executable, "-m", "llm_prices.cli"] + list(args),
             capture_output=True, text=True,
-            cwd="/workspace/projects/llm-prices"
         )
         return result
 

@@ -2,6 +2,12 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.15] - 2026-05-11
+
+### Fixed
+- Tests no longer hardcode `/workspace/projects/llm-prices` as `cwd` — they now
+  work correctly in CI (GitHub Actions) and any other environment.
+
 ## [0.1.14] - 2026-05-09
 
 ### Added
