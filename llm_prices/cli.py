@@ -319,13 +319,49 @@ def cmd_top(args):
 
 
 def cmd_providers(args):
+    rows = []
+    for provider in PROVIDERS:
+        models = [(k, v) for k, v in MODELS.items() if v["provider"] == provider]
+        cheapest_in = min(v["input_per_mtok"] for _, v in models)
+        cheapest_out = min(v["output_per_mtok"] for _, v in models)
+        max_ctx = max(v["context_window"] for _, v in models)
+        rows.append({
+            "provider": provider,
+            "models": len(models),
+            "cheapest_input_per_mtok": cheapest_in,
+            "cheapest_output_per_mtok": cheapest_out,
+            "max_context_window": max_ctx,
+        })
+
     if args.json:
-        print(json.dumps(PROVIDERS))
+        print(json.dumps(rows, indent=2))
         return
-    print("Available providers:")
-    for p in PROVIDERS:
-        count = sum(1 for m in MODELS.values() if m["provider"] == p)
-        print(f"  {p:<16} ({count} model{'s' if count != 1 else ''})")
+
+    headers = ["Provider", "Models", "Min Input/Mtok", "Min Output/Mtok", "Max Context"]
+    table_rows = [
+        [
+            r["provider"],
+            str(r["models"]),
+            f"${r['cheapest_input_per_mtok']:.4f}",
+            f"${r['cheapest_output_per_mtok']:.4f}",
+            f"{r['max_context_window'] // 1000}k",
+        ]
+        for r in rows
+    ]
+
+    if args.markdown:
+        print(_to_markdown_table(headers, table_rows))
+        return
+
+    # Plain text table
+    widths = [max(len(str(r[i])) for r in ([headers] + table_rows)) for i in range(len(headers))]
+    hdr = "  ".join(f"{headers[i]:<{widths[i]}}" for i in range(len(headers)))
+    print(f"{len(MODELS)} models across {len(PROVIDERS)} providers (data: {DATA_DATE})")
+    print()
+    print(hdr)
+    print("-" * len(hdr))
+    for r in table_rows:
+        print("  ".join(f"{r[i]:<{widths[i]}}" for i in range(len(headers))))
 
 
 def main():
@@ -374,8 +410,9 @@ def main():
     p_cmp.add_argument("--markdown", action="store_true", help="Output as Markdown table")
 
     # providers
-    p_prov = sub.add_parser("providers", help="List available providers")
+    p_prov = sub.add_parser("providers", help="List providers with model counts and pricing summary")
     p_prov.add_argument("--json", action="store_true", help="Output as JSON")
+    p_prov.add_argument("--markdown", action="store_true", help="Output as Markdown table")
 
     # budget
     p_bud = sub.add_parser("budget", help="How many API calls fit within a dollar budget?")

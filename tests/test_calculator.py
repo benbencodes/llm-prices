@@ -474,6 +474,33 @@ class TestCLI(unittest.TestCase):
         self.assertIsNotNone(model)
         self.assertGreaterEqual(model["context_window"], 262_000)
 
+    def test_providers_command(self):
+        """providers command returns one row per provider with model count."""
+        r = self.run_cli("providers")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("OpenAI", r.stdout)
+        self.assertIn("Anthropic", r.stdout)
+        self.assertIn("18 providers", r.stdout)
+
+    def test_providers_markdown(self):
+        """providers --markdown outputs a GitHub-flavored table."""
+        r = self.run_cli("providers", "--markdown")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("|", r.stdout)
+        self.assertIn("Provider", r.stdout)
+        self.assertIn("Models", r.stdout)
+
+    def test_providers_json(self):
+        """providers --json returns structured data."""
+        r = self.run_cli("providers", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        self.assertIsInstance(data, list)
+        self.assertGreaterEqual(len(data), 18)
+        self.assertIn("provider", data[0])
+        self.assertIn("models", data[0])
+        self.assertIn("cheapest_input_per_mtok", data[0])
+
 
 if __name__ == "__main__":
     unittest.main()

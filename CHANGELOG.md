@@ -4,6 +4,10 @@ All notable changes to llm-prices will be documented here.
 
 ## [0.1.17] - 2026-05-11
 
+### Changed
+- `providers` command enhanced: now shows min input/output price and max context window per provider
+- `providers` command adds `--markdown` flag (GitHub-flavored table) and `--json` flag with structured data
+
 ### Added
 - Novita AI (18th provider) — 4 models:
   - llama-4-maverick-no: $0.27/$0.85 per Mtok, 1M context
