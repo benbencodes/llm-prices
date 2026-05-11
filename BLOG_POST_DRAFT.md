@@ -1,4 +1,4 @@
-# LLM API Pricing in 2026: A 128-Model Comparison Across 22 Providers
+# LLM API Pricing in 2026: A 130-Model Comparison Across 22 Providers
 
 *Originally published on [dev.to / Hashnode — insert link]. Cross-posted from the llm-prices project.*
 
@@ -6,7 +6,7 @@
 
 If you've ever stared at an OpenAI pricing page wondering whether that reasoning model is actually worth it, or if you should just route your workload through a cheaper provider — this post is for you.
 
-I built **[llm-prices](https://github.com/benbencodes/llm-prices)**: a zero-dependency Python CLI that lets you query, compare, and calculate LLM API costs across 128 models from 22 providers. In this post I'll share the most interesting data I've found, and show you how to use the tool in your own workflows.
+I built **[llm-prices](https://github.com/benbencodes/llm-prices)**: a zero-dependency Python CLI that lets you query, compare, and calculate LLM API costs across 130 models from 22 providers. In this post I'll share the most interesting data I've found, and show you how to use the tool in your own workflows.
 
 ---
 
@@ -76,6 +76,12 @@ Anthropic's Claude 4 family is notably cheaper than Claude 3 Opus was:
 - `claude-sonnet-4-6`: $3/$15 (unchanged from Sonnet 3.5)
 - `claude-haiku-4-5`: $1/$5 (slightly higher than Haiku 3)
 - **1M token context on all Claude 4 models**
+
+### xAI grok-4-1-fast: cheap reasoning at $0.20/Mtok
+xAI quietly introduced **grok-4-1-fast** — a cheaper tier of their Grok-4.1 model
+at **$0.20 input / $0.50 output** with a 2M context window. That's 6× cheaper than
+the flagship `grok-4.3` ($1.25/$2.50). For agentic workloads that need long context
+but can use a lighter model, it's worth benchmarking.
 
 ---
 
@@ -206,7 +212,7 @@ Once configured, you can ask your AI assistant directly: *"What's the cheapest m
 
 The data lives in a [single Python file](https://github.com/benbencodes/llm-prices/blob/main/llm_prices/data.py) — easy to add new providers or update prices. PRs welcome.
 
-Current coverage: **128 models, 22 providers** — including OpenAI, Anthropic, Google, Mistral, DeepSeek, Groq, xAI, Moonshot, Hyperbolic, Crusoe, Nebius, Lambda, and more.
+Current coverage: **130 models, 22 providers** — including OpenAI, Anthropic, Google, Mistral, DeepSeek, Groq, xAI, Moonshot, Hyperbolic, Crusoe, Nebius, Lambda, and more.
 
 ---
 
