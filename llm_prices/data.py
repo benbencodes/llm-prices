@@ -682,7 +682,69 @@ MODELS = {
         "context_window": 256_000,
         "notes": "Jamba Large 1.7; 256k ctx, flagship Jamba model",
     },
+    # ── DeepInfra ─────────────────────────────────────────────────────────
+    # Inference cloud with competitive open-weight pricing; notable for 1M+ context
+    # Source: LiteLLM model_prices_and_context_window.json (deepinfra provider)
+    "llama-4-maverick-di": {
+        "provider": "DeepInfra",
+        "input_per_mtok": 0.15,
+        "output_per_mtok": 0.60,
+        "context_window": 1_048_576,
+        "notes": "Meta Llama 4 Maverick FP8; 1M token context — largest Llama 4 ctx available",
+    },
+    "llama-4-scout-di": {
+        "provider": "DeepInfra",
+        "input_per_mtok": 0.08,
+        "output_per_mtok": 0.30,
+        "context_window": 327_680,
+        "notes": "Meta Llama 4 Scout; 327k context, cheapest Scout option",
+    },
+    "deepseek-r1-0528-di": {
+        "provider": "DeepInfra",
+        "input_per_mtok": 0.50,
+        "output_per_mtok": 2.15,
+        "context_window": 163_840,
+        "notes": "DeepSeek-R1-0528; latest R1 update on DeepInfra",
+    },
+    "qwq-32b-di": {
+        "provider": "DeepInfra",
+        "input_per_mtok": 0.15,
+        "output_per_mtok": 0.40,
+        "context_window": 131_072,
+        "notes": "Qwen QwQ-32B reasoning model; strong math/code reasoning",
+    },
+    # ── Lambda AI ─────────────────────────────────────────────────────────
+    # On-demand GPU inference; notable for ultra-cheap Llama 4 pricing
+    # Source: LiteLLM model_prices_and_context_window.json (lambda_ai provider)
+    "llama-4-maverick-la": {
+        "provider": "Lambda",
+        "input_per_mtok": 0.05,
+        "output_per_mtok": 0.10,
+        "context_window": 131_072,
+        "notes": "Meta Llama 4 Maverick FP8 on Lambda; tied with gpt-5-nano as cheapest capable model",
+    },
+    "llama-4-scout-la": {
+        "provider": "Lambda",
+        "input_per_mtok": 0.05,
+        "output_per_mtok": 0.10,
+        "context_window": 16_384,
+        "notes": "Meta Llama 4 Scout on Lambda; ultra-cheap, 16k ctx",
+    },
+    "llama3.3-70b-la": {
+        "provider": "Lambda",
+        "input_per_mtok": 0.12,
+        "output_per_mtok": 0.30,
+        "context_window": 131_072,
+        "notes": "Llama 3.3 70B FP8 on Lambda",
+    },
+    "deepseek-r1-0528-la": {
+        "provider": "Lambda",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.60,
+        "context_window": 131_072,
+        "notes": "DeepSeek-R1-0528 on Lambda; very cheap reasoning model",
+    },
 }
 
 PROVIDERS = sorted({m["provider"] for m in MODELS.values()})
-DATA_DATE = "2026-05-09"
+DATA_DATE = "2026-05-11"

@@ -265,13 +265,13 @@ class TestCLI(unittest.TestCase):
             self.assertIn(model, r.stdout)
 
     def test_total_model_count(self):
-        """Sanity check: at least 93 models across at least 15 providers."""
+        """Sanity check: at least 101 models across at least 17 providers."""
         r = self.run_cli("list", "--json")
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
-        self.assertGreaterEqual(len(data), 93)
+        self.assertGreaterEqual(len(data), 101)
         providers = {m["provider"] for m in data}
-        self.assertGreaterEqual(len(providers), 15)
+        self.assertGreaterEqual(len(providers), 17)
 
     def test_gpt5_models_present(self):
         """GPT-5 series: gpt-5.5 and gpt-5.4 should be in the dataset."""
@@ -426,6 +426,31 @@ class TestCLI(unittest.TestCase):
         budget_data = json.loads(r_budget.stdout)
         # Budget is sorted most-calls-first = cheapest first
         self.assertEqual(top_data[0]["model"], budget_data[0]["model"])
+
+    def test_deepinfra_models_present(self):
+        """DeepInfra (16th provider): Llama 4 Maverick with 1M context."""
+        r = self.run_cli("list", "--provider", "DeepInfra")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("llama-4-maverick-di", r.stdout)
+        self.assertIn("llama-4-scout-di", r.stdout)
+        self.assertIn("DeepInfra", r.stdout)
+
+    def test_lambda_models_present(self):
+        """Lambda AI (17th provider): ultra-cheap Llama 4 at $0.05/$0.10."""
+        r = self.run_cli("list", "--provider", "Lambda", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        maverick = next((m for m in data if m["model"] == "llama-4-maverick-la"), None)
+        self.assertIsNotNone(maverick)
+        self.assertAlmostEqual(maverick["input_per_mtok_usd"], 0.05, places=4)
+
+    def test_deepinfra_maverick_has_1m_context(self):
+        """DeepInfra Llama 4 Maverick should have 1M+ token context."""
+        r = self.run_cli("list", "--provider", "DeepInfra", "--json")
+        data = json.loads(r.stdout)
+        maverick = next((m for m in data if m["model"] == "llama-4-maverick-di"), None)
+        self.assertIsNotNone(maverick)
+        self.assertGreaterEqual(maverick["context_window"], 1_000_000)
 
 
 if __name__ == "__main__":

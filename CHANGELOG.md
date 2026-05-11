@@ -2,6 +2,25 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.16] - 2026-05-11
+
+### Added
+- DeepInfra (16th provider) — 4 models:
+  - llama-4-maverick-di: $0.15/$0.60 per Mtok, **1M token context** — largest Llama 4 context available
+  - llama-4-scout-di: $0.08/$0.30, 327k ctx
+  - deepseek-r1-0528-di: $0.50/$2.15, 163k ctx
+  - qwq-32b-di: $0.15/$0.40, 131k ctx (Qwen QwQ reasoning model)
+- Lambda AI (17th provider) — 4 models:
+  - llama-4-maverick-la: $0.05/$0.10 per Mtok — tied with gpt-5-nano as cheapest capable model!
+  - llama-4-scout-la: $0.05/$0.10, 16k ctx
+  - llama3.3-70b-la: $0.12/$0.30, 131k ctx
+  - deepseek-r1-0528-la: $0.20/$0.60, 131k ctx (very cheap reasoning)
+- Total: 93 → 101 models, 15 → 17 providers
+- 3 new tests for DeepInfra and Lambda providers
+
+### Fixed
+- pyproject.toml now uses dynamic versioning from `llm_prices.__version__` — fixes PyPI publish
+
 ## [0.1.15] - 2026-05-11
 
 ### Fixed
