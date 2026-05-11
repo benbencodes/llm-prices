@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
 # Sources: official provider pricing pages + LiteLLM model_prices_and_context_window.json
-# Last updated: 2026-05-11 (DeepInfra, Lambda AI, Novita AI; Mistral Devstral/Ministral; Nebius AI)
+# Last updated: 2026-05-11 (+ Moonshot AI/Kimi K2; Hyperbolic flat-rate inference)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -834,6 +834,84 @@ MODELS = {
         "output_per_mtok": 2.40,
         "context_window": 164_000,
         "notes": "DeepSeek-R1-0528 on Nebius; 164k context",
+    },
+
+    # ── Moonshot AI (Kimi) ────────────────────────────────────────────────
+    # Source: LiteLLM model_prices_and_context_window.json (moonshot provider)
+    # Moonshot AI: Chinese AI lab; Kimi K2 is their 2026 flagship MoE model
+    "kimi-k2-mk": {
+        "provider": "Moonshot",
+        "input_per_mtok": 0.60,
+        "output_per_mtok": 2.50,
+        "context_window": 131_072,
+        "notes": "Kimi K2 0711 preview; flagship MoE, 131k context",
+    },
+    "kimi-k2-thinking-mk": {
+        "provider": "Moonshot",
+        "input_per_mtok": 0.60,
+        "output_per_mtok": 2.50,
+        "context_window": 262_144,
+        "notes": "Kimi K2 thinking/reasoning mode; 262k context",
+    },
+    "kimi-k2-thinking-turbo-mk": {
+        "provider": "Moonshot",
+        "input_per_mtok": 1.15,
+        "output_per_mtok": 8.00,
+        "context_window": 262_144,
+        "notes": "Kimi K2 turbo thinking; fastest reasoning variant; 262k context",
+    },
+    "moonshot-v1-8k-mk": {
+        "provider": "Moonshot",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 2.00,
+        "context_window": 8_192,
+        "notes": "Moonshot V1 short-context; cheapest Moonshot entry point",
+    },
+    "moonshot-v1-128k-mk": {
+        "provider": "Moonshot",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 5.00,
+        "context_window": 131_072,
+        "notes": "Moonshot V1 full 128k context; general-purpose",
+    },
+
+    # ── Hyperbolic ────────────────────────────────────────────────────────
+    # Source: LiteLLM model_prices_and_context_window.json (hyperbolic provider)
+    # Hyperbolic: US inference provider; notable for flat input=output pricing on some models
+    "deepseek-r1-0528-hy": {
+        "provider": "Hyperbolic",
+        "input_per_mtok": 0.25,
+        "output_per_mtok": 0.25,
+        "context_window": 131_072,
+        "notes": "DeepSeek-R1-0528 on Hyperbolic; flat $0.25 in=out; cheapest R1-0528",
+    },
+    "deepseek-v3-0324-hy": {
+        "provider": "Hyperbolic",
+        "input_per_mtok": 0.40,
+        "output_per_mtok": 0.40,
+        "context_window": 32_768,
+        "notes": "DeepSeek-V3-0324 on Hyperbolic; flat rate pricing",
+    },
+    "llama-3.3-70b-hy": {
+        "provider": "Hyperbolic",
+        "input_per_mtok": 0.12,
+        "output_per_mtok": 0.30,
+        "context_window": 131_072,
+        "notes": "Llama 3.3 70B on Hyperbolic",
+    },
+    "llama-3.1-405b-hy": {
+        "provider": "Hyperbolic",
+        "input_per_mtok": 0.12,
+        "output_per_mtok": 0.30,
+        "context_window": 32_768,
+        "notes": "Llama 3.1 405B on Hyperbolic; massive model at competitive price",
+    },
+    "kimi-k2-hy": {
+        "provider": "Hyperbolic",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 2.00,
+        "context_window": 131_072,
+        "notes": "Kimi K2 on Hyperbolic; flat in=out rate",
     },
 }
 

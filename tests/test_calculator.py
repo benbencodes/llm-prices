@@ -265,13 +265,13 @@ class TestCLI(unittest.TestCase):
             self.assertIn(model, r.stdout)
 
     def test_total_model_count(self):
-        """Sanity check: at least 108 models across at least 18 providers."""
+        """Sanity check: at least 123 models across at least 21 providers."""
         r = self.run_cli("list", "--json")
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
-        self.assertGreaterEqual(len(data), 108)
+        self.assertGreaterEqual(len(data), 123)
         providers = {m["provider"] for m in data}
-        self.assertGreaterEqual(len(providers), 18)
+        self.assertGreaterEqual(len(providers), 21)
 
     def test_gpt5_models_present(self):
         """GPT-5 series: gpt-5.5 and gpt-5.4 should be in the dataset."""
@@ -500,7 +500,7 @@ class TestCLI(unittest.TestCase):
         self.assertEqual(r.returncode, 0)
         self.assertIn("OpenAI", r.stdout)
         self.assertIn("Anthropic", r.stdout)
-        self.assertIn("19 providers", r.stdout)
+        self.assertIn("21 providers", r.stdout)
 
     def test_providers_markdown(self):
         """providers --markdown outputs a GitHub-flavored table."""
@@ -516,10 +516,36 @@ class TestCLI(unittest.TestCase):
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
         self.assertIsInstance(data, list)
-        self.assertGreaterEqual(len(data), 18)
+        self.assertGreaterEqual(len(data), 21)
         self.assertIn("provider", data[0])
         self.assertIn("models", data[0])
         self.assertIn("cheapest_input_per_mtok", data[0])
+
+    def test_moonshot_kimi_k2_present(self):
+        """Moonshot AI (20th provider): Kimi K2 flagship model."""
+        r = self.run_cli("list", "--provider", "Moonshot", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        by_id = {m["model"]: m for m in data}
+        self.assertIn("kimi-k2-mk", by_id)
+        self.assertAlmostEqual(by_id["kimi-k2-mk"]["input_per_mtok_usd"], 0.60, places=2)
+        # Thinking turbo should be more expensive
+        self.assertGreater(
+            by_id["kimi-k2-thinking-turbo-mk"]["output_per_mtok_usd"],
+            by_id["kimi-k2-mk"]["output_per_mtok_usd"],
+        )
+
+    def test_hyperbolic_flat_rate_pricing(self):
+        """Hyperbolic (21st provider): DeepSeek-R1-0528 at flat $0.25 in=out."""
+        r = self.run_cli("list", "--provider", "Hyperbolic", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        by_id = {m["model"]: m for m in data}
+        self.assertIn("deepseek-r1-0528-hy", by_id)
+        r1 = by_id["deepseek-r1-0528-hy"]
+        # Flat rate: input == output price
+        self.assertAlmostEqual(r1["input_per_mtok_usd"], r1["output_per_mtok_usd"], places=4)
+        self.assertAlmostEqual(r1["input_per_mtok_usd"], 0.25, places=2)
 
 
 if __name__ == "__main__":
