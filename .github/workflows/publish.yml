@@ -22,9 +22,6 @@ jobs:
   publish:
     needs: test
     runs-on: ubuntu-latest
-    environment: pypi
-    permissions:
-      id-token: write  # required for trusted publishing
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -33,10 +30,5 @@ jobs:
       - run: pip install build
       - run: python -m build
       - uses: pypa/gh-action-pypi-publish@release/v1
-        # Uses PyPI Trusted Publishing — no API token needed.
-        # Configure at: https://pypi.org/manage/account/publishing/
-        # Publisher: GitHub Actions
-        # Owner: <your-github-username>
-        # Repo: llm-prices
-        # Workflow: publish.yml
-        # Environment: pypi
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
