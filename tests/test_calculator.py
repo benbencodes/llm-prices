@@ -265,13 +265,13 @@ class TestCLI(unittest.TestCase):
             self.assertIn(model, r.stdout)
 
     def test_total_model_count(self):
-        """Sanity check: at least 101 models across at least 17 providers."""
+        """Sanity check: at least 108 models across at least 18 providers."""
         r = self.run_cli("list", "--json")
         self.assertEqual(r.returncode, 0)
         data = json.loads(r.stdout)
-        self.assertGreaterEqual(len(data), 101)
+        self.assertGreaterEqual(len(data), 108)
         providers = {m["provider"] for m in data}
-        self.assertGreaterEqual(len(providers), 17)
+        self.assertGreaterEqual(len(providers), 18)
 
     def test_gpt5_models_present(self):
         """GPT-5 series: gpt-5.5 and gpt-5.4 should be in the dataset."""
@@ -451,6 +451,28 @@ class TestCLI(unittest.TestCase):
         maverick = next((m for m in data if m["model"] == "llama-4-maverick-di"), None)
         self.assertIsNotNone(maverick)
         self.assertGreaterEqual(maverick["context_window"], 1_000_000)
+
+    def test_novita_models_present(self):
+        """Novita AI (18th provider): Llama 4 Maverick with 1M context."""
+        r = self.run_cli("list", "--provider", "Novita")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("llama-4-maverick-no", r.stdout)
+        self.assertIn("Novita", r.stdout)
+
+    def test_mistral_devstral_present(self):
+        """Devstral coding agent models should be in Mistral provider."""
+        r = self.run_cli("list", "--provider", "Mistral")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("devstral-small", r.stdout)
+        self.assertIn("devstral", r.stdout)
+
+    def test_ministral_3_8b_present(self):
+        """Ministral 3 8B: ultra-cheap model with 262k context."""
+        r = self.run_cli("list", "--provider", "Mistral", "--json")
+        data = json.loads(r.stdout)
+        model = next((m for m in data if m["model"] == "ministral-3-8b"), None)
+        self.assertIsNotNone(model)
+        self.assertGreaterEqual(model["context_window"], 262_000)
 
 
 if __name__ == "__main__":

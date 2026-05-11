@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
 # Sources: official provider pricing pages + LiteLLM model_prices_and_context_window.json
-# Last updated: 2026-05-08 → 2026-05-09 (SambaNova, Bedrock, Groq/Mistral, AI21, Claude 4/Gemini 3)
+# Last updated: 2026-05-11 (DeepInfra, Lambda AI, Novita AI; Mistral Devstral/Ministral)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -316,6 +316,27 @@ MODELS = {
         "output_per_mtok": 0.90,
         "context_window": 256_000,
         "notes": "Code-specialized; codestral-2508",
+    },
+    "devstral-small": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.30,
+        "context_window": 128_000,
+        "notes": "Coding agent model; optimized for agentic software engineering tasks",
+    },
+    "devstral": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.40,
+        "output_per_mtok": 2.00,
+        "context_window": 256_000,
+        "notes": "Full Devstral coding agent; 256k context for large repos",
+    },
+    "ministral-3-8b": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.15,
+        "output_per_mtok": 0.15,
+        "context_window": 262_144,
+        "notes": "Ministral 3 8B; ultra-cheap, 262k ctx, same in/out price",
     },
     "open-mistral-7b": {
         "provider": "Mistral",
@@ -743,6 +764,37 @@ MODELS = {
         "output_per_mtok": 0.60,
         "context_window": 131_072,
         "notes": "DeepSeek-R1-0528 on Lambda; very cheap reasoning model",
+    },
+    # ── Novita AI ─────────────────────────────────────────────────────────
+    # Inference marketplace with competitive pricing on open-weight models
+    # Source: LiteLLM model_prices_and_context_window.json (novita provider)
+    "llama-4-maverick-no": {
+        "provider": "Novita",
+        "input_per_mtok": 0.27,
+        "output_per_mtok": 0.85,
+        "context_window": 1_048_576,
+        "notes": "Llama 4 Maverick FP8 on Novita; 1M context",
+    },
+    "llama-4-scout-no": {
+        "provider": "Novita",
+        "input_per_mtok": 0.18,
+        "output_per_mtok": 0.59,
+        "context_window": 131_072,
+        "notes": "Llama 4 Scout on Novita",
+    },
+    "deepseek-r1-0528-no": {
+        "provider": "Novita",
+        "input_per_mtok": 0.70,
+        "output_per_mtok": 2.50,
+        "context_window": 163_840,
+        "notes": "DeepSeek-R1-0528 on Novita; latest reasoning model",
+    },
+    "qwen3-235b-no": {
+        "provider": "Novita",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.80,
+        "context_window": 40_000,
+        "notes": "Qwen3 235B-A22B FP8 on Novita; flagship Qwen3 MoE",
     },
 }
 

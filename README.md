@@ -13,9 +13,9 @@ $ llm-prices list --markdown   # GitHub-flavored table — paste into your READM
 $ llm-prices list --csv        # CSV export for spreadsheets
 ```
 
-Covers **101 models across 17 providers**: OpenAI, Anthropic, Google, Mistral,
+Covers **108 models across 18 providers**: OpenAI, Anthropic, Google, Mistral,
 Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI, Perplexity, Cerebras,
-SambaNova, Amazon Bedrock, AI21 Labs, DeepInfra, Lambda AI.
+SambaNova, Amazon Bedrock, AI21 Labs, DeepInfra, Lambda AI, Novita AI.
 No API key required — pricing data is baked in and updated with each release.
 
 ---
@@ -178,7 +178,7 @@ for name, info in MODELS.items():
 | Together AI | 7      | Qwen3, Kimi K2, Llama, DeepSeek  |
 | Fireworks   | 6      | DeepSeek V4 Pro, V3, Kimi, Llama |
 | Groq        | 7      | Llama 4, Llama 3.x, Kimi K2, Qwen3 32B |
-| Mistral     | 7      | Large 3 (262k ctx), Medium 3, Small 3.2, Codestral |
+| Mistral     | 10     | Large 3, Medium 3, Small 3.2, Codestral, Devstral, Ministral 3 8B |
 | Cohere      | 3      | Command R+, R, R7B               |
 | Perplexity  | 4      | Sonar, Sonar Pro, Reasoning, Deep Research |
 | DeepSeek    | 2      | chat (V3), reasoner (R1)         |
@@ -187,6 +187,9 @@ for name, info in MODELS.items():
 | SambaNova   | 5      | Llama 4 Maverick, Llama 3.3 70B, DeepSeek-V3, MiniMax M2.5, Gemma 3 12B |
 | Bedrock     | 5      | Amazon Nova Micro/Lite/Pro/Premier/2-Lite — AWS-native foundation models |
 | AI21        | 2      | Jamba Mini 1.7, Jamba Large 1.7 — 256k ctx, hybrid SSM+Transformer |
+| DeepInfra   | 4      | Llama 4 Maverick (1M ctx!), Scout, DeepSeek-R1-0528, QwQ-32B |
+| Lambda AI   | 4      | Llama 4 Maverick ($0.05/Mtok — cheapest!), Scout, Llama 3.3 70B, DeepSeek-R1 |
+| Novita AI   | 4      | Llama 4 Maverick (1M ctx), Scout, DeepSeek-R1-0528, Qwen3 235B |
 
 ---
 

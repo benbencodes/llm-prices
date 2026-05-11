@@ -2,6 +2,21 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.17] - 2026-05-11
+
+### Added
+- Novita AI (18th provider) — 4 models:
+  - llama-4-maverick-no: $0.27/$0.85 per Mtok, 1M context
+  - llama-4-scout-no: $0.18/$0.59, 131k ctx
+  - deepseek-r1-0528-no: $0.70/$2.50, 163k ctx
+  - qwen3-235b-no: $0.20/$0.80, 40k ctx
+- Mistral new models (3 additions):
+  - devstral-small: $0.10/$0.30, 128k ctx — coding agent model
+  - devstral: $0.40/$2.00, 256k ctx — full coding agent, 256k context
+  - ministral-3-8b: $0.15/$0.15, 262k ctx — ultra-cheap, huge context, same in/out price
+- Total: 101 → 108 models, 17 → 18 providers
+- Homebrew tap updated to v0.1.16 (SHA256 verified)
+
 ## [0.1.16] - 2026-05-11
 
 ### Added
