@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "llm-prices"
-version = "0.1.1"
+dynamic = ["version"]
 description = "Look up and compare LLM API pricing across providers (OpenAI, Anthropic, Google, Mistral, and more)"
 readme = "README.md"
 license = { text = "MIT" }
@@ -37,3 +37,6 @@ Repository = "https://github.com/benbencodes/llm-prices"
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["llm_prices*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "llm_prices.__version__"}
