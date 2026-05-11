@@ -211,6 +211,13 @@ MODELS = {
         "notes": "Most affordable Claude 3",
     },
     # ── Google ────────────────────────────────────────────────────────────
+    "gemini-3-flash-preview": {
+        "provider": "Google",
+        "input_per_mtok": 0.50,
+        "output_per_mtok": 3.00,
+        "context_window": 1_048_576,
+        "notes": "Gemini 3 Flash — speed+intelligence with search/grounding; preview",
+    },
     "gemini-3.1-pro-preview": {
         "provider": "Google",
         "input_per_mtok": 2.00,
@@ -446,6 +453,13 @@ MODELS = {
         "output_per_mtok": 2.50,
         "context_window": 2_000_000,
         "notes": "Grok 4 reasoning variant; 2M context window",
+    },
+    "grok-4-1-fast": {
+        "provider": "xAI",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.50,
+        "context_window": 2_000_000,
+        "notes": "Grok 4.1 fast tier; 2M ctx; reasoning and non-reasoning variants same price",
     },
     "grok-3": {
         "provider": "xAI",

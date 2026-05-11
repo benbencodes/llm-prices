@@ -2,6 +2,15 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.22] - 2026-05-11
+
+### Added
+- Gemini 3 Flash Preview (`gemini-3-flash-preview`): $0.50/$3.00 per Mtok, 1M ctx
+  — Google's latest speed+intelligence model with search/grounding
+- xAI Grok 4.1 Fast (`grok-4-1-fast`): $0.20/$0.50 per Mtok, 2M ctx
+  — New cheaper xAI tier; 6× less expensive than grok-4.3 for both reasoning and non-reasoning
+- Total: 128 → 130 models
+
 ## [0.1.18] - 2026-05-11
 
 ### Added

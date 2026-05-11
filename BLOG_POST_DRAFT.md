@@ -165,6 +165,43 @@ print(f"Total: ${result['total_cost_usd']:.4f}")
 
 ---
 
+## Use it from Claude, Cursor, or any AI assistant (MCP server)
+
+Since v0.1.21, `llm-prices` ships with a built-in **MCP server** — so you can query pricing data directly from Claude Desktop, Cursor, or any MCP-compatible AI assistant, without leaving your conversation.
+
+Install with the MCP extra:
+
+```bash
+pip install "git+https://github.com/benbencodes/llm-prices[mcp]"
+```
+
+Then add it to your Claude Desktop config (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
+
+```json
+{
+  "mcpServers": {
+    "llm-prices": {
+      "command": "llm-prices-mcp"
+    }
+  }
+}
+```
+
+Restart Claude Desktop and you'll have six new tools:
+
+| Tool | What it does |
+|------|-------------|
+| `get_model_pricing` | Get pricing for a specific model |
+| `calculate_api_cost` | Calculate exact cost for input + output token counts |
+| `compare_models` | Compare cost across multiple models side by side |
+| `find_cheapest_models` | Find the N cheapest models for your workload |
+| `list_providers` | List all 22 providers with min pricing |
+| `search_llm_models` | Search models by name or filter by provider |
+
+Once configured, you can ask your AI assistant directly: *"What's the cheapest model for 100k input tokens?"* or *"How much would it cost to run 50k tokens on GPT-4o vs. Claude Sonnet?"* — and get a live answer from the embedded pricing data.
+
+---
+
 ## Contributing
 
 The data lives in a [single Python file](https://github.com/benbencodes/llm-prices/blob/main/llm_prices/data.py) — easy to add new providers or update prices. PRs welcome.
