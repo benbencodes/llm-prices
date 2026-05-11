@@ -260,6 +260,13 @@ MODELS = {
         "context_window": 1_048_576,
         "notes": "Gemini 3 cost-efficient; high-volume agentic tasks",
     },
+    "gemini-deep-research-pro": {
+        "provider": "Google",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 12.00,
+        "context_window": 65_536,
+        "notes": "Google Deep Research Pro; multi-step web research; grounding included",
+    },
     "gemini-2.5-pro": {
         "provider": "Google",
         "input_per_mtok": 1.25,
@@ -430,6 +437,20 @@ MODELS = {
         "context_window": 131_000,
         "notes": "Qwen3 32B on Groq; also on Cerebras, Together",
     },
+    "gpt-oss-120b-gq": {
+        "provider": "Groq",
+        "input_per_mtok": 0.15,
+        "output_per_mtok": 0.60,
+        "context_window": 131_072,
+        "notes": "OpenAI open-source 120B on Groq; also on Fireworks/Together/DeepInfra",
+    },
+    "gpt-oss-20b-gq": {
+        "provider": "Groq",
+        "input_per_mtok": 0.075,
+        "output_per_mtok": 0.30,
+        "context_window": 131_072,
+        "notes": "OpenAI open-source 20B on Groq; cheaper tier of gpt-oss",
+    },
     # ── Cohere ────────────────────────────────────────────────────────────
     "command-r-plus": {
         "provider": "Cohere",
@@ -459,6 +480,13 @@ MODELS = {
         "output_per_mtok": 1.10,
         "context_window": 64_000,
         "notes": "DeepSeek-V3",
+    },
+    "deepseek-v3.2": {
+        "provider": "DeepSeek",
+        "input_per_mtok": 0.28,
+        "output_per_mtok": 0.40,
+        "context_window": 163_840,
+        "notes": "DeepSeek-V3.2; 163k ctx; supports reasoning; flat-rate output pricing",
     },
     "deepseek-reasoner": {
         "provider": "DeepSeek",

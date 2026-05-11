@@ -2,6 +2,19 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.24] - 2026-05-11
+
+### Added
+- DeepSeek V3.2 (`deepseek-v3.2`): $0.28/$0.40 per Mtok, 163k ctx
+  — DeepSeek's latest V3 revision with reasoning support and flat-rate output pricing
+- OpenAI open-source 120B on Groq (`gpt-oss-120b-gq`): $0.15/$0.60 per Mtok, 131k ctx
+  — OpenAI's open-weight 120B model hosted on Groq's fast inference
+- OpenAI open-source 20B on Groq (`gpt-oss-20b-gq`): $0.075/$0.30 per Mtok, 131k ctx
+  — Cheaper 20B tier of the OpenAI open-source family on Groq
+- Google Deep Research Pro (`gemini-deep-research-pro`): $2.00/$12.00 per Mtok, 65k ctx
+  — Multi-step web research with grounding; Google's dedicated research model
+- Total: 134 → 138 models
+
 ## [0.1.23] - 2026-05-11
 
 ### Added

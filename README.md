@@ -13,7 +13,7 @@ $ llm-prices list --markdown   # GitHub-flavored table — paste into your READM
 $ llm-prices list --csv        # CSV export for spreadsheets
 ```
 
-Covers **134 models across 22 providers**: OpenAI, Anthropic, Google, Mistral,
+Covers **138 models across 22 providers**: OpenAI, Anthropic, Google, Mistral,
 Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI, Perplexity, Cerebras,
 SambaNova, Amazon Bedrock, AI21 Labs, DeepInfra, Lambda AI, Novita AI, Nebius AI,
 Moonshot AI (Kimi K2), Hyperbolic, Crusoe.
@@ -180,11 +180,11 @@ for name, info in MODELS.items():
 | Google      | 6      | Gemini 2.5, 2.0, 1.5             |
 | Together AI | 7      | Qwen3, Kimi K2, Llama, DeepSeek  |
 | Fireworks   | 6      | DeepSeek V4 Pro, V3, Kimi, Llama |
-| Groq        | 7      | Llama 4, Llama 3.x, Kimi K2, Qwen3 32B |
+| Groq        | 9      | Llama 4, Llama 3.x, Kimi K2, Qwen3 32B, gpt-oss 120B/20B |
 | Mistral     | 10     | Large 3, Medium 3, Small 3.2, Codestral, Devstral, Ministral 3 8B |
 | Cohere      | 3      | Command R+, R, R7B               |
 | Perplexity  | 4      | Sonar, Sonar Pro, Reasoning, Deep Research |
-| DeepSeek    | 2      | chat (V3), reasoner (R1)         |
+| DeepSeek    | 3      | chat (V3), V3.2, reasoner (R1)   |
 | xAI         | 2      | Grok-3, Grok-3-mini              |
 | Cerebras    | 3      | Llama 3.3 70B, Llama 3.1 8B, Qwen3 32B — ultra-fast silicon |
 | SambaNova   | 5      | Llama 4 Maverick, Llama 3.3 70B, DeepSeek-V3, MiniMax M2.5, Gemma 3 12B |
