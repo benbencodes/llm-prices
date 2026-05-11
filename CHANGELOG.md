@@ -2,6 +2,19 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.23] - 2026-05-11
+
+### Added
+- OpenAI o3 Deep Research (`o3-deep-research`): $10.00/$40.00 per Mtok, 200k ctx
+  — Multi-step web + document research model using o3 reasoning
+- OpenAI o4-mini Deep Research (`o4-mini-deep-research`): $2.00/$8.00 per Mtok, 200k ctx
+  — Affordable deep research for agentic research loops
+- OpenAI GPT-5 Codex (`gpt-5-codex`): $1.25/$10.00 per Mtok, 272k ctx
+  — GPT-5 coding-focused model with 272k context
+- OpenAI Codex Mini Latest (`codex-mini-latest`): $1.50/$6.00 per Mtok, 200k ctx
+  — Compact, cost-efficient coding model
+- Total: 130 → 134 models
+
 ## [0.1.22] - 2026-05-11
 
 ### Added

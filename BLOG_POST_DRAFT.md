@@ -6,7 +6,7 @@
 
 If you've ever stared at an OpenAI pricing page wondering whether that reasoning model is actually worth it, or if you should just route your workload through a cheaper provider — this post is for you.
 
-I built **[llm-prices](https://github.com/benbencodes/llm-prices)**: a zero-dependency Python CLI that lets you query, compare, and calculate LLM API costs across 130 models from 22 providers. In this post I'll share the most interesting data I've found, and show you how to use the tool in your own workflows.
+I built **[llm-prices](https://github.com/benbencodes/llm-prices)**: a zero-dependency Python CLI that lets you query, compare, and calculate LLM API costs across 134 models from 22 providers. In this post I'll share the most interesting data I've found, and show you how to use the tool in your own workflows.
 
 ---
 
@@ -212,7 +212,7 @@ Once configured, you can ask your AI assistant directly: *"What's the cheapest m
 
 The data lives in a [single Python file](https://github.com/benbencodes/llm-prices/blob/main/llm_prices/data.py) — easy to add new providers or update prices. PRs welcome.
 
-Current coverage: **130 models, 22 providers** — including OpenAI, Anthropic, Google, Mistral, DeepSeek, Groq, xAI, Moonshot, Hyperbolic, Crusoe, Nebius, Lambda, and more.
+Current coverage: **134 models, 22 providers** — including OpenAI, Anthropic, Google, Mistral, DeepSeek, Groq, xAI, Moonshot, Hyperbolic, Crusoe, Nebius, Lambda, and more.
 
 ---
 
