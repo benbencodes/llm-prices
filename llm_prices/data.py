@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
 # Sources: official provider pricing pages + LiteLLM model_prices_and_context_window.json
-# Last updated: 2026-05-11 (DeepInfra, Lambda AI, Novita AI; Mistral Devstral/Ministral)
+# Last updated: 2026-05-11 (DeepInfra, Lambda AI, Novita AI; Mistral Devstral/Ministral; Nebius AI)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -795,6 +795,45 @@ MODELS = {
         "output_per_mtok": 0.80,
         "context_window": 40_000,
         "notes": "Qwen3 235B-A22B FP8 on Novita; flagship Qwen3 MoE",
+    },
+
+    # ── Nebius AI ─────────────────────────────────────────────────────────
+    # Source: LiteLLM model_prices_and_context_window.json (nebius provider)
+    # Nebius: European AI cloud, H100/H200 GPUs, competitive prices for open models
+    "llama-3.1-8b-nb": {
+        "provider": "Nebius",
+        "input_per_mtok": 0.02,
+        "output_per_mtok": 0.06,
+        "context_window": 128_000,
+        "notes": "Llama 3.1 8B on Nebius; cheapest Llama 3.1 8B available",
+    },
+    "llama-3.3-70b-nb": {
+        "provider": "Nebius",
+        "input_per_mtok": 0.13,
+        "output_per_mtok": 0.40,
+        "context_window": 128_000,
+        "notes": "Llama 3.3 70B on Nebius",
+    },
+    "qwen3-235b-nb": {
+        "provider": "Nebius",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.60,
+        "context_window": 262_144,
+        "notes": "Qwen3 235B-A22B on Nebius; 262k context",
+    },
+    "nemotron-ultra-253b-nb": {
+        "provider": "Nebius",
+        "input_per_mtok": 0.60,
+        "output_per_mtok": 1.80,
+        "context_window": 128_000,
+        "notes": "Nvidia Llama-3.1-Nemotron-Ultra-253B on Nebius; 253B research model",
+    },
+    "deepseek-r1-0528-nb": {
+        "provider": "Nebius",
+        "input_per_mtok": 0.80,
+        "output_per_mtok": 2.40,
+        "context_window": 164_000,
+        "notes": "DeepSeek-R1-0528 on Nebius; 164k context",
     },
 }
 

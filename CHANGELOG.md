@@ -2,6 +2,18 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.18] - 2026-05-11
+
+### Added
+- Nebius AI (19th provider) — 5 models:
+  - llama-3.1-8b-nb: $0.02/$0.06 per Mtok, 128k ctx — **cheapest Llama 3.1 8B available**
+  - llama-3.3-70b-nb: $0.13/$0.40, 128k ctx
+  - qwen3-235b-nb: $0.20/$0.60, 262k ctx — 262k context window
+  - nemotron-ultra-253b-nb: $0.60/$1.80, 128k ctx — Nvidia 253B research model
+  - deepseek-r1-0528-nb: $0.80/$2.40, 164k ctx
+- Total: 108 → 113 models, 18 → 19 providers
+- 2 new tests for Nebius provider
+
 ## [0.1.17] - 2026-05-11
 
 ### Changed

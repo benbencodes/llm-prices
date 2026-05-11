@@ -474,13 +474,33 @@ class TestCLI(unittest.TestCase):
         self.assertIsNotNone(model)
         self.assertGreaterEqual(model["context_window"], 262_000)
 
+    def test_nebius_models_present(self):
+        """Nebius AI (19th provider): Llama 3.1 8B at $0.02/$0.06 — cheapest available."""
+        r = self.run_cli("list", "--provider", "Nebius", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        by_id = {m["model"]: m for m in data}
+        self.assertIn("llama-3.1-8b-nb", by_id)
+        self.assertAlmostEqual(by_id["llama-3.1-8b-nb"]["input_per_mtok_usd"], 0.02, places=4)
+
+    def test_nebius_cheapest_llama_8b(self):
+        """Nebius Llama 3.1-8B should be the cheapest Llama 3.1-8B across all providers."""
+        r = self.run_cli("list", "--search", "llama-3.1-8b", "--json")
+        self.assertEqual(r.returncode, 0)
+        data = json.loads(r.stdout)
+        nb = next((m for m in data if m["model"] == "llama-3.1-8b-nb"), None)
+        self.assertIsNotNone(nb)
+        others = [m["input_per_mtok_usd"] for m in data if m["model"] != "llama-3.1-8b-nb"]
+        if others:
+            self.assertLessEqual(nb["input_per_mtok_usd"], min(others))
+
     def test_providers_command(self):
         """providers command returns one row per provider with model count."""
         r = self.run_cli("providers")
         self.assertEqual(r.returncode, 0)
         self.assertIn("OpenAI", r.stdout)
         self.assertIn("Anthropic", r.stdout)
-        self.assertIn("18 providers", r.stdout)
+        self.assertIn("19 providers", r.stdout)
 
     def test_providers_markdown(self):
         """providers --markdown outputs a GitHub-flavored table."""

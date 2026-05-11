@@ -13,9 +13,9 @@ $ llm-prices list --markdown   # GitHub-flavored table — paste into your READM
 $ llm-prices list --csv        # CSV export for spreadsheets
 ```
 
-Covers **108 models across 18 providers**: OpenAI, Anthropic, Google, Mistral,
+Covers **113 models across 19 providers**: OpenAI, Anthropic, Google, Mistral,
 Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI, Perplexity, Cerebras,
-SambaNova, Amazon Bedrock, AI21 Labs, DeepInfra, Lambda AI, Novita AI.
+SambaNova, Amazon Bedrock, AI21 Labs, DeepInfra, Lambda AI, Novita AI, Nebius AI.
 No API key required — pricing data is baked in and updated with each release.
 
 ---
@@ -190,6 +190,7 @@ for name, info in MODELS.items():
 | DeepInfra   | 4      | Llama 4 Maverick (1M ctx!), Scout, DeepSeek-R1-0528, QwQ-32B |
 | Lambda AI   | 4      | Llama 4 Maverick ($0.05/Mtok — cheapest!), Scout, Llama 3.3 70B, DeepSeek-R1 |
 | Novita AI   | 4      | Llama 4 Maverick (1M ctx), Scout, DeepSeek-R1-0528, Qwen3 235B |
+| Nebius AI   | 5      | Llama 3.1 8B ($0.02/Mtok — cheapest!), Llama 3.3 70B, Qwen3 235B (262k ctx), Nemotron 253B, DeepSeek-R1-0528 |
 
 ---
 
