@@ -7,6 +7,8 @@
 [![Models](https://img.shields.io/badge/models-144-brightgreen.svg)](https://github.com/benbencodes/llm-prices)
 [![Providers](https://img.shields.io/badge/providers-22-blue.svg)](https://github.com/benbencodes/llm-prices)
 
+**[Website & Blog](https://benbencodes.github.io/llm-prices/)** · **[GitHub](https://github.com/benbencodes/llm-prices)** · **[Changelog](CHANGELOG.md)**
+
 A zero-dependency Python CLI and library for looking up and comparing LLM API
 costs across all major providers.
 

@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LLM API Prices in 2026: GPT-5 Series, Grok 4.3, o3 Repriced 5× Cheaper</title>
-  <meta name="description" content="GPT-5 is live. o3 dropped from $10 to $2/Mtok. Grok 4.3 offers 1M context at $1.25 input. Here's a CLI to track all 93 models across 15 providers — one command, no API key, works offline.">
+  <meta name="description" content="GPT-5 is live. o3 dropped from $10 to $2/Mtok. Grok 4.3 offers 1M context at $1.25 input. Here's a CLI to track all 144 models across 22 providers — one command, no API key, works offline.">
   <meta property="og:title" content="LLM API Prices in 2026: GPT-5, Grok 4.3, o3 Repriced">
-  <meta property="og:description" content="GPT-5 launched. o3 dropped 5× in price. Grok 4.3 gives 1M context at $1.25/Mtok. Track all 93 models with one command.">
+  <meta property="og:description" content="GPT-5 launched. o3 dropped 5× in price. Grok 4.3 gives 1M context at $1.25/Mtok. Track all 144 models with one command.">
   <meta property="og:url" content="https://benbencodes.github.io/llm-prices/blog/">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -248,7 +248,7 @@
     <div class="lede">
       The LLM pricing landscape just shifted. GPT-5 is live. o3 dropped from $10 to $2/Mtok — the same price as gpt-4.1 but with far stronger reasoning. Grok 4.3 offers 1M context at $1.25 input/$2.50 output. Tracking all of this manually across 15 providers is impossible. Here's a CLI that does it in one command.
     </div>
-    <div class="byline">May 9, 2026 · <a href="https://github.com/benbencodes/llm-prices">llm-prices v0.1.14</a> · 7 min read</div>
+    <div class="byline">May 12, 2026 · <a href="https://github.com/benbencodes/llm-prices">llm-prices v0.1.25</a> · 7 min read</div>
   </div>
 
   <div class="article-body">
@@ -266,7 +266,7 @@
       <li>The same open-weight models run on Groq, Together, Fireworks, SambaNova, and Cerebras at very different prices — the gap is often 2–5×</li>
     </ul>
 
-    <p>There are now 15 major providers and 93 models to track. Comparing them means visiting 15 different pricing pages, doing your own math for your token counts, and updating your spreadsheet every time something changes.</p>
+    <p>There are now 22 major providers and 144 models to track. Comparing them means visiting 22 different pricing pages, doing your own math for your token counts, and updating your spreadsheet every time something changes.</p>
 
     <h2>The solution: llm-prices</h2>
 
@@ -279,7 +279,7 @@ pip install llm-prices   <span class="comment"># or: pipx install git+https://gi
 
     <hr>
 
-    <h2>1. List: browse all 93 models</h2>
+    <h2>1. List: browse all 144 models</h2>
 
     <div class="terminal">
       <div class="terminal-header">
@@ -305,7 +305,7 @@ gpt-4.1-nano               OpenAI       $    0.1000  $    0.4000     1023k  Fast
 grok-4.3                   xAI          $    1.2500  $    2.5000     1000k  Grok flagship; 1M ctx
 grok-4.20-reasoning        xAI          $    1.2500  $    2.5000     1953k  Grok 4 reasoning; 2M ctx
 ...
-93 model(s) shown.</span></div>
+144 model(s) shown.</span></div>
     </div>
 
     <p>Filter by provider or search by name:</p>
@@ -498,7 +498,7 @@ llm-prices top 10 --in 5000 --out 1000 --markdown</div>
   SambaNova        (5 models)
   Together         (7 models)
   xAI              (4 models)
-  Total: 93 models</span></div>
+  Total: 144 models</span></div>
     </div>
 
     <p>Notable pricing stories in 2026:</p>
