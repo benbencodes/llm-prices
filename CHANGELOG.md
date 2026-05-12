@@ -2,6 +2,21 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.28] - 2026-05-12
+
+### Added
+- Mistral Pixtral Large (`pixtral-large`): $2.00/$6.00 per Mtok, 131k ctx
+  — Mistral's multimodal vision flagship (Nov 2024); same price tier as Mistral Large 2
+- Mistral Mixtral 8×22B (`mixtral-8x22b`): $2.00/$6.00 per Mtok, 65k ctx
+  — Mistral's largest open-weights MoE (141B total params); 141B total params
+- Mistral NeMo 12B (`mistral-nemo`): $0.02/$0.03 per Mtok, 131k ctx
+  — Ultra-cheap Mistral+NVIDIA collaboration (Jul 2024); open-weights; among cheapest per-token
+- Llama 3.2 11B Vision (`llama-3.2-11b-vision`): $0.18/$0.18 per Mtok, 128k ctx
+  — Meta's multimodal vision model via Groq; compact image+text at flat rate
+- Llama 3.2 90B Vision (`llama-3.2-90b-vision`): $0.90/$0.90 per Mtok, 128k ctx
+  — Meta's large multimodal vision model via Groq; highest accuracy Llama 3.2 vision
+- Total: 152 → 157 models
+
 ## [0.1.27] - 2026-05-12
 
 ### Added

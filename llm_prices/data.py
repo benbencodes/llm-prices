@@ -1,6 +1,6 @@
 # Pricing data: USD per 1 million tokens
 # Sources: official provider pricing pages + LiteLLM model_prices_and_context_window.json
-# Last updated: 2026-05-11 (+ Moonshot AI/Kimi K2; Hyperbolic flat-rate inference)
+# Last updated: 2026-05-12 (+ pixtral-large, mixtral-8x22b, mistral-nemo, llama-3.2 vision)
 # Prices may lag behind provider changes — PRs welcome.
 # Model IDs match official API identifiers where possible.
 
@@ -450,6 +450,27 @@ MODELS = {
         "context_window": 262_144,
         "notes": "Ministral 3 8B; ultra-cheap, 262k ctx, same in/out price",
     },
+    "pixtral-large": {
+        "provider": "Mistral",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 6.00,
+        "context_window": 131_072,
+        "notes": "Pixtral Large 2411; multimodal vision + text; same price as mistral-large-2",
+    },
+    "mixtral-8x22b": {
+        "provider": "Mistral",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 6.00,
+        "context_window": 65_536,
+        "notes": "Mixtral 8×22B MoE (141B total params); Mistral's largest open-weights model",
+    },
+    "mistral-nemo": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.02,
+        "output_per_mtok": 0.03,
+        "context_window": 131_072,
+        "notes": "Mistral NeMo 12B (Jul 2024); ultra-cheap; Mistral+NVIDIA collaboration; open-weights",
+    },
     "open-mistral-7b": {
         "provider": "Mistral",
         "input_per_mtok": 0.25,
@@ -478,6 +499,20 @@ MODELS = {
         "output_per_mtok": 0.79,
         "context_window": 128_000,
         "notes": "Via Groq API",
+    },
+    "llama-3.2-11b-vision": {
+        "provider": "Groq",
+        "input_per_mtok": 0.18,
+        "output_per_mtok": 0.18,
+        "context_window": 128_000,
+        "notes": "Llama 3.2 11B Vision; multimodal image+text; same in/out price on Groq",
+    },
+    "llama-3.2-90b-vision": {
+        "provider": "Groq",
+        "input_per_mtok": 0.90,
+        "output_per_mtok": 0.90,
+        "context_window": 128_000,
+        "notes": "Llama 3.2 90B Vision; largest Llama 3.2 multimodal; same in/out price on Groq",
     },
     "llama-3.1-8b": {
         "provider": "Groq",
