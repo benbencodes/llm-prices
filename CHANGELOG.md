@@ -2,6 +2,23 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.25] - 2026-05-12
+
+### Added
+- GPT-5 base (`gpt-5`): $1.25/$10.00 per Mtok, 128k ctx
+  — Original GPT-5 release (Aug 2025); foundation of the GPT-5 family
+- GPT-5.1 (`gpt-5.1`): $1.25/$10.00 per Mtok, 128k ctx
+  — Nov 2025 GPT-5 update; improved quality at same price as base GPT-5
+- GPT-5.2 (`gpt-5.2`): $1.75/$14.00 per Mtok, 128k ctx
+  — Dec 2025 GPT-5 update; improved performance at moderate price premium
+- GPT-5 Pro (`gpt-5-pro`): $15.00/$120.00 per Mtok, 272k ctx
+  — Premium GPT-5 tier; ultra-high capability for most demanding tasks
+- Grok-4 standard (`grok-4`): $3.00/$15.00 per Mtok, 256k ctx
+  — xAI's Grok-4 (Jul 2025); predecessor to 4.3 and 4.20-reasoning variants
+- Grok Code Fast (`grok-code-fast`): $0.20/$1.50 per Mtok, 256k ctx
+  — xAI coding specialist; ultra-low cost for code generation and review tasks
+- Total: 138 → 144 models
+
 ## [0.1.24] - 2026-05-11
 
 ### Added
