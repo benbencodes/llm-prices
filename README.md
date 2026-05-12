@@ -8,6 +8,7 @@
 [![CI](https://github.com/benbencodes/llm-prices/actions/workflows/ci.yml/badge.svg)](https://github.com/benbencodes/llm-prices/actions/workflows/ci.yml)
 [![Models](https://img.shields.io/badge/models-152-brightgreen.svg)](https://github.com/benbencodes/llm-prices)
 [![Providers](https://img.shields.io/badge/providers-22-blue.svg)](https://github.com/benbencodes/llm-prices)
+[![SafeSkill 50/100](https://img.shields.io/badge/SafeSkill-50%2F100_Use%20with%20Caution-orange)](https://safeskill.dev/scan/benbencodes-llm-prices)
 
 **[Website & Blog](https://benbencodes.github.io/llm-prices/)** · **[GitHub](https://github.com/benbencodes/llm-prices)** · **[Changelog](CHANGELOG.md)**
 
