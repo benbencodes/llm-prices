@@ -2,6 +2,21 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.26] - 2026-05-12
+
+### Added
+- Claude Opus 4.6 (`claude-opus-4-6`): $5.00/$25.00 per Mtok, 128k ctx
+  — Feb 2026 Opus 4 revision; expanded context at same price as 4.7
+- Claude Opus 4.5 (`claude-opus-4-5`): $5.00/$25.00 per Mtok, 64k ctx
+  — Nov 2025 mid-cycle Opus 4 revision
+- Claude Opus 4.1 (`claude-opus-4-1`): $15.00/$75.00 per Mtok, 32k ctx
+  — Original Opus 4 launch (Aug 2025); expensive legacy tier
+- Claude Sonnet 4.5 (`claude-sonnet-4-5`): $3.00/$15.00 per Mtok, 64k ctx
+  — Sep 2025 first Sonnet 4 release; 64k context window
+- Cohere Command A (`command-a`): $2.50/$10.00 per Mtok, 256k ctx
+  — Mar 2025 enterprise instruction-following model; 256k context; replaces Command R+
+- Total: 144 → 149 models
+
 ## [0.1.25] - 2026-05-12
 
 ### Added

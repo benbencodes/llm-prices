@@ -212,7 +212,7 @@ Once configured, you can ask your AI assistant directly: *"What's the cheapest m
 
 The data lives in a [single Python file](https://github.com/benbencodes/llm-prices/blob/main/llm_prices/data.py) — easy to add new providers or update prices. PRs welcome.
 
-Current coverage: **144 models, 22 providers** — including OpenAI, Anthropic, Google, Mistral, DeepSeek, Groq, xAI, Moonshot, Hyperbolic, Crusoe, Nebius, Lambda, and more.
+Current coverage: **149 models, 22 providers** — including OpenAI, Anthropic, Google, Mistral, DeepSeek, Groq, xAI, Moonshot, Hyperbolic, Crusoe, Nebius, Lambda, and more.
 
 ---
 

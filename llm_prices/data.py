@@ -217,12 +217,40 @@ MODELS = {
         "context_window": 1_000_000,
         "notes": "Most capable Claude; 1M context, adaptive thinking",
     },
+    "claude-opus-4-6": {
+        "provider": "Anthropic",
+        "input_per_mtok": 5.00,
+        "output_per_mtok": 25.00,
+        "context_window": 128_000,
+        "notes": "Claude Opus 4.6 (Feb 2026); 128k ctx; same pricing as 4.7",
+    },
+    "claude-opus-4-5": {
+        "provider": "Anthropic",
+        "input_per_mtok": 5.00,
+        "output_per_mtok": 25.00,
+        "context_window": 64_000,
+        "notes": "Claude Opus 4.5 (Nov 2025); 64k ctx; mid-cycle revision",
+    },
+    "claude-opus-4-1": {
+        "provider": "Anthropic",
+        "input_per_mtok": 15.00,
+        "output_per_mtok": 75.00,
+        "context_window": 32_000,
+        "notes": "Original Claude Opus 4 launch (Aug 2025); expensive legacy tier",
+    },
     "claude-sonnet-4-6": {
         "provider": "Anthropic",
         "input_per_mtok": 3.00,
         "output_per_mtok": 15.00,
         "context_window": 1_000_000,
         "notes": "Best speed/intelligence balance; 1M context",
+    },
+    "claude-sonnet-4-5": {
+        "provider": "Anthropic",
+        "input_per_mtok": 3.00,
+        "output_per_mtok": 15.00,
+        "context_window": 64_000,
+        "notes": "Claude Sonnet 4.5 (Sep 2025); first Sonnet 4 release; 64k ctx",
     },
     "claude-haiku-4-5": {
         "provider": "Anthropic",
@@ -480,6 +508,13 @@ MODELS = {
         "notes": "OpenAI open-source 20B on Groq; cheaper tier of gpt-oss",
     },
     # ── Cohere ────────────────────────────────────────────────────────────
+    "command-a": {
+        "provider": "Cohere",
+        "input_per_mtok": 2.50,
+        "output_per_mtok": 10.00,
+        "context_window": 256_000,
+        "notes": "Command A (Mar 2025); 256k ctx; enterprise instruction-following; replaces Command R+",
+    },
     "command-r-plus": {
         "provider": "Cohere",
         "input_per_mtok": 2.50,
