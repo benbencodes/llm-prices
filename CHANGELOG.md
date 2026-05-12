@@ -2,6 +2,17 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.27] - 2026-05-12
+
+### Added
+- Mistral Magistral Medium (`magistral-medium`): $2.00/$5.00 per Mtok, 40k ctx
+  — Mistral's first reasoning flagship (Jun 2025); extended thinking, 40k output window
+- Mistral Magistral Small (`magistral-small`): $0.50/$1.50 per Mtok, 40k ctx
+  — Compact reasoning model; same price tier as Mistral Large 3 but with chain-of-thought
+- xAI Grok-3 Mini Fast (`grok-3-mini-fast`): $0.60/$4.00 per Mtok, 131k ctx
+  — High-speed reasoning tier; premium compute for latency-sensitive reasoning workloads
+- Total: 149 → 152 models
+
 ## [0.1.26] - 2026-05-12
 
 ### Added

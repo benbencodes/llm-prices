@@ -1,10 +1,12 @@
 # llm-prices
 
+<!-- mcp-name: io.github.benbencodes/llm-prices -->
+
 [![PyPI version](https://img.shields.io/pypi/v/llm-prices.svg)](https://pypi.org/project/llm-prices/)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/benbencodes/llm-prices/actions/workflows/ci.yml/badge.svg)](https://github.com/benbencodes/llm-prices/actions/workflows/ci.yml)
-[![Models](https://img.shields.io/badge/models-149-brightgreen.svg)](https://github.com/benbencodes/llm-prices)
+[![Models](https://img.shields.io/badge/models-152-brightgreen.svg)](https://github.com/benbencodes/llm-prices)
 [![Providers](https://img.shields.io/badge/providers-22-blue.svg)](https://github.com/benbencodes/llm-prices)
 
 **[Website & Blog](https://benbencodes.github.io/llm-prices/)** · **[GitHub](https://github.com/benbencodes/llm-prices)** · **[Changelog](CHANGELOG.md)**
@@ -38,7 +40,7 @@ claude-sonnet-4-6    Anthropic         $0.0300      $0.0300    $0.0600 (46.2x)
 Cheapest: gpt-5-nano at $0.001300
 ```
 
-Covers **149 models across 22 providers**: OpenAI, Anthropic, Google, Mistral,
+Covers **152 models across 22 providers**: OpenAI, Anthropic, Google, Mistral,
 Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI, Perplexity, Cerebras,
 SambaNova, Amazon Bedrock, AI21 Labs, DeepInfra, Lambda AI, Novita AI, Nebius AI,
 Moonshot AI (Kimi K2), Hyperbolic, Crusoe.
@@ -206,11 +208,11 @@ for name, info in MODELS.items():
 | Together AI | 7      | Qwen3, Kimi K2, Llama, DeepSeek  |
 | Fireworks   | 6      | DeepSeek V4 Pro, V3, Kimi, Llama |
 | Groq        | 9      | Llama 4, Llama 3.x, Kimi K2, Qwen3 32B, gpt-oss 120B/20B |
-| Mistral     | 10     | Large 3, Medium 3, Small 3.2, Codestral, Devstral, Ministral 3 8B |
+| Mistral     | 12     | Large 3, Magistral Medium/Small (reasoning), Medium 3, Small 3.2, Codestral, Devstral |
 | Cohere      | 3      | Command R+, R, R7B               |
 | Perplexity  | 4      | Sonar, Sonar Pro, Reasoning, Deep Research |
 | DeepSeek    | 3      | chat (V3), V3.2, reasoner (R1)   |
-| xAI         | 2      | Grok-3, Grok-3-mini              |
+| xAI         | 8      | Grok-4.3, Grok-4.20, Grok-4, Grok-4.1-fast, Grok-code-fast, Grok-3, Grok-3-mini, Grok-3-mini-fast |
 | Cerebras    | 3      | Llama 3.3 70B, Llama 3.1 8B, Qwen3 32B — ultra-fast silicon |
 | SambaNova   | 5      | Llama 4 Maverick, Llama 3.3 70B, DeepSeek-V3, MiniMax M2.5, Gemma 3 12B |
 | Bedrock     | 5      | Amazon Nova Micro/Lite/Pro/Premier/2-Lite — AWS-native foundation models |

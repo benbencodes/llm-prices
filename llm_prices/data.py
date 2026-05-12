@@ -373,6 +373,20 @@ MODELS = {
         "notes": "Smallest Gemini",
     },
     # ── Mistral AI ────────────────────────────────────────────────────────
+    "magistral-medium": {
+        "provider": "Mistral",
+        "input_per_mtok": 2.00,
+        "output_per_mtok": 5.00,
+        "context_window": 40_000,
+        "notes": "Mistral's reasoning flagship (Jun 2025); extended thinking, 40k output",
+    },
+    "magistral-small": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.50,
+        "output_per_mtok": 1.50,
+        "context_window": 40_000,
+        "notes": "Compact reasoning model; same price as mistral-large-3 but with chain-of-thought",
+    },
     "mistral-large-3": {
         "provider": "Mistral",
         "input_per_mtok": 0.50,
@@ -607,6 +621,13 @@ MODELS = {
         "output_per_mtok": 0.50,
         "context_window": 131_072,
         "notes": "Fast reasoning",
+    },
+    "grok-3-mini-fast": {
+        "provider": "xAI",
+        "input_per_mtok": 0.60,
+        "output_per_mtok": 4.00,
+        "context_window": 131_072,
+        "notes": "High-speed reasoning tier; higher output price reflects accelerated compute",
     },
     # ── Together AI ───────────────────────────────────────────────────────
     # Popular open-weight models via Together AI's serverless API
