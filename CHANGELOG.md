@@ -2,6 +2,25 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.32] - 2026-05-12
+
+### Added
+- **New provider: NVIDIA NIM** (4 models):
+  - Nemotron Super 49B (`nemotron-super-49b`): $0.10/$0.40, 131k ctx — Llama 3.3 Nemotron with extended reasoning
+  - Nemotron 3 Nano 30B (`nemotron-3-nano-30b`): $0.05/$0.20, 262k ctx — MoE 3B active params, ultra-cheap
+  - Nemotron 3 Super 120B (`nemotron-3-super-120b`): $0.09/$0.45, 262k ctx — MoE 12B active, strong
+  - Nemotron Nano 9B (`nemotron-nano-9b`): $0.04/$0.16, 131k ctx — smallest Nemotron
+- **New provider: NousResearch** (3 models):
+  - Hermes 4 405B (`hermes-4-405b`): $1.00/$3.00, 131k ctx — flagship function-calling model
+  - Hermes 4 70B (`hermes-4-70b`): $0.13/$0.40, 131k ctx — strong tool-use at mid-tier pricing
+  - Hermes 3 Llama 3.1 405B (`hermes-3-llama-3.1-405b`): $1.00/$1.00, 131k ctx — flat-rate pricing
+- **Qwen 2.5 series** (3 models):
+  - Qwen2.5-72B (`qwen-2.5-72b`): $0.36/$0.40, 32k ctx — strong multilingual predecessor to Qwen3
+  - Qwen2.5-7B (`qwen-2.5-7b`): $0.04/$0.10, 32k ctx — ultra-cheap compact model
+  - Qwen2.5-Coder-32B (`qwen-2.5-coder-32b`): $0.66/$1.00, 32k ctx — SOTA open-weights code model
+- **DeepSeek V3.1 Terminus** (`deepseek-v3.1-terminus`): $0.27/$0.95, 163k ctx — stronger reasoning than V3.2
+- Total: 185 → 196 models; 25 → 27 providers
+
 ## [0.1.31] - 2026-05-12
 
 ### Added

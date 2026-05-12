@@ -705,6 +705,13 @@ MODELS = {
         "context_window": 163_840,
         "notes": "DeepSeek-R1 May 2026 checkpoint; 163k ctx; improved agentic + STEM reasoning",
     },
+    "deepseek-v3.1-terminus": {
+        "provider": "DeepSeek",
+        "input_per_mtok": 0.27,
+        "output_per_mtok": 0.95,
+        "context_window": 163_840,
+        "notes": "DeepSeek V3.1 Terminus; 163k ctx; stronger reasoning than V3.2 at same base price",
+    },
     # ── xAI ───────────────────────────────────────────────────────────────
     "grok-4.3": {
         "provider": "xAI",
@@ -1327,6 +1334,27 @@ MODELS = {
         "context_window": 262_144,
         "notes": "Qwen3 Coder; specialized for code generation and completion; 262k ctx",
     },
+    "qwen-2.5-72b": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.36,
+        "output_per_mtok": 0.40,
+        "context_window": 32_768,
+        "notes": "Qwen2.5-72B Instruct; strong multilingual + coding; predecessor to Qwen3 series",
+    },
+    "qwen-2.5-7b": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.04,
+        "output_per_mtok": 0.10,
+        "context_window": 32_768,
+        "notes": "Qwen2.5-7B Instruct; compact, ultra-cheap; good for high-throughput tasks",
+    },
+    "qwen-2.5-coder-32b": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.66,
+        "output_per_mtok": 1.00,
+        "context_window": 32_768,
+        "notes": "Qwen2.5-Coder-32B; SOTA open-weights code model (Nov 2024); rivals GPT-4o on coding",
+    },
 
     # ── Inflection AI ─────────────────────────────────────────────────────
     # Source: https://developers.inflection.ai/pricing
@@ -1371,7 +1399,65 @@ MODELS = {
         "context_window": 32_768,
         "notes": "Microsoft Phi-4 reasoning model; chain-of-thought; outperforms larger models on math/science",
     },
+
+    # ── NVIDIA NIM ────────────────────────────────────────────────────────
+    # Source: https://build.nvidia.com/explore/discover
+    # NVIDIA NIM (Inference Microservices): NVIDIA's own hosted model API
+    # Nemotron family: NVIDIA's instruction-tuned models, often based on Llama
+    "nemotron-super-49b": {
+        "provider": "NVIDIA",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.40,
+        "context_window": 131_072,
+        "notes": "Llama-3.3-Nemotron-Super-49B-v1.5; NVIDIA's optimized Llama 3.3 with extended reasoning",
+    },
+    "nemotron-3-nano-30b": {
+        "provider": "NVIDIA",
+        "input_per_mtok": 0.05,
+        "output_per_mtok": 0.20,
+        "context_window": 262_144,
+        "notes": "Nemotron-3-Nano-30B-A3B MoE; 30B total/3B active; 262k ctx; ultra-cheap",
+    },
+    "nemotron-3-super-120b": {
+        "provider": "NVIDIA",
+        "input_per_mtok": 0.09,
+        "output_per_mtok": 0.45,
+        "context_window": 262_144,
+        "notes": "Nemotron-3-Super-120B-A12B MoE; 120B total/12B active; 262k ctx; strong performance",
+    },
+    "nemotron-nano-9b": {
+        "provider": "NVIDIA",
+        "input_per_mtok": 0.04,
+        "output_per_mtok": 0.16,
+        "context_window": 131_072,
+        "notes": "Nemotron-Nano-9B-v2; smallest Nemotron; 131k ctx; strong reasoning for its size",
+    },
+
+    # ── NousResearch ──────────────────────────────────────────────────────
+    # Source: https://nousresearch.com/
+    # NousResearch: known for Hermes fine-tunes; strong function-calling and tool use
+    "hermes-4-405b": {
+        "provider": "NousResearch",
+        "input_per_mtok": 1.00,
+        "output_per_mtok": 3.00,
+        "context_window": 131_072,
+        "notes": "Hermes 4 405B; NousResearch's flagship; advanced function calling + structured output",
+    },
+    "hermes-4-70b": {
+        "provider": "NousResearch",
+        "input_per_mtok": 0.13,
+        "output_per_mtok": 0.40,
+        "context_window": 131_072,
+        "notes": "Hermes 4 70B; strong tool-use and agentic capabilities at mid-tier pricing",
+    },
+    "hermes-3-llama-3.1-405b": {
+        "provider": "NousResearch",
+        "input_per_mtok": 1.00,
+        "output_per_mtok": 1.00,
+        "context_window": 131_072,
+        "notes": "Hermes 3 on Llama 3.1 405B; earlier generation, flat in=out pricing",
+    },
 }
 
 PROVIDERS = sorted({m["provider"] for m in MODELS.values()})
-DATA_DATE = "2026-05-12"  # v0.1.31
+DATA_DATE = "2026-05-12"  # v0.1.32

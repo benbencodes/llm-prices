@@ -500,10 +500,12 @@ class TestCLI(unittest.TestCase):
         self.assertEqual(r.returncode, 0)
         self.assertIn("OpenAI", r.stdout)
         self.assertIn("Anthropic", r.stdout)
-        self.assertIn("25 providers", r.stdout)
+        self.assertIn("27 providers", r.stdout)
         self.assertIn("Qwen", r.stdout)
         self.assertIn("Microsoft", r.stdout)
         self.assertIn("Inflection", r.stdout)
+        self.assertIn("NVIDIA", r.stdout)
+        self.assertIn("NousResearch", r.stdout)
 
     def test_providers_markdown(self):
         """providers --markdown outputs a GitHub-flavored table."""
