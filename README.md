@@ -1,16 +1,39 @@
 # llm-prices
 
+[![PyPI version](https://img.shields.io/pypi/v/llm-prices.svg)](https://pypi.org/project/llm-prices/)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![CI](https://github.com/benbencodes/llm-prices/actions/workflows/ci.yml/badge.svg)](https://github.com/benbencodes/llm-prices/actions/workflows/ci.yml)
+[![Models](https://img.shields.io/badge/models-144-brightgreen.svg)](https://github.com/benbencodes/llm-prices)
+[![Providers](https://img.shields.io/badge/providers-22-blue.svg)](https://github.com/benbencodes/llm-prices)
+
 A zero-dependency Python CLI and library for looking up and comparing LLM API
 costs across all major providers.
 
 ```
-$ llm-prices list --provider OpenAI --sort input
-$ llm-prices calc gpt-4o --in 10000 --out 2000
-$ llm-prices compare gpt-4o claude-sonnet-4-6 gemini-2.5-pro --in 5000 --out 1000
-$ llm-prices top 5 --in 5000 --out 1000          # 5 cheapest for your workload
-$ llm-prices budget 1.00 --in 1000 --out 500
-$ llm-prices list --markdown   # GitHub-flavored table — paste into your README
-$ llm-prices list --csv        # CSV export for spreadsheets
+$ llm-prices top 10 --in 10000 --out 2000
+Top 10 cheapest: 10,000 input / 2,000 output tokens
+
+#    Model                  Provider            Input       Output        Total
+-------------------------------------------------------------------------------
+1    llama-3.1-8b-nb        Nebius          $0.000200    $0.000120    $0.000320
+2    nova-micro-br          Bedrock         $0.000350    $0.000280    $0.000630
+3    llama-3.1-8b           Groq            $0.000500    $0.000160    $0.000660
+4    gemini-1.5-flash-8b    Google          $0.000375    $0.000300    $0.000675
+5    command-r7b            Cohere          $0.000375    $0.000300    $0.000675
+...
+
+$ llm-prices compare gpt-4o claude-sonnet-4-6 gemini-2.5-flash gpt-5-nano --in 10000 --out 2000
+Comparison: 10,000 input tokens, 2,000 output tokens
+
+Model                Provider            Input       Output        Total
+------------------------------------------------------------------------
+gpt-5-nano           OpenAI          $0.000500    $0.000800    $0.001300
+gemini-2.5-flash     Google          $0.003000    $0.005000    $0.008000 (6.2x)
+gpt-4o               OpenAI            $0.0250      $0.0200    $0.0450 (34.6x)
+claude-sonnet-4-6    Anthropic         $0.0300      $0.0300    $0.0600 (46.2x)
+
+Cheapest: gpt-5-nano at $0.001300
 ```
 
 Covers **144 models across 22 providers**: OpenAI, Anthropic, Google, Mistral,
