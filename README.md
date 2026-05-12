@@ -6,8 +6,8 @@
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![CI](https://github.com/benbencodes/llm-prices/actions/workflows/ci.yml/badge.svg)](https://github.com/benbencodes/llm-prices/actions/workflows/ci.yml)
-[![Models](https://img.shields.io/badge/models-157-brightgreen.svg)](https://github.com/benbencodes/llm-prices)
-[![Providers](https://img.shields.io/badge/providers-22-blue.svg)](https://github.com/benbencodes/llm-prices)
+[![Models](https://img.shields.io/badge/models-167-brightgreen.svg)](https://github.com/benbencodes/llm-prices)
+[![Providers](https://img.shields.io/badge/providers-23-blue.svg)](https://github.com/benbencodes/llm-prices)
 
 **[Website & Blog](https://benbencodes.github.io/llm-prices/)** · **[GitHub](https://github.com/benbencodes/llm-prices)** · **[Changelog](CHANGELOG.md)**
 
@@ -40,7 +40,7 @@ claude-sonnet-4-6    Anthropic         $0.0300      $0.0300    $0.0600 (46.2x)
 Cheapest: gpt-5-nano at $0.001300
 ```
 
-Covers **157 models across 22 providers**: OpenAI, Anthropic, Google, Mistral,
+Covers **167 models across 23 providers**: OpenAI, Anthropic, Google, Mistral,
 Groq, Cohere, DeepSeek, xAI, Together AI, Fireworks AI, Perplexity, Cerebras,
 SambaNova, Amazon Bedrock, AI21 Labs, DeepInfra, Lambda AI, Novita AI, Nebius AI,
 Moonshot AI (Kimi K2), Hyperbolic, Crusoe.
@@ -302,7 +302,7 @@ Or for `uvx` users:
 | `calculate_api_cost` | Calculate exact cost for input+output tokens |
 | `compare_models` | Compare cost of a workload across multiple models |
 | `find_cheapest_models` | Find the N cheapest models for your workload |
-| `list_providers` | List all 22 providers with min pricing |
+| `list_providers` | List all 23 providers with min pricing |
 | `search_llm_models` | Search models by name or filter by provider |
 
 ---

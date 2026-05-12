@@ -2,17 +2,17 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.benbencodes/llm-prices",
   "title": "LLM Prices",
-  "description": "Look up and compare LLM API costs across 157 models and 22 providers (OpenAI, Anthropic, Google, Mistral, Groq, xAI, DeepSeek, and more). No API key required — pricing data is baked in.",
+  "description": "Look up and compare LLM API costs across 167 models and 23 providers (OpenAI, Anthropic, Google, Mistral, Groq, xAI, DeepSeek, Qwen, and more). No API key required — pricing data is baked in.",
   "repository": {
     "url": "https://github.com/benbencodes/llm-prices",
     "source": "github"
   },
-  "version": "0.1.28",
+  "version": "0.1.29",
   "packages": [
     {
       "registryType": "pypi",
       "identifier": "llm-prices",
-      "version": "0.1.28",
+      "version": "0.1.29",
       "transport": {
         "type": "stdio"
       },

@@ -372,6 +372,20 @@ MODELS = {
         "context_window": 1_048_576,
         "notes": "Smallest Gemini",
     },
+    "gemma-3-27b": {
+        "provider": "Google",
+        "input_per_mtok": 0.08,
+        "output_per_mtok": 0.16,
+        "context_window": 131_072,
+        "notes": "Gemma 3 27B; Google's flagship open-weights model; runs via Google AI Studio",
+    },
+    "gemma-3-12b": {
+        "provider": "Google",
+        "input_per_mtok": 0.04,
+        "output_per_mtok": 0.13,
+        "context_window": 131_072,
+        "notes": "Gemma 3 12B; compact open-weights; strong multilingual + coding",
+    },
     # ── Mistral AI ────────────────────────────────────────────────────────
     "magistral-medium": {
         "provider": "Mistral",
@@ -448,7 +462,21 @@ MODELS = {
         "input_per_mtok": 0.15,
         "output_per_mtok": 0.15,
         "context_window": 262_144,
-        "notes": "Ministral 3 8B; ultra-cheap, 262k ctx, same in/out price",
+        "notes": "Ministral 8B; ultra-cheap, 262k ctx, same in/out price",
+    },
+    "ministral-14b": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.20,
+        "context_window": 262_144,
+        "notes": "Ministral 14B (2512); 262k ctx; step up from 8B at same flat-rate pricing",
+    },
+    "mistral-small-2603": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.15,
+        "output_per_mtok": 0.60,
+        "context_window": 262_144,
+        "notes": "Mistral Small 2603 (Mar 2026); 262k ctx; asymmetric pricing — cheap input",
     },
     "pixtral-large": {
         "provider": "Mistral",
@@ -606,6 +634,27 @@ MODELS = {
         "output_per_mtok": 2.19,
         "context_window": 64_000,
         "notes": "DeepSeek-R1 reasoning",
+    },
+    "deepseek-v4-flash": {
+        "provider": "DeepSeek",
+        "input_per_mtok": 0.14,
+        "output_per_mtok": 0.28,
+        "context_window": 1_048_576,
+        "notes": "DeepSeek V4 Flash; 1M context; cheapest DeepSeek with massive context window",
+    },
+    "deepseek-r1-distill-qwen-32b": {
+        "provider": "DeepSeek",
+        "input_per_mtok": 0.29,
+        "output_per_mtok": 0.29,
+        "context_window": 32_768,
+        "notes": "DeepSeek-R1 distilled into Qwen2.5-32B; reasoning at fraction of R1 cost",
+    },
+    "deepseek-r1-distill-llama-70b": {
+        "provider": "DeepSeek",
+        "input_per_mtok": 0.70,
+        "output_per_mtok": 0.80,
+        "context_window": 131_072,
+        "notes": "DeepSeek-R1 distilled into Llama-3.3-70B; reasoning on open-weights backbone",
     },
     # ── xAI ───────────────────────────────────────────────────────────────
     "grok-4.3": {
@@ -1156,7 +1205,38 @@ MODELS = {
         "context_window": 163_840,
         "notes": "DeepSeek-R1-0528 on Crusoe; 163k context",
     },
+    # ── Qwen / Alibaba Cloud (direct API) ─────────────────────────────────
+    # API endpoint: https://dashscope.aliyuncs.com or https://api.qwen.com
+    # Pricing via official Alibaba Cloud Qwen API (not via 3rd-party inference providers)
+    "qwen-turbo": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.03,
+        "output_per_mtok": 0.13,
+        "context_window": 131_072,
+        "notes": "Qwen Turbo; fastest/cheapest Qwen API model; 131k ctx; via dashscope",
+    },
+    "qwen-plus": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.26,
+        "output_per_mtok": 0.78,
+        "context_window": 1_000_000,
+        "notes": "Qwen Plus; 1M context window; balanced speed/capability; via dashscope",
+    },
+    "qwen-max": {
+        "provider": "Qwen",
+        "input_per_mtok": 1.04,
+        "output_per_mtok": 4.16,
+        "context_window": 32_768,
+        "notes": "Qwen Max; Alibaba flagship; state-of-art Chinese + multilingual; via dashscope",
+    },
+    "qwen3-235b": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.45,
+        "output_per_mtok": 1.82,
+        "context_window": 131_072,
+        "notes": "Qwen3-235B-A22B MoE; Alibaba's flagship open-weights model; 22B active params",
+    },
 }
 
 PROVIDERS = sorted({m["provider"] for m in MODELS.values()})
-DATA_DATE = "2026-05-11"
+DATA_DATE = "2026-05-12"

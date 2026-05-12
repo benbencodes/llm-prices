@@ -2,6 +2,30 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.29] - 2026-05-12
+
+### Added
+- DeepSeek V4 Flash (`deepseek-v4-flash`): $0.14/$0.28 per Mtok, 1M ctx
+  — Cheapest DeepSeek model with massive 1M context window
+- DeepSeek-R1 Distill Qwen-32B (`deepseek-r1-distill-qwen-32b`): $0.29/$0.29 per Mtok, 32k ctx
+  — R1 reasoning distilled into Qwen2.5-32B; flat-rate pricing
+- DeepSeek-R1 Distill Llama-70B (`deepseek-r1-distill-llama-70b`): $0.70/$0.80 per Mtok, 131k ctx
+  — R1 reasoning on Llama-3.3-70B open-weights backbone
+- Ministral 14B (`ministral-14b`): $0.20/$0.20 per Mtok, 262k ctx
+  — Ministral 14B (Dec 2025); 262k ctx; step up from 8B at same flat-rate pricing
+- Mistral Small 2603 (`mistral-small-2603`): $0.15/$0.60 per Mtok, 262k ctx
+  — Mistral Small March 2026; 262k ctx; asymmetric pricing with cheap input
+- Gemma 3 27B (`gemma-3-27b`): $0.08/$0.16 per Mtok, 131k ctx
+  — Google's flagship open-weights Gemma 3 model; runs via Google AI Studio
+- Gemma 3 12B (`gemma-3-12b`): $0.04/$0.13 per Mtok, 131k ctx
+  — Compact Gemma 3; strong multilingual + coding capability
+- **New provider: Qwen / Alibaba Cloud** (direct dashscope API)
+  - Qwen Turbo (`qwen-turbo`): $0.03/$0.13 per Mtok, 131k ctx — fastest/cheapest
+  - Qwen Plus (`qwen-plus`): $0.26/$0.78 per Mtok, 1M ctx — 1M context window
+  - Qwen Max (`qwen-max`): $1.04/$4.16 per Mtok, 32k ctx — Alibaba flagship
+  - Qwen3-235B (`qwen3-235b`): $0.45/$1.82 per Mtok, 131k ctx — 235B MoE open-weights
+- Total: 157 → 167 models; 22 → 23 providers
+
 ## [0.1.28] - 2026-05-12
 
 ### Added
