@@ -2,6 +2,40 @@
 
 All notable changes to llm-prices will be documented here.
 
+## [0.1.31] - 2026-05-12
+
+### Added
+- **New provider: Inflection AI**
+  - Inflection-3 Pi (`inflection-3-pi`): $2.50/$10.00 per Mtok, 8k ctx — conversational AI (Pi)
+  - Inflection-3 Productivity (`inflection-3-productivity`): $2.50/$10.00, 8k ctx — enterprise tasks
+- **Qwen3 model expansion** (4 new models):
+  - Qwen3-8B (`qwen3-8b`): $0.05/$0.40 per Mtok, 40k ctx — smallest Qwen3 dense model
+  - Qwen3-30B-A3B MoE (`qwen3-30b-moe`): $0.09/$0.45, 40k ctx — 3B active params, very cheap
+  - Qwen3 Max (`qwen3-max`): $0.78/$3.90, 262k ctx — Alibaba's Qwen3 flagship with thinking mode
+  - Qwen3 Coder (`qwen3-coder`): $0.22/$1.80, 262k ctx — coding specialist, 262k context
+- **Google Gemma 4** (2 new models):
+  - Gemma 3 4B (`gemma-3-4b`): $0.04/$0.08, 131k ctx — ultra-compact Gemma 3
+  - Gemma 4 27B Dense (`gemma-4-27b`): $0.12/$0.37, 262k ctx — Google's 2026 open-weights flagship
+  - Gemma 4 27B MoE (`gemma-4-27b-moe`): $0.06/$0.33, 262k ctx — cheaper MoE variant
+- **Mistral additions** (3 new models):
+  - Mistral Saba (`mistral-saba`): $0.20/$0.60, 32k ctx — Arabic & multilingual specialist (24B)
+  - Ministral 3B (`ministral-3b`): $0.10/$0.10, 131k ctx — smallest Mistral model, flat rate
+  - Voxtral Small (`voxtral-small`): $0.10/$0.30, 32k ctx — Mistral's speech/voice processing model
+- Total: 173 → 185 models; 24 → 25 providers
+
+## [0.1.30] - 2026-05-12
+
+### Added
+- **New provider: Microsoft Azure AI Foundry**
+  - Phi-4 14B (`phi-4`): $0.065/$0.140 per Mtok, 16k ctx — SOTA SLM for reasoning/coding
+  - Phi-4 Mini (`phi-4-mini-instruct`): $0.080/$0.350 per Mtok, 131k ctx — 3.8B compact model
+  - Phi-4 Reasoning (`phi-4-reasoning`): $1.50/$6.00 per Mtok, 32k ctx — chain-of-thought model
+- DeepSeek-R1-0528 (`deepseek-r1-0528`): $0.55/$2.19 per Mtok, 163k ctx
+  — May 2026 R1 checkpoint; improved agentic + STEM reasoning; available on DeepSeek native API
+- Qwen3-32B (`qwen3-32b`): $0.20/$0.60 per Mtok, 131k ctx — dense model, strong coding/math
+- Qwen3-14B (`qwen3-14b`): $0.10/$0.30 per Mtok, 131k ctx — compact with excellent efficiency
+- Total: 167 → 173 models; 23 → 24 providers
+
 ## [0.1.29] - 2026-05-12
 
 ### Added

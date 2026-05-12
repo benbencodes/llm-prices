@@ -386,6 +386,27 @@ MODELS = {
         "context_window": 131_072,
         "notes": "Gemma 3 12B; compact open-weights; strong multilingual + coding",
     },
+    "gemma-3-4b": {
+        "provider": "Google",
+        "input_per_mtok": 0.04,
+        "output_per_mtok": 0.08,
+        "context_window": 131_072,
+        "notes": "Gemma 3 4B; smallest Gemma 3; ultra-cheap, 131k ctx, strong for its size",
+    },
+    "gemma-4-27b": {
+        "provider": "Google",
+        "input_per_mtok": 0.12,
+        "output_per_mtok": 0.37,
+        "context_window": 262_144,
+        "notes": "Gemma 4 27B dense; 262k ctx; Google's 2026 open-weights flagship; strong STEM",
+    },
+    "gemma-4-27b-moe": {
+        "provider": "Google",
+        "input_per_mtok": 0.06,
+        "output_per_mtok": 0.33,
+        "context_window": 262_144,
+        "notes": "Gemma 4 27B (26B MoE variant, 4B active); 262k ctx; cheaper than dense variant",
+    },
     # ── Mistral AI ────────────────────────────────────────────────────────
     "magistral-medium": {
         "provider": "Mistral",
@@ -505,6 +526,27 @@ MODELS = {
         "output_per_mtok": 0.25,
         "context_window": 32_000,
         "notes": "Open-weights, via API",
+    },
+    "mistral-saba": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.60,
+        "context_window": 32_000,
+        "notes": "Mistral Saba (Feb 2025); Arabic + multilingual specialist; 24B parameters",
+    },
+    "ministral-3b": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.10,
+        "context_window": 131_072,
+        "notes": "Ministral 3B (Dec 2025); smallest Mistral model; flat rate; 131k ctx",
+    },
+    "voxtral-small": {
+        "provider": "Mistral",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.30,
+        "context_window": 32_000,
+        "notes": "Voxtral Small 24B (Jul 2025); Mistral's speech/voice model; audio + text",
     },
     # ── Meta / Llama (via Groq) ───────────────────────────────────────────
     "llama-4-scout": {
@@ -655,6 +697,13 @@ MODELS = {
         "output_per_mtok": 0.80,
         "context_window": 131_072,
         "notes": "DeepSeek-R1 distilled into Llama-3.3-70B; reasoning on open-weights backbone",
+    },
+    "deepseek-r1-0528": {
+        "provider": "DeepSeek",
+        "input_per_mtok": 0.55,
+        "output_per_mtok": 2.19,
+        "context_window": 163_840,
+        "notes": "DeepSeek-R1 May 2026 checkpoint; 163k ctx; improved agentic + STEM reasoning",
     },
     # ── xAI ───────────────────────────────────────────────────────────────
     "grok-4.3": {
@@ -1236,7 +1285,93 @@ MODELS = {
         "context_window": 131_072,
         "notes": "Qwen3-235B-A22B MoE; Alibaba's flagship open-weights model; 22B active params",
     },
+    "qwen3-32b": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.20,
+        "output_per_mtok": 0.60,
+        "context_window": 131_072,
+        "notes": "Qwen3-32B dense model; 131k ctx; strong at coding and math; via dashscope",
+    },
+    "qwen3-14b": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.10,
+        "output_per_mtok": 0.30,
+        "context_window": 131_072,
+        "notes": "Qwen3-14B; compact dense model; 131k ctx; good price/performance",
+    },
+    "qwen3-8b": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.05,
+        "output_per_mtok": 0.40,
+        "context_window": 40_960,
+        "notes": "Qwen3-8B; smallest Qwen3 dense model; 40k ctx; ultra-cheap for simple tasks",
+    },
+    "qwen3-30b-moe": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.09,
+        "output_per_mtok": 0.45,
+        "context_window": 40_960,
+        "notes": "Qwen3-30B-A3B MoE; 30B total/3B active params; very cheap per token; 40k ctx",
+    },
+    "qwen3-max": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.78,
+        "output_per_mtok": 3.90,
+        "context_window": 262_144,
+        "notes": "Qwen3 Max; Alibaba's top-tier Qwen3; 262k ctx; thinking mode supported",
+    },
+    "qwen3-coder": {
+        "provider": "Qwen",
+        "input_per_mtok": 0.22,
+        "output_per_mtok": 1.80,
+        "context_window": 262_144,
+        "notes": "Qwen3 Coder; specialized for code generation and completion; 262k ctx",
+    },
+
+    # ── Inflection AI ─────────────────────────────────────────────────────
+    # Source: https://developers.inflection.ai/pricing
+    # Inflection AI: maker of Pi; enterprise API for conversational and productivity AI
+    "inflection-3-pi": {
+        "provider": "Inflection",
+        "input_per_mtok": 2.50,
+        "output_per_mtok": 10.00,
+        "context_window": 8_192,
+        "notes": "Inflection-3 Pi; conversational AI optimized for empathetic dialogue",
+    },
+    "inflection-3-productivity": {
+        "provider": "Inflection",
+        "input_per_mtok": 2.50,
+        "output_per_mtok": 10.00,
+        "context_window": 8_192,
+        "notes": "Inflection-3 Productivity; task-focused enterprise variant of Pi",
+    },
+
+    # ── Microsoft Azure AI Foundry ─────────────────────────────────────────
+    # Source: https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/
+    # Microsoft hosts Phi-4 via Azure AI Foundry (PAYG serverless endpoints)
+    # Phi models are SLMs (Small Language Models) competitive with models 3-5× larger
+    "phi-4": {
+        "provider": "Microsoft",
+        "input_per_mtok": 0.065,
+        "output_per_mtok": 0.140,
+        "context_window": 16_384,
+        "notes": "Microsoft Phi-4 14B; SOTA SLM for reasoning; via Azure AI Foundry",
+    },
+    "phi-4-mini-instruct": {
+        "provider": "Microsoft",
+        "input_per_mtok": 0.080,
+        "output_per_mtok": 0.350,
+        "context_window": 131_072,
+        "notes": "Microsoft Phi-4-mini 3.8B; 131k ctx; efficient small model via Azure AI Foundry",
+    },
+    "phi-4-reasoning": {
+        "provider": "Microsoft",
+        "input_per_mtok": 1.50,
+        "output_per_mtok": 6.00,
+        "context_window": 32_768,
+        "notes": "Microsoft Phi-4 reasoning model; chain-of-thought; outperforms larger models on math/science",
+    },
 }
 
 PROVIDERS = sorted({m["provider"] for m in MODELS.values()})
-DATA_DATE = "2026-05-12"
+DATA_DATE = "2026-05-12"  # v0.1.31
